@@ -1,0 +1,33 @@
+From https://www.hackthebox.eu/home/challenges/Crypto
+
+This text appears on a Batman show but we suspect that it is actually code.
+It's your job to find out what it says! (The flag is in uppercase)
+
+File reads:
+NAANAAANNNAANAAAANANANANAAAAAAAANNAANAAANAAANANNAAAAAAAANNNAANAAAAANAANAAAA
+
+There are only 2 characters, and the file command shows that the file is ASCII text.
+Maybe binary substitution will work.
+
+NAANAAANNNAANAAAANANANANAAAAAAAANNAANAAANAAANANNAAAAAAAANNNAANAAAAANAANAAAA
+011011100011011110101010111111110011011101110100111111110001101111101101111
+10010001 11001000 0101010 10000000 01100100 01000101 10000000 01110010 00001001 0000
+
+Nada, not divisible by 8.
+
+http://practicalcryptography.com/cryptanalysis/text-characterisation/identifying-unknown-ciphers/
+How many different characters are there? If there are only 2 different symbols, it is likely the cipher is Baconian
+
+http://practicalcryptography.com/ciphers/baconian-cipher/
+A sequence of 5 characters... let's break up the text string
+
+From the cypher from the link above, assume N = B, A = A
+NAANA AANNN AANAA AANAN ANANA AAAAA AANNA ANAAA NAAAN ANNAA AAAAA ANNNA ANAAA AANAA NAAAA
+t     h     e     f     l     a     g     (i)/j   s   n     a     p     i/j   e     r
+
+the flag is napier
+
+Remember the flag is uppercase...
+
+HTB{NAPIER}
+

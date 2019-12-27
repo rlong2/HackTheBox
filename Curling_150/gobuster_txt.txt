@@ -1,0 +1,5 @@
+/index.php (Status: 200)
+/images (Status: 301)
+/templates (Status: 301)
+/media (Status: 301)
+/modules (Status: 301)

@@ -1,0 +1,46 @@
+#####################
+# Sources and Links #
+#####################
+
+#########
+# TL,DR #
+#########
+
+########
+# Hack #
+########
+nmap shows 22 and 80
+The web page is a website about curling... must be involved in the hack somehow
+The web page has a login form and links for resetting a password.
+Posts are written by Super User, 1 post is signed by Floris
+
+possible username - Floris
+
+gobuster shows /administrator, shows a Joomla login page, secret.txt
+Examining html also shows /secret.txt
+
+possible password - Q3VybGluZzIwMTgh
+
+echo Q3VybGluZzIwMTgh | base64 -d
+Curling2018!
+
+We can log onto 10.10.10.150/administrator!
+
+Can we upload anything?
+
+Apache version 2.4.29
+
+Joomla is a free and open-source content management system for publishing web content, written in PHP
+
+#############
+# Passwords #
+#############
+10.10.10.150
+/admininstrator
+floris - Curling2018!
+
+###########
+# Learned #
+###########
+gobuster - specifying .txt, .php extensions with -x txt,php
+

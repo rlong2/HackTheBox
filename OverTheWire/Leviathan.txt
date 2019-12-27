@@ -1,0 +1,90 @@
+http://overthewire.org/wargames/leviathan/
+
+Leviathan’s levels are called leviathan0, leviathan1, … etc. and can be accessed on leviathan.labs.overthewire.org through SSH on port 2223.
+
+To login to the first level use:
+
+Username: leviathan0
+Password: leviathan0
+
+Data for the levels can be found in the homedirectories. 
+You can look at /etc/leviathan_pass for the various level passwords.
+
+Level 0 -> Level 1: Show all files and grep through a file to parse out a password
+
+Solution: cd into .backup to find an .html file, grep for leviathan
+
+leviathan0@leviathan:~/.backup$ grep leviathan bookmarks.html
+<DT><A HREF="http://leviathan.labs.overthewire.org/passwordus.html | This will be fixed later, the password for leviathan1 is rioGegei8m" ADD_DATE="1155384634" LAST_CHARSET="ISO-8859-1" ID="rdf:#$2wIU71">password to leviathan1</A>
+
+Level 1 -> Level 2
+There is an executable file. Running it prompts for a password.
+Inputting the wrong password gives 'Wrong password, bye!'
+
+Solution: Follow the library calls for the executable with 'ltrace'.
+
+leviathan1@leviathan:~$ ltrace ./check
+__libc_start_main(0x804853b, 1, 0xffffd794, 0x8048610 <unfinished ...>
+printf("password: ")                                                    = 10
+getchar(1, 0, 0x65766f6c, 0x646f6700password:
+)                                   = 10
+getchar(1, 0, 0x65766f6c, 0x646f6700
+)                                   = 10
+getchar(1, 0, 0x65766f6c, 0x646f6700
+)                                   = 10
+strcmp("\n\n\n", "sex")                                                 = -1
+puts("Wrong password, Good Bye ..."Wrong password, Good Bye ...
+)                                    = 29
++++ exited (status 0) +++
+
+Now we can run ./check and supply 'sex' as the password.
+We are now leviathan2, and have permission to access the user password.
+$ cat /etc/leviathan_pass/leviathan2
+ougahZi8Ta
+
+Level 2 -> Level 3
+There is an execuatble file called 'printfile'.
+Usage: ./printfile filename
+./printfile foo >>> you cant have that file...
+./printfile printfile crashes putty.
+leviathan2@leviathan:~$ ./printfile /etc/leviathan_pass_leviathan2
+You cant have that file...
+
+Solution:
+
+printfile is owned by leviathan3, and that may be exploitable
+
+leviathan2@leviathan:~$ ls -l ~/printfile
+-r-sr-x--- 1 leviathan3 leviathan2 7436 Oct 29  2018 /home/leviathan2/printfile
+
+Make a temp dir with a test file to use in executable with 'ltrace'.
+
+leviathan2@leviathan:~$ mkdir /tmp/droptables && echo "test" > /tmp/droptable/testFile.txt
+leviathan2@leviathan:~$ ./printfile /tmp/droptables/testFile.txt
+test
+leviathan2@leviathan:~$ ltrace ./printfile /tmp/droptables/testFile.txt
+__libc_start_main(0x804852b, 2, 0xffffd754, 0x8048610 <unfinished ...>
+access("/tmp/droptables/testFile.txt", 4)        = 0
+snprintf("/bin/cat /tmp/droptables/testFil"..., 511, "/bin/cat %s", "/tmp/droptables/testFile.txt") = 37
+geteuid()                                        = 12002
+geteuid()                                        = 12002
+setreuid(12002, 12002)                           = 0
+system("/bin/cat /tmp/droptables/testFil"...test
+ <no return ...>
+--- SIGCHLD (Child exited) ---
+<... system resumed> )                           = 0
++++ exited (status 0) +++
+
+The executable is owned by leviathan3, so the 'access()' call uses leviathan3's privaleges.
+From 'snprintf', we see /bin/cat only calls PART of the file name.
+What happens if we insert a space into the provided filename?
+
+leviathan2@leviathan:~$ mv /tmp/droptables/testFile.txt /tmp/droptables/testF\ ile.txt
+leviathan2@leviathan:~$ cd /tmp/droptables
+leviathan2@leviathan:/tmp/droptables$ ls
+testF ile.txt
+
+./printfile reads a file with spaces as two seperate files.
+Create a a symbolic link that links the first part of the file name to /etc/leviathan_pass/leviathan3
+
+

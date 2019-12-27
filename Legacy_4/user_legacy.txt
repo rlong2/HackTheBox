@@ -1,0 +1,37 @@
+#####################
+# Sources and Links #
+#####################
+https://nxnjz.net/2018/06/hackthebox-legacy-walkthrough/
+
+#########
+# TL,DR #
+#########
+
+########
+# Hack #
+########
+
+# The nmap vuln script showed that Legacy may be vulnerable to EternalBlue.
+After launching a metasploit module and pointing RHOSTS to 10.10.10.4,
+the exploit was unable to crack into the box.
+
+[*] 10.10.10.4:445 - Sending final SMBv2 buffers.
+[*] 10.10.10.4:445 - Sending last fragment of exploit packet!
+[*] 10.10.10.4:445 - Receiving response from exploit packet
+[+] 10.10.10.4:445 - ETERNALBLUE overwrite completed successfully (0xC000000D)!
+[*] 10.10.10.4:445 - Sending egg to corrupted connection.
+[*] 10.10.10.4:445 - Triggering free of corrupted buffer.
+[-] 10.10.10.4:445 - =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[-] 10.10.10.4:445 - =-=-=-=-=-=-=-=-=-=-=-=-=-=FAIL-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[-] 10.10.10.4:445 - =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[*] 10.10.10.4:445 - Connecting to target for exploitation.
+[-] 10.10.10.4:445 - Could not make SMBv1 connection
+[*] Exploit completed, but no session was created.
+ 
+# However, nmap can be further utilized to scan the box for smb vulns
+
+
+###########
+# Learned #
+##########
+nmap --script smb-vuln* 10.10.10.4

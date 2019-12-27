@@ -1,0 +1,619 @@
+https://overthewire.org/wargames/bandit/
+
+Level 0:
+The goal of this level is for you to log into the game using SSH. The host to which you need to connect is bandit.labs.overthewire.org, on port 2220. The username is bandit0 and the password is bandit0. Once logged in, go to the Level 1 page to find out how to beat Level 1.
+
+Solution:
+ssh bandit0@bandit.labs.overthewire.org -p 2220
+
+Level 0 -> Level 1:
+The password for the next level is stored in a file called readme located in the home directory. Use this password to log into bandit1 using SSH. Whenever you find a password for a level, use SSH (on port 2220) to log into that level and continue the game.
+
+Solution:
+
+bandit0@bandit:~$ cat readme
+boJ9jbbUNNfktd78OOpsqOltutMc3MY1
+
+Level 1 -> Level 2:
+The password for the next level is stored in a file called - located in the home directory
+
+Solution: We need a file path:
+
+bandit1@bandit:~$ cat ~/-
+CV1DtqXWVFXTvM2F0k09SHz0YwRINYA9
+
+Level 2 -> Level 3:
+The password for the next level is stored in a file called spaces in this filename located in the home directory
+
+Solution: Use escape characters or 'tab' to autocomplete
+
+bandit2@bandit:~$ cat spaces\ in\ this\ filename
+UmHadQclWmgdLOKQ3YNgjWxGoRMb5luK
+
+Level 3 -> Level 4:
+The password for the next level is stored in a hidden file in the inhere directory.
+
+Solution: Navigate inside the inhere directory and display hidden files with ls -a
+
+bandit3@bandit:~$ ls
+inhere
+bandit3@bandit:~$ cd inhere/
+bandit3@bandit:~/inhere$ ls
+bandit3@bandit:~/inhere$ ls -a
+.  ..  .hidden
+bandit3@bandit:~/inhere$ cat .hidden
+pIwrPrtPN36QITSp3EQaw936yaFoFgAB
+
+Level 4 -> Level 5
+The password for the next level is stored in the only human-readable file in the inhere directory. Tip: if your terminal is messed up, try the “reset” command.
+
+Solution: Use the 'file' command to see the types of files in the folder
+
+bandit4@bandit:~$ cd inhere/
+bandit4@bandit:~/inhere$ ls
+-file00  -file01  -file02  -file03  -file04  -file05  -file06  -file07  -file08  -file09
+bandit4@bandit:~/inhere$  file ./*
+./-file00: data
+./-file01: data
+./-file02: data
+./-file03: data
+./-file04: data
+./-file05: data
+./-file06: data
+./-file07: ASCII text
+./-file08: data
+./-file09: data
+bandit4@bandit:~/inhere$ cat ./-file07
+koReBOKuIDDepwhWk7jZC0RTdopnAYKh
+
+Level 5 -> Level 6
+The password for the next level is stored in a file somewhere under the inhere directory and has all of the following properties:
+
+    human-readable
+    1033 bytes in size
+    not executable
+
+Solution: Because the file is 1033 bytes, we can use 'find' w/size flag (b is for bytes).
+'! -exectuable' shows files that are not executable.
+'-exec file {} +' finds human-readable files.
+
+bandit5@bandit:~/inhere$ find ./* -size 1033c
+./maybehere07/.file2
+bandit5@bandit:~/inhere$ cat maybehere07/.file2
+DXjZPULLxYr17uwoI01bNLQbtFemEgo7
+
+Level 6 -> Level 7
+The password for the next level is stored somewhere on the server and has all of the following properties:
+
+    owned by user bandit7
+    owned by group bandit6
+    33 bytes in size
+
+Solution: search starting at root directory and send 'Permission Denied' warnings to /dev/null (basically a black hole)
+'-user' shows files owned by USER
+'-group' shows files owned by GROUP
+
+bandit6@bandit:~$ find / -size 33c -user bandit7 -group bandit6 2>/dev/null
+/var/lib/dpkg/info/bandit7.password
+bandit6@bandit:~$ cat /var/lib/dpkg/info/bandit7.password
+HKBPTKQnIay4Fw76bEy8PVxKEDQRKTzs
+
+Level 7 -> Level 8
+The password for the next level is stored in the file data.txt next to the word millionth
+
+Solution: cat the file and grep it with a pipe. The file is formatted nicely for this challenge.
+
+bandit7@bandit:~$ cat data.txt | grep millionth
+millionth       cvX2JJa4CFALtqS87jk27qwqGhBM9plV
+
+Level 8 -> Level 9
+The password for the next level is stored in the file data.txt and is the only line of text that occurs only once
+
+Solution: 'sort' to arrange patterns alphabetically.
+Pipe 'sort' with 'uniq -u' to find the lone pattern.
+'uniq' reports or omits repeated lines, and -u (or --unique) only prints unique lines.
+
+bandit8@bandit:~$ sort data.txt | uniq -u
+UsvVyFSfZZWbi6wgC7dAFyFuR6jQQUhR
+
+Level 9 -> Level 10
+The password for the next level is stored in the file data.txt in one of the few human-readable strings, beginning with several ‘=’ characters.
+
+Solution: 'strings'shows human-readable characters in a file.
+bandit9@bandit:~$ strings data.txt | grep ==
+2========== the
+========== password
+========== isa
+========== truKLdjsbJ5g7yyJ2X2R0o3a5HQJFuLk
+
+Level 10 -> Level 11
+The password for the next level is stored in the file data.txt, which contains base64 encoded data
+
+Solution: Decode the file using the command 'base64'
+bandit10@bandit:~$ base64 -d data.txt
+The password is IFukwKGsFW8MOq3IRFqrxE1hxTNEbUPR
+
+Level 11 -> Level 12
+The password for the next level is stored in the file data.txt, where all lowercase (a-z) and uppercase (A-Z) letters have been rotated by 13 positions
+
+Solution: Use a ceaser cypher website cracker.
+bandit11@bandit:~$ cat data.txt
+Gur cnffjbeq vf 5Gr8L4qetPEsPk8htqjhRK8XSP6x2RHh
+https://www.xarg.org/tools/caesar-cipher/
+The password is 5Te8Y4drgCRfCx8ugdwuEX8KFC6k2EUu 
+
+Level 12 -> Level 13
+The password for the next level is stored in the file data.txt, which is a hexdump of a file that has been repeatedly compressed. For this level it may be useful to create a directory under /tmp in which you can work using mkdir. For example: mkdir /tmp/myname123. Then copy the datafile using cp, and rename it using mv (read the manpages!)
+
+Solution: This is a PITA. Check the file type, rename file to match the file type, extract, repeat.
+bandit12@bandit: mkdir /tmp/droptables && cp data.txt /tmp/droptables && cd /tmp/droptables
+bandit12@bandit: man xxd
+     xxd - make a hexdump or do the reverse.
+bandit12@bandit:/tmp/droptables$ xxd -r data.txt > data.bin
+bandit12@bandit:/tmp/droptables$ file data.bin
+data.bin: gzip compressed data, was "data2.bin", last modified: Tue Oct 16 12:00:23 2018, max compression, from Unix
+
+many minutes later...
+
+bandit12@bandit:/tmp/droptables$ cat data8.bin
+The password is 8ZjyCRiBWFYkneahHwxCv3wb2a1ORpYL
+
+Level 13 -> Level 14
+The password for the next level is stored in /etc/bandit_pass/bandit14 and can only be read by user bandit14. For this level, you don’t get the next password, but you get a private SSH key that can be used to log into the next level. Note: localhost is a hostname that refers to the machine you are working on
+
+Solution: Access bandit13 and use the key on that server to hop to bandit14
+bandit13@bandit:~$ ssh -i sshkey.private bandit14@localhost
+Could not create directory '/home/bandit13/.ssh'.
+The authenticity of host 'localhost (127.0.0.1)' can't be established.
+ECDSA key fingerprint is SHA256:98UL0ZWr85496EtCRkKlo20X3OPnyPSB5tB5RPbhczc.
+Are you sure you want to continue connecting (yes/no)? yes
+Failed to add the host to the list of known hosts (/home/bandit13/.ssh/known_hosts).
+This is a OverTheWire game server. More information on http://www.overthewire.org/wargames
+
+bandit14@bandit:~$ cat /etc/
+Display all 174 possibilities? (y or n)
+bandit14@bandit:~$ cat /etc/bandit_pass/bandit14
+4wcYUJFw0k0XLShlDzztnTBHiqxU3b3e
+
+Level 14 -> Level 15
+The password for the next level can be retrieved by submitting the password of the current level to port 30000 on localhost.
+
+Solution: Use 'nc' to forward information through a port
+
+bandit14@bandit:~$ echo "4wcYUJFw0k0XLShlDzztnTBHiqxU3b3e" | nc 127.0.0.1 30000
+Correct!
+BfMYroe26WYalil77FoDi9qh59eK5xNr
+
+Level 15 -> Level 16
+The password for the next level can be retrieved by submitting the password of the current level to port 30001 on localhost using SSL encryption.
+
+Helpful note: Getting “HEARTBEATING” and “Read R BLOCK”? Use -ign_eof and read the “CONNECTED COMMANDS” section in the manpage. Next to ‘R’ and ‘Q’, the ‘B’ command also works in this version of that command…
+
+Solution: Use 'openssl' to connect to the specified port and input the password
+man openssl
+DESCRIPTION
+       OpenSSL is a cryptography toolkit implementing the Secure Sockets Layer (SSL v2/v3) and Transport Layer
+       Security (TLS v1) network protocols and related cryptography standards required by them.
+# Searching for the s_client command wthin the openssl man...
+ /s_client
+           This implements a generic SSL/TLS client which can establish a transparent connection to a remote
+           server speaking SSL/TLS. 
+           
+bandit15@bandit:~$ openssl s_client -connect localhost:30001
+CONNECTED(00000003)
+depth=0 CN = localhost
+verify error:num=18:self signed certificate
+verify return:1
+depth=0 CN = localhost
+verify return:1
+---
+Certificate chain
+ 0 s:/CN=localhost
+   i:/CN=localhost
+---
+Server certificate
+-----BEGIN CERTIFICATE-----
+MIICBjCCAW+gAwIBAgIEBadydTANBgkqhkiG9w0BAQUFADAUMRIwEAYDVQQDDAls
+b2NhbGhvc3QwHhcNMTkwMjI3MDg1MTQ5WhcNMjAwMjI3MDg1MTQ5WjAUMRIwEAYD
+VQQDDAlsb2NhbGhvc3QwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAMyEZzRA
++5ll7Ap2bwla+8x39mTviZKqrjnmLuTZj1U3mugt3G2JI5loXyjnFxlXnHUGy/xI
+OiACFOEJCce2VIkarMa1Cy13wtGuLoZxjcYSAIMzIOPykCh9+FJ89Tt1TIVXmO0C
+TJaxFMhKdX0ALZlxjN1+xoZgeOtN7yfhprjjAgMBAAGjZTBjMBQGA1UdEQQNMAuC
+CWxvY2FsaG9zdDBLBglghkgBhvhCAQ0EPhY8QXV0b21hdGljYWxseSBnZW5lcmF0
+ZWQgYnkgTmNhdC4gU2VlIGh0dHBzOi8vbm1hcC5vcmcvbmNhdC8uMA0GCSqGSIb3
+DQEBBQUAA4GBACNP1/t8pfANluA2MuoxCAkie0bDCUL/ZV7FDaH1YUAEG7wEZVFJ
+Pt8+6L8HkLYcuCPtjc2uxA8yEiqS7fiYRU26PmrQXzm09W0ah1pq+7NGMLKz596B
+AIpiTkVpA7YCUvGcYvz6yXS202e2GbLOulF2l9kx6hhhBCWubeqh2IjR
+-----END CERTIFICATE-----
+subject=/CN=localhost
+issuer=/CN=localhost
+---
+No client certificate CA names sent
+Peer signing digest: SHA512
+Server Temp Key: X25519, 253 bits
+---
+SSL handshake has read 1019 bytes and written 269 bytes
+Verification error: self signed certificate
+---
+New, TLSv1.2, Cipher is ECDHE-RSA-AES256-GCM-SHA384
+Server public key is 1024 bit
+Secure Renegotiation IS supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+SSL-Session:
+    Protocol  : TLSv1.2
+    Cipher    : ECDHE-RSA-AES256-GCM-SHA384
+    Session-ID: 1294FA0F4AFACB112FE9E6CEE6D3666074EE4BE4CEDC187BF8A93B5EB65615F7
+    Session-ID-ctx:
+    Master-Key: C401E30C308AFA2C13FEA48529B896134ACECDC771C2AFCF690DEF91AEFCF298847C77391CA6FC45BD4BED63A53188B0
+    PSK identity: None
+    PSK identity hint: None
+    SRP username: None
+    TLS session ticket lifetime hint: 7200 (seconds)
+    TLS session ticket:
+    0000 - df 12 86 44 83 09 d4 62-75 55 25 0c f8 4f 2c 53   ...D...buU%..O,S
+    0010 - 9e 41 8f 1c 85 d6 49 4c-11 18 51 6a 3b bd 17 a9   .A....IL..Qj;...
+    0020 - 53 f6 8f cd d5 7d 9c e2-f5 4a 39 ed 30 12 1d d6   S....}...J9.0...
+    0030 - db 88 e3 58 ad fe 65 17-5e f0 d6 9d 15 06 85 57   ...X..e.^......W
+    0040 - c4 dc 41 8f 4e aa ea fc-da 55 5b f5 73 f9 a0 4e   ..A.N....U[.s..N
+    0050 - 71 09 36 5c 8f ae 72 e7-02 2e 6d f6 42 79 d2 a2   q.6\..r...m.By..
+    0060 - 37 52 9c 81 06 ef 63 a1-4b c2 2b 97 02 c1 1a 9a   7R....c.K.+.....
+    0070 - c2 4b 90 eb 08 20 f7 1d-35 aa c8 b5 b3 97 49 61   .K... ..5.....Ia
+    0080 - 4c f8 8e 68 c1 81 f3 ef-f4 be b8 40 44 99 cd b2   L..h.......@D...
+    0090 - cd 33 03 fc 54 89 80 c3-d7 fc 5d 8c 78 0a 23 31   .3..T.....].x.#1
+
+    Start Time: 1559833573
+    Timeout   : 7200 (sec)
+    Verify return code: 18 (self signed certificate)
+    Extended master secret: yes
+---
+BfMYroe26WYalil77FoDi9qh59eK5xNr <<(This is input by the user!)
+Correct!
+cluFn7wTiGryunymYOu4RcffSxQluehd
+
+closed
+
+Level 16 -> Level 17
+The credentials for the next level can be retrieved by submitting the password of the current level to a port on localhost in the range 31000 to 32000. First find out which of these ports have a server listening on them. Then find out which of those speak SSL and which don’t. There is only 1 server that will give the next credentials, the others will simply send back to you whatever you send to it.
+
+Solution: nmap the port range.
+
+bandit16@bandit:~$ mkdir /tmp/droptables
+bandit16@bandit:~$ nmap -sV localhost -p31000-32000 > /tmp/droptables/nmap16.txt
+bandit16@bandit:~$ less /tmp/droptables/nmap16.txt
+
+Starting Nmap 7.40 ( https://nmap.org ) at 2019-06-06 17:18 CEST
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.00023s latency).
+Not shown: 999 closed ports
+PORT      STATE SERVICE     VERSION
+31518/tcp open  ssl/echo
+31790/tcp open  ssl/unknown
+
+bandit16@bandit:~$ openssl s_client -connect localhost:31790
+CONNECTED(00000003)
+depth=0 CN = localhost
+verify error:num=18:self signed certificate
+verify return:1
+depth=0 CN = localhost
+verify return:1
+---
+Certificate chain
+ 0 s:/CN=localhost
+   i:/CN=localhost
+---
+Server certificate
+-----BEGIN CERTIFICATE-----
+MIICBjCCAW+gAwIBAgIEFAEx+jANBgkqhkiG9w0BAQUFADAUMRIwEAYDVQQDDAls
+b2NhbGhvc3QwHhcNMTkwNjAzMTk0NzM1WhcNMjAwNjAyMTk0NzM1WjAUMRIwEAYD
+VQQDDAlsb2NhbGhvc3QwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAOtGIwGZ
+orvQkbT7OmgRlOcpO89Qe67Sflvo+HkEWkBTHkk8kHDb5C/AZewts9hK3e/xHzfW
+dKtev84q0uD9MZGn9V8fpzg7cE/WpF4AORkncch18hKsAxzkcedPRwOp0Ds4Z7iu
+7lCk49eQQUxFQGmce7LI+2liISdl/2SxGnM/AgMBAAGjZTBjMBQGA1UdEQQNMAuC
+CWxvY2FsaG9zdDBLBglghkgBhvhCAQ0EPhY8QXV0b21hdGljYWxseSBnZW5lcmF0
+ZWQgYnkgTmNhdC4gU2VlIGh0dHBzOi8vbm1hcC5vcmcvbmNhdC8uMA0GCSqGSIb3
+DQEBBQUAA4GBAGTkwYZlA64cYJ9A/fVrNmRHJzULqj/rNslQP35Ur7OmJ2UpMMEd
+noMwf5Kqr4c3ib0mDjBPEyNKnIapy78Fb47BGGBgQCRryDXXxQL76hLfM+hzQ6dS
+dKQ5/A5QK/PUV4+yUO9jIB1Xi2r8+A41Oo4VIp2vzIFWwsh68oX7VFUM
+-----END CERTIFICATE-----
+subject=/CN=localhost
+issuer=/CN=localhost
+---
+No client certificate CA names sent
+Peer signing digest: SHA512
+Server Temp Key: X25519, 253 bits
+---
+SSL handshake has read 1019 bytes and written 269 bytes
+Verification error: self signed certificate
+---
+New, TLSv1.2, Cipher is ECDHE-RSA-AES256-GCM-SHA384
+Server public key is 1024 bit
+Secure Renegotiation IS supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+SSL-Session:
+    Protocol  : TLSv1.2
+    Cipher    : ECDHE-RSA-AES256-GCM-SHA384
+    Session-ID: 53653770D8E793BEE2C8CDC95E53B8ADECF87E78A878391A0DBAF8E3737536DF
+    Session-ID-ctx:
+    Master-Key: 298481E4991AFBB035BA7F4C7DAC5EF901A2C8CA8F5D41FCB43BF8A0BD3EC3C6BF29E87755CD4CC04861759A020C568B
+    PSK identity: None
+    PSK identity hint: None
+    SRP username: None
+    TLS session ticket lifetime hint: 7200 (seconds)
+    TLS session ticket:
+    0000 - 60 b9 89 77 48 27 be de-42 fa 15 d9 21 20 46 54   `..wH'..B...! FT
+    0010 - c8 0f da d0 ab 8b fc c0-62 76 08 45 38 95 83 40   ........bv.E8..@
+    0020 - d2 c6 ba 72 bb 4d 47 52-7b e8 7d 7d 5d 95 1a 35   ...r.MGR{.}}]..5
+    0030 - 34 3f 5d 30 a7 69 e7 0e-42 5c c0 17 0a 2a c9 a7   4?]0.i..B\...*..
+    0040 - f2 3a 99 72 ff 21 54 20-37 6d b3 90 8c 61 a7 d2   .:.r.!T 7m...a..
+    0050 - 49 f5 10 64 d9 89 4d 82-cc f0 cc 71 5c 8d ee 2a   I..d..M....q\..*
+    0060 - 92 5b 5d 78 61 45 ff 54-b9 8e dc 4b 66 a0 af 37   .[]xaE.T...Kf..7
+    0070 - 9e 3b 5e 75 72 f5 40 8e-ab 9b dc 79 8e 16 17 1a   .;^ur.@....y....
+    0080 - e4 d4 94 85 a1 c2 89 6c-fd 70 d3 72 73 b2 d5 fa   .......l.p.rs...
+    0090 - d2 cf 3f e9 9f 23 85 99-10 87 db ef e1 40 a4 f3   ..?..#.......@..
+
+    Start Time: 1559834578
+    Timeout   : 7200 (sec)
+    Verify return code: 18 (self signed certificate)
+    Extended master secret: yes
+---
+cluFn7wTiGryunymYOu4RcffSxQluehd
+Correct!
+-----BEGIN RSA PRIVATE KEY-----
+MIIEogIBAAKCAQEAvmOkuifmMg6HL2YPIOjon6iWfbp7c3jx34YkYWqUH57SUdyJ
+imZzeyGC0gtZPGujUSxiJSWI/oTqexh+cAMTSMlOJf7+BrJObArnxd9Y7YT2bRPQ
+Ja6Lzb558YW3FZl87ORiO+rW4LCDCNd2lUvLE/GL2GWyuKN0K5iCd5TbtJzEkQTu
+DSt2mcNn4rhAL+JFr56o4T6z8WWAW18BR6yGrMq7Q/kALHYW3OekePQAzL0VUYbW
+JGTi65CxbCnzc/w4+mqQyvmzpWtMAzJTzAzQxNbkR2MBGySxDLrjg0LWN6sK7wNX
+x0YVztz/zbIkPjfkU1jHS+9EbVNj+D1XFOJuaQIDAQABAoIBABagpxpM1aoLWfvD
+KHcj10nqcoBc4oE11aFYQwik7xfW+24pRNuDE6SFthOar69jp5RlLwD1NhPx3iBl
+J9nOM8OJ0VToum43UOS8YxF8WwhXriYGnc1sskbwpXOUDc9uX4+UESzH22P29ovd
+d8WErY0gPxun8pbJLmxkAtWNhpMvfe0050vk9TL5wqbu9AlbssgTcCXkMQnPw9nC
+YNN6DDP2lbcBrvgT9YCNL6C+ZKufD52yOQ9qOkwFTEQpjtF4uNtJom+asvlpmS8A
+vLY9r60wYSvmZhNqBUrj7lyCtXMIu1kkd4w7F77k+DjHoAXyxcUp1DGL51sOmama
++TOWWgECgYEA8JtPxP0GRJ+IQkX262jM3dEIkza8ky5moIwUqYdsx0NxHgRRhORT
+8c8hAuRBb2G82so8vUHk/fur85OEfc9TncnCY2crpoqsghifKLxrLgtT+qDpfZnx
+SatLdt8GfQ85yA7hnWWJ2MxF3NaeSDm75Lsm+tBbAiyc9P2jGRNtMSkCgYEAypHd
+HCctNi/FwjulhttFx/rHYKhLidZDFYeiE/v45bN4yFm8x7R/b0iE7KaszX+Exdvt
+SghaTdcG0Knyw1bpJVyusavPzpaJMjdJ6tcFhVAbAjm7enCIvGCSx+X3l5SiWg0A
+R57hJglezIiVjv3aGwHwvlZvtszK6zV6oXFAu0ECgYAbjo46T4hyP5tJi93V5HDi
+Ttiek7xRVxUl+iU7rWkGAXFpMLFteQEsRr7PJ/lemmEY5eTDAFMLy9FL2m9oQWCg
+R8VdwSk8r9FGLS+9aKcV5PI/WEKlwgXinB3OhYimtiG2Cg5JCqIZFHxD6MjEGOiu
+L8ktHMPvodBwNsSBULpG0QKBgBAplTfC1HOnWiMGOU3KPwYWt0O6CdTkmJOmL8Ni
+blh9elyZ9FsGxsgtRBXRsqXuz7wtsQAgLHxbdLq/ZJQ7YfzOKU4ZxEnabvXnvWkU
+YOdjHdSOoKvDQNWu6ucyLRAWFuISeXw9a/9p7ftpxm0TSgyvmfLF2MIAEwyzRqaM
+77pBAoGAMmjmIJdjp+Ez8duyn3ieo36yrttF5NSsJLAbxFpdlc1gvtGCWW+9Cq0b
+dxviW8+TFVEBl1O4f7HVm6EpTscdDxU+bCXWkfjuRb7Dy9GOtt9JPsX8MBTakzh3
+vBgsyi/sN3RqRBcGU40fOoZyfAMT8s1m/uYv52O6IgeuZ/ujbjY=
+-----END RSA PRIVATE KEY-----
+
+closed
+
+Level 17 -> Level 18
+There are 2 files in the homedirectory: passwords.old and passwords.new. The password for the next level is in passwords.new and is the only line that has been changed between passwords.old and passwords.new
+
+NOTE: if you have solved this level and see ‘Byebye!’ when trying to log into bandit18, this is related to the next level, bandit19
+
+Solution: 
+First, log onto bandit16 and use the above ssh key to hop to bandit17
+Then use the 'diff' command 
+
+bandit16@bandit:/tmp/droptables$ chmod 600 privKey
+bandit16@bandit:/tmp/droptables$ ssh -i privKey bandit17@localhost
+This is a OverTheWire game server. More information on http://www.overthewire.or                                     g/wargames
+
+bandit17@bandit:~$
+bandit17@bandit:~$ diff passwords.old passwords.new
+42c42
+< hlbSBPAWJmL6WFDb06gpTx1pPButblOA
+---
+> kfBf3eYk5BPBRzwjqutbbfE887SVc5Yd
+(kfB... is the correct password)
+
+Level 18 -> Level 19
+The password for the next level is stored in a file readme in the homedirectory. Unfortunately, someone has modified .bashrc to log you out when you log in with SSH.
+
+Solution: Send additional commands inside the 'ssh' command
+This was done in a powershell terminal because Putty isn't maliable.
+
+A default ssh login disconnects the user instantly, but taking on commands to the 'ssh' allows for a view of the server.
+
+PS Z:\> ssh bandit18@bandit.labs.overthewire.org -p 2220
+This is a OverTheWire game server. More information on http://www.overthewire.org/wargames
+
+Byebye!
+
+PS Z:\> ssh bandit18@bandit.labs.overthewire.org -p 2220 ls
+bandit18@bandit.labs.overthewire.org's password:
+readme
+
+PS Z:\> ssh bandit18@bandit.labs.overthewire.org -p 2220 cat readme
+bandit18@bandit.labs.overthewire.org's password:
+IueksS7Ubh8G3DCwVzrTd8rAVOwq3M5x
+
+Level 19 -> Level 20
+To gain access to the next level, you should use the setuid binary in the homedirectory. Execute it without arguments to find out how to use it. The password for this level can be found in the usual place (/etc/bandit_pass), after you have used the setuid binary.
+
+Solution: Run 'ltrace' to examine the program.
+
+bandit19@bandit:~$ ls -l bandit20-do
+-rwsr-x--- 1 bandit20 bandit19 7296 Oct 16  2018 bandit20-do
+bandit19@bandit:~$ file bandit20-do
+bandit20-do: setuid ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux.so.2, for GNU/Linux 2.6.32, BuildID[sha1]=8e941f24b8c5cd0af67b22b724c57e1ab92a92a1, not stripped
+bandit19@bandit:~$ ltrace ./bandit20-do
+__libc_start_main(0x804846b, 1, 0xfff568c4, 0x80484d0 <unfinished ...>
+printf("Run a command as another user.\n "..., "./bandit20-do"Run a command as another user.
+  Example: ./bandit20-do id
+)         = 59
+exit(1 <no return ...>
++++ exited (status 1) +++
+bandit19@bandit:~$ ./bandit20-do cat /etc/bandit_pass/bandit20
+GbKksEFF4yrVs6il55v6gwY5aVje5f0j
+
+Level 20 -> 21
+There is a setuid binary in the homedirectory that does the following: it makes a connection to localhost on the port you specify as a commandline argument. It then reads a line of text from the connection and compares it to the password in the previous level (bandit20). If the password is correct, it will transmit the password for the next level (bandit21).
+
+Solution: Use 'nc' to create a listening server and connect to another SSH session. '1337' is an arbitrary port and is not used on localhost (tested w/nmap). 'nc -lvp' sets a Verbose Listener on Port 1337.
+
+Putty Window >
+bandit20@bandit:~$ ls
+suconnect
+bandit20@bandit:~$ ./suconnect
+Usage: ./suconnect <portnumber>
+This program will connect to the given port on localhost using TCP. If it receives the correct password from the other side, the next password is transmitted back.
+bandit20@bandit:~$ echo "GbKksEFF4yrVs6il55v6gwY5aVje5f0j" | nc -lvp 1337
+listening on [any] 1337 ..
+
+Powershell Window >
+bandit20@bandit:~$ ./suconnect 1337
+Read: GbKksEFF4yrVs6il55v6gwY5aVje5f0j
+Password matches, sending next password
+
+Putty Window > 
+connect to [127.0.0.1] from localhost [127.0.0.1] 43652
+gE269g2h3mw3pwgrj0Ha9Uoqen1c9DGr
+
+
+Level 21 -> 22
+A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in /etc/cron.d/ for the configuration and see what command is being executed.
+
+Solution: Check cron, examine what is being executed.
+
+bandit21@bandit:~$ cat /etc/cron.d/cronjob_bandit22
+@reboot bandit22 /usr/bin/cronjob_bandit22.sh &> /dev/null
+* * * * * bandit22 /usr/bin/cronjob_bandit22.sh &> /dev/null
+bandit21@bandit:~$ cat /usr/bin/cronjob_bandit22.sh
+#!/bin/bash
+chmod 644 /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+cat /etc/bandit_pass/bandit22 > /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+bandit21@bandit:~$ cat /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+Yk7owGAcWjwMVRwrTesJEwB7WVOiILLI
+
+Level 22 -> 23
+A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in /etc/cron.d/ for the configuration and see what command is being executed.
+
+NOTE: Looking at shell scripts written by other people is a very useful skill. The script for this level is intentionally made easy to read. If you are having problems understanding what it does, try executing it to see the debug information it prints.
+
+Solution: Find the cron job, inspect it
+bandit22@bandit:/etc/cron.d$ cat /usr/bin/cronjob_bandit23.sh
+#!/bin/bash
+
+myname=$(whoami)
+mytarget=$(echo I am user $myname | md5sum | cut -d ' ' -f 1)
+
+echo "Copying passwordfile /etc/bandit_pass/$myname to /tmp/$mytarget"
+
+cat /etc/bandit_pass/$myname > /tmp/$mytarget
+
+bandit22@bandit:/etc/cron.d$ cd /usr/bin/
+bandit22@bandit:/usr/bin$ ./cronjob_bandit23.sh
+Copying passwordfile /etc/bandit_pass/bandit22 to /tmp/8169b67bd894ddbb4412f91573b38db3
+bandit22@bandit:/usr/bin$ cat /tmp/8169b67bd894ddbb4412f91573b38db3
+Yk7owGAcWjwMVRwrTesJEwB7WVOiILLI
+
+# Substitute 'bandit23' for $myname in a command copied from the script
+
+bandit22@bandit:/usr/bin$ echo I am user bandit23 | md5sum | cut -d ' ' -f 1
+8ca319486bfbbc3663ea0fbe81326349
+bandit22@bandit:/usr/bin$ cat /tmp/8ca319486bfbbc3663ea0fbe81326349
+jc1udXuA1tiHqjIsL8yaapX5XIAI6i0n
+
+Level 23 -> 24
+A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in /etc/cron.d/ for the configuration and see what command is being executed.
+
+NOTE: This level requires you to create your own first shell-script. This is a very big step and you should be proud of yourself when you beat this level!
+
+NOTE 2: Keep in mind that your shell script is removed once executed, so you may want to keep a copy around…
+
+bandit23@bandit:~$ cat /etc/cron.d/cronjob_bandit24
+@reboot bandit24 /usr/bin/cronjob_bandit24.sh &> /dev/null
+* * * * * bandit24 /usr/bin/cronjob_bandit24.sh &> /dev/null
+
+bandit23@bandit:~$ cat /usr/bin/cronjob_bandit24.sh
+#!/bin/bash
+
+myname=$(whoami)
+
+cd /var/spool/$myname
+echo "Executing and deleting all scripts in /var/spool/$myname:"
+for i in * .*;
+do
+    if [ "$i" != "." -a "$i" != ".." ];
+    then
+        echo "Handling $i"
+        timeout -s 9 60 ./$i
+        rm -f ./$i
+    fi
+done
+
+# bandit24.sh executes all scripts in /var/spool/$myname
+# We can create and run scripts in a /tmp/ directory
+# Create a test script and copy it to /var/spool/bandit24
+# Now run the cronjob script and see if the test script is executed
+
+bandit23@bandit:/tmp/droptables2$ vi test.sh
+bandit23@bandit:/tmp/droptables2$ cp test.sh /var/spool/bandit24/
+bandit23@bandit:/tmp/droptables2$ bash /usr/bin/cronjob_bandit24.sh
+/usr/bin/cronjob_bandit24.sh: line 5: cd: /var/spool/bandit23: No such file or directory
+Executing and deleting all scripts in /var/spool/bandit23:
+Handling test.sh
+This script is executing!
+
+# Create a script to cat /etc/bandit_pass/bandit24 and send that list to the /tmp/droptables directory
+
+bandit23@bandit:/tmp/droptables2$ touch bandit24.sh
+bandit23@bandit:/tmp/droptables2$ chmod 777 level24.sh
+bandit23@bandit:/tmp/droptables2$ chmod 777 /tmp/droptables2
+bandit23@bandit:/tmp/droptables2$ vi bandit24.sh
+
+#!/bin/bash
+cat /etc/bandit_pass/bandit24 >> /tmp/droptables2/level24
+
+bandit23@bandit:/tmp/droptables2$ cp bandit24.sh /var/spool/bandit24/
+
+# now wait for the cron job
+# OR follow steps from previous puzzle... or not lol
+
+bandit23@bandit:/tmp/droptables2$ echo I am user bandit24 | md5sum | cut -d ' ' -f 1
+ee4ee1703b083edac9f8183e4ae70293
+bandit23@bandit:/tmp/droptables2$ cat /tmp/ee4ee1703b083edac9f8183e4ae70293
+Yeah, that isn't going to work.  t. lucid
+
+Not working... activate cheats
+UoMYTrfrBFHyQXmg6gzctqAwOmw1IohZ 
+
+Level 24 -> Level 25
+A daemon is listening on port 30002 and will give you the password for bandit25 if given the password for bandit24 and a secret numeric 4-digit pincode. There is no way to retrieve the pincode except by going through all of the 10000 combinations, called brute-forcing.
+
+Solution: Write a script to brute-force the PIN
+bandit24@bandit:~$ nc localhost 30002
+I am the pincode checker for user bandit25. Please enter the password for user bandit24 and the secret pincode on a single line, separated by a space.
+1337
+Timeout. Exiting.
+bandit24@bandit:~$ echo "UoMYTrfrBFHyQXmg6gzctqAwOmw1IohZ" 1337 | nc localhost 30002
+I am the pincode checker for user bandit25. Please enter the password for user bandit24 and the secret pincode on a single line, separated by a space.
+Wrong! Please enter the correct pincode. Try again.
+
+Script:
+bandit24@bandit:/tmp/droptables2$ cat cracker.sh
+
+#!/bin/bash
+
+for i in {999..9999}
+do {
+    if
+        echo "UoMYTrfrBFHyQXmg6gzctqAwOmw1IohZ" $i | nc localhost 30002 | grep Wrong > /dev/null
+    then
+        echo $i
+    else
+        echo $i is the PIN
+        exit
+    fi
+   }
+done
+
+Timeout at 1046... edited script and resuming...
+Stopping at 1121, resume later
