@@ -1,0 +1,122 @@
+#########
+# TL,DR #
+#########
+Get Schwifty!
+
+#####################
+# Sources and Links #
+#####################
+Using mentalist to create a custom wordlist for brute-forcing SSH:
+https://null-byte.wonderhowto.com/how-to/create-custom-wordlists-for-password-cracking-using-mentalist-0183992/
+
+Using Hydra:
+https://linuxconfig.org/ssh-password-testing-with-hydra-on-kali-linux
+
+#########
+# Ports #
+#########
+128.198.44.83
+PORT      STATE SERVICE
+21/tcp    open  ftp
+22/tcp    open  ssh
+80/tcp    open  http
+9090/tcp  open  zeus-admin
+13337/tcp open  unknown
+22222/tcp open  easyengine
+
+nmap 22222 shows SSH
+PORT      STATE SERVICE VERSION
+22222/tcp open  ssh     OpenSSH 7.5 (protocol 2.0)
+
+########
+# Hack #
+########
+Nmap reveals port 80 is open
+Gobuster on 80 shows /passwords
+We also can use nmap --vuln to show /passwords
+128.198.44.83/passwords shows a passwords.html file
+The file has a password: winter
+Now we can SSH via Summer!
+
+We can traverse to RickSanchez, Morty
+
+There is a suspicious file: Safe_Password.jpg
+Download it and run strings
+strings Safe_Password.jpg
+
+This reveals the string: /home/Morty/jounal.txt.zip Password: Meeseek
+
+Unzipping the journal with the provided password, we see some ASCII text:
+Text about a safe and password, flag 131333 clue.
+
+In Rick's home dir, there is a 'safe' executable that compains about command line args when it runs.
+Using Morty's journal, we run the program like so: ./safe 131333
+Now we get access to the safe!
+
+That reveals the following:
+
+Clue: sudo is wheely good!
+
+Rick: Hope I don't forget my password, here's a reminder...
+Follow these clues in order:
+1 uppercase character
+1 digit                                    
+One of the words in my old bands name.      
+
+Rick's band is Flesh Curtains
+
+Create a wordlist using mentalist
+Use it to brute-force Rick's SSH login with hydra
+
+sudo su gives us root access!
+Get all the FLAGS!
+
+#########
+# FLAGS #
+#########
+
+[root@sust101-5 /]# find / -name *FLAG*.txt 2>/dev/null
+
+FLAG: {131333} - 20 Points  						From Morty's journal
+FLAG{And Awwwaaaaayyyy we Go!} - 20 Points			./safe 131333 
+FLAG: {Ionic Defibrillator} - 30 points				/root/FLAG.txt
+FLAG{Whoa this is unexpected} - 10 Points			ftp://128.198.44.83/FLAG.txt
+FLAG{Yeah d- just don't do it.} - 10 Points			http://128.198.44.83/passwords/FLAG.txt
+FLAG{Get off the high road Summer!} - 10 Points		/home/Summer/FLAG.txt
+FLAG:{TheyFoundMyBackDoorMorty}-10Points			128.198.44.83/13337
+FLAG {There is no Zeus, in your face!} - 10 Points  128.198.44.83/9090
+
+catting a file gives:
+                         _
+  I can has cat?        | \
+  Oh you didn't         | |
+         a real         | |
+   |\      cat?         | |
+  /, ~\                / /
+ X     `-.....-------./ /
+  ~-. ~  ~              |
+     \  Le Meow    /    |
+      \  /_     ___\   /
+      | /\ ~~~~~   \  |
+      | | \ Rub My || |
+      | |\ \ Belly || )
+     (_/ (_/  !!!! ((_/
+
+#############
+# Passwords #
+#############
+Morty's journal in /home/Morty/journal.txt  - Meeseek
+
+Summer - winter (from /passwords.html)
+
+ryan@kali:~/Rick_and_Morty_Box$ hydra -l RickSanchez -P cracking/masterlist.txt 128.198.44.83 -s 22222 -t 4 ssh
+
+RickSanchez - P7Curtains
+
+
+###########
+# Learned #
+###########
+Creating a custom wordlist using mentalist
+Using hydra to brute-force
+
