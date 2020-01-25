@@ -150,3 +150,86 @@ Input secret: <input name=secret><br>
 </div>
 </body>
 </html>
+
+
+PHP source code always begins with <? and ends with ?>
+That portion of the code includes a file and checks if it is
+the same as the user input. If it is, access is granted.
+
+Navigating to http://natas6.natas.labs.overthewire.org/includes/secret.inc
+gives a blank page. Inspect element reveals the clue!
+
+?
+$secret = "FOEIUWGHFEEUHOFUOIU";
+?
+
+Access granted. The password for natas7 is 7z3hEENjQtflzgnT29q7wAvMNfZdh0i9 
+
+#########
+natas7
+########
+
+natas7 has 2 links: Home, About
+
+Appending foo to URL gives the error message
+Warning: include(help): failed to open stream: No such file or directory in /var/www/natas/natas7/index.php on line 21
+
+Warning: include(): Failed opening 'help' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in /var/www/natas/natas7/index.php on line 21
+
+Inspecting the page shows:
+<!-- hint: password for webuser natas8 is in /etc/natas_webpass/natas8 -->
+
+https://wiki.owasp.org/index.php/Testing_for_Local_File_Inclusion
+
+Sure enough, appending ../path gives us the file!
+http://natas7.natas.labs.overthewire.org/index.php?page=../../../../etc/natas_webpass/natas8
+DBfUBfqQG69KvJvJ1iAbMoIpwSNQ9bWe 
+
+######
+natas8
+######
+
+Like natas6, the page prompts for a secret and has a link to source code.
+Part of the code reads:
+
+<?
+
+$encodedSecret = "3d3d516343746d4d6d6c315669563362";
+
+function encodeSecret($secret) {
+    return bin2hex(strrev(base64_encode($secret)));
+}
+
+if(array_key_exists("submit", $_POST)) {
+    if(encodeSecret($_POST['secret']) == $encodedSecret) {
+    print "Access granted. The password for natas9 is <censored>";
+    } else {
+    print "Wrong secret";
+    }
+}
+?>
+
+
+So we need to find the value of $secret.
+It looks like we can simply take this line of code and reverse it:
+
+bin2hex(strrev(base64_encode($secret)));
+becomes (pseudocode working backwards):
+base64_decode, strrev, hex2bin, $encodedSecret
+
+Since the above is PHP code, we can probably use PHP to reverse the function.
+Run php -a to activate Interactive mode for PHP and pass in the new function.
+
+ryan@kali:~$ php -a
+Interactive mode enabled
+
+php > echo base64_decode(strrev(hex2bin('3d3d516343746d4d6d6c315669563362')));
+oubWYf2kBq
+
+Access granted. The password for natas9 is W0mMhUcRRnG8dcghE4qvk3JA9lGt8nDl 
+
+######
+natas9
+######
+
+
