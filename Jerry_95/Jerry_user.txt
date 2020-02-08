@@ -1,0 +1,39 @@
+#####################
+# Sources and Links #
+#####################
+https://pentestlab.blog/2012/08/26/using-metasploit-to-create-a-war-backdoor/
+note: msfpayload is outdated, use msfvenom
+
+#########
+# TL,DR #
+#########
+
+########
+# Hack #
+########
+
+nmap shows an apache tomcat server on 8080
+We can browse to 10.10.10.65:8080
+There is a link there to a Tomcat Manager Application that prompts for a user:password
+Luckily, there are several helpful lists in
+/usr/share/wordlists/tomcat_mgr_default*
+
+But we don't even need it! The default credentials aren't changed!
+tomcat:s3cret grants access to the TMA.
+
+There's an option to deploy a WAR file onto the server.
+There's also some useful information that may be helpful for a payload/
+
+Server Information
+Tomcat Version : Apache Tomcat/6.0.88 	
+JVM Version : 1.8.0_171-b1 	
+JVM Vendor : Orcale	
+OS Name : Windows Server 2012 R2 	
+OS Version : 6.3
+OS Architecture : amd64	
+Hostname : Jerry
+IP Address : 10.10.10.95
+
+###########
+# Learned #
+###########
