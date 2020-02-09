@@ -3,8 +3,7 @@
 "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
 "http://java.sun.com/dtd/web-app_2_3.dtd">
 <web-app>
-<servlet>
-<servlet-name>rxxzhavi</servlet-name>
-<jsp-file>/spikzmipzn.jsp</jsp-file>
-</servlet>
+  <welcome-file-list>
+    <welcome-file>eqvvwwqwmrx.jsp</welcome-file>
+  </welcome-file-list>
 </web-app>
