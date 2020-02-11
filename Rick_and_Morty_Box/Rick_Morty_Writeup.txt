@@ -2,6 +2,7 @@
 # TL,DR #
 #########
 Get Schwifty!
+I think this is a metasploitable box.
 
 #####################
 # Sources and Links #
