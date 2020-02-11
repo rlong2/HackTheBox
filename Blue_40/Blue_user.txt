@@ -107,18 +107,16 @@ Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
 C:\Windows\system32>
 C:\Users\Administrator\Desktop>type root.txt
 type root.txt
-ff548eb71e920ff6c08843ce9df4e717
+REDACTED FOR WALKTHROUGH
+
 C:\Users\Administrator\Desktop>type \Users\haris\Desktop\user.txt
 type \Users\haris\Desktop\user.txt
-4c546aea7dbee75cbd71de245c8deea9
+REDACTED FOR WALKTHROUGH
 
 Blue successfully hacked!
 
 ###########
 # Learned #
 ###########
-
 '--script vuln' was a great help in identifying vulnerabilities with nmap.
 'type' is used to display a file in windows, similar to 'cat' on unix systems.
-
-
