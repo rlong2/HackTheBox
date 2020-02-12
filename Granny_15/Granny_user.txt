@@ -18,7 +18,6 @@ There's a possible attack: Microsoft IIS 6.0 - WebDAV 'ScStoragePathFromUrl' Rem
 A metasploit module gives us a shell. Access to user Lakis is denied.
 
 
-
 run post/multi/recon/local_exploit_suggester
 
 [*] 10.10.10.15 - Collecting local exploits for x86/windows...
@@ -37,3 +36,4 @@ run post/multi/recon/local_exploit_suggester
 Background a meterpreter shell with Ctrl-z
 Show sessions with sessions -l
 Interact with a session with session -i [SessionID]
+post/multi/recon/local_exploit_suggester

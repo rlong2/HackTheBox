@@ -4,8 +4,8 @@
 # so I can easily find commands, keywords, etc.
 # Feel free to edit this script however you wish.
 
-SEARCH_PATH=/home/ryan/HackTheBox/    # The directory to search recursively
-FILE_TYPE=*_user.txt                  # Only searches files of this type
+SEARCH_PATH=/home/ryan/HackTheBox    # The directory to search recursively
+FILE_TYPE=*_user.txt                 # Only searches files of this type
 
 # If there are no arguments supplied, prompt the user
 if [ $# -eq 0 ]; then

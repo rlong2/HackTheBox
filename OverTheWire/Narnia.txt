@@ -1,0 +1,59 @@
+Narnia
+
+Description:
+This wargame is for the ones that want to learn basic exploitation. You can see the most
+common bugs in this game and we've tried to make them easy to exploit. You'll get the
+source code of each level to make it easier for you to spot the vuln and abuse it. The
+difficulty of the game is somewhere between Leviathan and Behemoth, but some of the
+levels could be quite tricky.
+
+Narnia’s levels are called narnia0, narnia1, … etc. and can be accessed on narnia.labs.overthewire.org through SSH on port 2226.
+
+To login to the first level use:
+
+Username: narnia0
+Password: narnia0
+
+Data for the levels can be found in /narnia/.
+
+#######
+narnia0
+#######
+given:
+ssh narnia0@narnia.labs.overthewire.org -p 2226
+
+Source code reads:
+int main(){
+    long val=0x41414141;
+    char buf[20];
+
+    printf("Correct val's value from 0x41414141 -> 0xdeadbeef!\n");
+    printf("Here is your chance: ");
+    scanf("%24s",&buf);
+
+    printf("buf: %s\n",buf);
+    printf("val: 0x%08x\n",val);
+
+    if(val==0xdeadbeef){
+        setreuid(geteuid(),geteuid());
+        system("/bin/sh");
+    }
+    else {
+        printf("WAY OFF!!!!\n");
+        exit(1);
+    }
+
+    return 0;
+}
+
+buf is an array of chars that can hold 20 bytes
+The user input for buf allows 24 chars.
+
+The order that variables are declared in dictates where they are on the stack.
+
+char buf[20] (20 bytes) is declared second.
+val (8 bytes) is declared first, it is on the bottom. 
+
+The user input can take 24 bytes.
+
+

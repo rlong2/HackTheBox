@@ -1,5 +1,0 @@
-/uploads (Status: 301)
-/chat (Status: 301)
-/drupal (Status: 301)
-/phpmyadmin (Status: 301)
-/server-status (Status: 403)

@@ -1,2 +1,0 @@
-# Nmap 7.80 scan initiated Wed Dec 11 08:28:32 2019 as: nmap -sV -sC -o nmap_intial.txt 128.198.44.207
-# Nmap done at Wed Dec 11 08:28:36 2019 -- 1 IP address (0 hosts up) scanned in 3.78 seconds
