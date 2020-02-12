@@ -1,0 +1,10 @@
+# Nmap 7.70 scan initiated Thu Aug  8 14:05:18 2019 as: nmap -T4 -Pn -o nmap_initital.txt 10.10.10.4
+Nmap scan report for 10.10.10.4
+Host is up (0.19s latency).
+Not shown: 997 filtered ports
+PORT     STATE  SERVICE
+139/tcp  open   netbios-ssn
+445/tcp  open   microsoft-ds
+3389/tcp closed ms-wbt-server
+
+# Nmap done at Thu Aug  8 14:05:31 2019 -- 1 IP address (1 host up) scanned in 13.97 seconds
