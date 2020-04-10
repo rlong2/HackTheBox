@@ -1,0 +1,27 @@
+# Nmap 7.80 scan initiated Sun Feb  9 13:25:41 2020 as: nmap -p- -o nmap_all.txt 10.10.10.152
+Nmap scan report for 10.10.10.152
+Host is up (0.074s latency).
+Not shown: 65515 closed ports
+PORT      STATE    SERVICE
+21/tcp    open     ftp
+80/tcp    open     http
+135/tcp   open     msrpc
+139/tcp   open     netbios-ssn
+445/tcp   open     microsoft-ds
+5985/tcp  open     wsman
+11865/tcp filtered unknown
+28429/tcp filtered unknown
+30145/tcp filtered unknown
+38745/tcp filtered unknown
+43170/tcp filtered unknown
+43555/tcp filtered unknown
+47001/tcp open     winrm
+49664/tcp open     unknown
+49665/tcp open     unknown
+49666/tcp open     unknown
+49667/tcp open     unknown
+49668/tcp open     unknown
+49669/tcp open     unknown
+56495/tcp filtered unknown
+
+# Nmap done at Sun Feb  9 14:02:52 2020 -- 1 IP address (1 host up) scanned in 2230.78 seconds
