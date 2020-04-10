@@ -1,0 +1,6 @@
+/content (Status: 301)
+/themes (Status: 301)
+/admin (Status: 301)
+/plugins (Status: 301)
+/README (Status: 200)
+/languages (Status: 301)

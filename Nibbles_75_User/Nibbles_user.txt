@@ -1,0 +1,37 @@
+#####################
+# Sources and Links #
+#####################
+
+#########
+# TL,DR #
+#########
+
+########
+# Hack #
+########
+A quick nmap scan shows ssh, http
+
+10.10.10.75 shows "Hello World", and Inspecting Element gives a clue
+to check out 10.10.10.75/nibbleblog
+No posts, powered by NibbleBlog
+
+searchsploit shows a Metasploit exploit for arbitrary code uploading for nibbleblog!
+exploit/multi/http/nibbleblog_file_upload
+
+It needs a username and password to authenticate. 
+Maybe we can uncover some more information by pointing gobuster to 10.10.10.75/nibbleblog
+Yah,lots of content!
+
+/nibbleblog/content/private/users/xml shows username=admin
+..../config shows name Nibbles
+
+Using the Meterpreter session admin:nibbles gives us a shell!
+We are user nibbler
+
+cat user.txt
+b02ff32bb332deba49eeaed21152c8d8
+
+
+###########
+# Learned #
+###########
