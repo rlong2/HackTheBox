@@ -6,10 +6,17 @@
 # TL,DR #
 #########
 There is an http server running with a login page.
+SQL injection can be used to immediately grant access to the flag.
 
 ########
 # Hack #
 ########
+Browse to <IP_ADDRESS>
+login: admin'#
+password: <any text>
+
+Display:
+Congratulations! Your flag is <flag hash>
 
 ###########
 # Learned #
