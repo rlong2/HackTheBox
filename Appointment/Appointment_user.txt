@@ -1,0 +1,16 @@
+#####################
+# Sources and Links #
+#####################
+
+#########
+# TL,DR #
+#########
+There is an http server running with a login page.
+
+########
+# Hack #
+########
+
+###########
+# Learned #
+###########
