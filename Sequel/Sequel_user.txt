@@ -7,6 +7,8 @@ https://www.mysqltutorial.org/mysql-cheat-sheet.aspx
 # TL,DR #
 #########
 Nmap shows a MariaDB service running.
+mysql is used to log in with root access, no password needed.
+mysql is used to query the SQL and find the flag.
 
 ########
 # Hack #
