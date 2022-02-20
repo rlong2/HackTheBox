@@ -1,0 +1,24 @@
+# Nmap 7.92 scan initiated Sun Feb 20 10:47:04 2022 as: nmap -A -p 3306 -o nmap_mysql.txt 10.129.161.105
+
+┌──(ryan㉿kali)-[~/HackTheBox/Sequel]
+└─$ nmap -sV -sC -p 3306 10.129.161.105                  
+PORT     STATE SERVICE VERSION
+3306/tcp open  mysql?
+|_sslv2: ERROR: Script execution failed (use -d to debug)
+| mysql-info: 
+|   Protocol: 10
+|   Version: 5.5.5-10.3.27-MariaDB-0+deb10u1
+|   Thread ID: 169
+|   Capabilities flags: 63486
+|   Some Capabilities: Speaks41ProtocolOld, SupportsLoadDataLocal, Support41Auth, ODBCClient, Speaks41ProtocolNew, LongColumnFlag, DontAllowDatabaseTableColumn, SupportsCompression, IgnoreSigpipes, SupportsTransactions, IgnoreSpaceBeforeParenthesis, FoundRows, ConnectWithDatabase, InteractiveClient, SupportsAuthPlugins, SupportsMultipleStatments, SupportsMultipleResults
+|   Status: Autocommit
+|   Salt: $>LBEt;hxF1`p6X:X.x8
+|_  Auth Plugin Name: mysql_native_password
+|_tls-nextprotoneg: ERROR: Script execution failed (use -d to debug)
+|_ssl-cert: ERROR: Script execution failed (use -d to debug)
+|_tls-alpn: ERROR: Script execution failed (use -d to debug)
+|_ssl-date: ERROR: Script execution failed (use -d to debug)
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 200.69 seconds
+

@@ -1,0 +1,8 @@
+# Nmap 7.92 scan initiated Sun Feb 20 10:41:11 2022 as: nmap -T4 -o namp_quick.txt 10.129.161.105
+Nmap scan report for 10.129.161.105
+Host is up (0.046s latency).
+Not shown: 999 closed tcp ports (conn-refused)
+PORT     STATE SERVICE
+3306/tcp open  mysql
+
+# Nmap done at Sun Feb 20 10:41:12 2022 -- 1 IP address (1 host up) scanned in 0.81 seconds
