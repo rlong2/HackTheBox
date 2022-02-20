@@ -1,0 +1,22 @@
+#####################
+# Sources and Links #
+#####################
+
+#########
+# TL,DR #
+#########
+Nmap shows ftp and http.
+The ftp allows anonymous login, with a list of usernames and plaintext passwords.
+Gobuster reveals a /dashboard dir.
+The user 'admin' and the corresponding plaintext password logs in, displays flag.
+
+########
+# Hack #
+########
+See TL,DR
+
+###########
+# Learned #
+###########
+Seclists has a nice group of wordlists, although there are a lot of wordlists to inspect.
+The '-x' flag for gobuster dir is used to search for specific files.

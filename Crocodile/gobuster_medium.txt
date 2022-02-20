@@ -1,0 +1,6 @@
+/assets               (Status: 301) [Size: 313] [--> http://10.129.68.79/assets/]
+/css                  (Status: 301) [Size: 310] [--> http://10.129.68.79/css/]
+/js                   (Status: 301) [Size: 309] [--> http://10.129.68.79/js/]
+/fonts                (Status: 301) [Size: 312] [--> http://10.129.68.79/fonts/]
+/dashboard            (Status: 301) [Size: 316] [--> http://10.129.68.79/dashboard/]
+/server-status        (Status: 403) [Size: 277]
