@@ -30,6 +30,7 @@ else
     echo "Creating $MAIN_PATH/$1"
     mkdir -p $MAIN_PATH/$1
     echo "Copying and creating template"
-    cp user_template.txt $MAIN_PATH/$1/$1_user.txt
+    cp $MAIN_PATH/_Assorted_Files/user_template.txt $MAIN_PATH/$1/$1_user.txt
+    ls -l $MAIN_PATH/$1
 
 fi
