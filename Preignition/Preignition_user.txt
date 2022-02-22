@@ -13,7 +13,30 @@ Tried admin:admin and was granted the flag.
 ########
 # Hack #
 ########
-See TL,DR :)
+┌──(ryan㉿kali)-[~/HackTheBox/Preignition]
+└─$ gobuster dir -u 10.129.134.151 -w /opt/SecLists/Discovery/Web-Content/common.txt -o gobuster_common.txt
+===============================================================
+Gobuster v3.1.0
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     http://10.129.134.151
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /opt/SecLists/Discovery/Web-Content/common.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.1.0
+[+] Timeout:                 10s
+===============================================================
+2022/02/22 09:33:17 Starting gobuster in directory enumeration mode
+===============================================================
+/admin.php            (Status: 200) [Size: 999]
+                                               
+===============================================================
+2022/02/22 09:33:42 Finished
+===============================================================
+
+10.129.134.151/admin.php
+
 
 ###########
 # Learned #
