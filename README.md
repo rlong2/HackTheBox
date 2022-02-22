@@ -1,6 +1,6 @@
 # A collection of walkthroughs for CTF-style challenges
 
-## https://hackthebox.eu
+## https://hackthebox.com
 The goal of HackTheBox is to hack into intentionally insecure 
 computers given an IP address and retrieve user.txt and root.txt flags. 
 
@@ -17,6 +17,12 @@ Each Boxname_user.txt file has:
 	+ TL;DR                    *Short synopsis of the hack* 
 	+ Hack                     *More in-depth explanation of the hack*
 	+ Learned                  *Important things I want to remember*
+
+
+## https://academy.hackthebox.com
+HackTheBox Academy is cybersecurity learning the HTB way!
+My Academy Transcript charts my progress through courses and modules,
+and is available in this local directory.
 
 ## https://www.overthewire.org
 The goal of overthewire varies, but is centered around:
