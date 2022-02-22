@@ -1,0 +1,8 @@
+# Nmap 7.92 scan initiated Tue Feb 22 09:28:33 2022 as: nmap -T4 -o nmap_quick.txt 10.129.134.151
+Nmap scan report for 10.129.134.151
+Host is up (0.051s latency).
+Not shown: 999 closed tcp ports (conn-refused)
+PORT   STATE SERVICE
+80/tcp open  http
+
+# Nmap done at Tue Feb 22 09:28:34 2022 -- 1 IP address (1 host up) scanned in 0.98 seconds

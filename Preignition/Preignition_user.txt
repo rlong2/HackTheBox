@@ -1,0 +1,20 @@
+#####################
+# Sources and Links #
+#####################
+
+#########
+# TL,DR #
+#########
+Nmap shows port 80 is open.
+Gobuster reveals admin.php.
+A login page is displayed.
+Tried admin:admin and was granted the flag.
+
+########
+# Hack #
+########
+See TL,DR :)
+
+###########
+# Learned #
+###########
