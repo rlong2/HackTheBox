@@ -1,0 +1,43 @@
+#####################
+# Sources and Links #
+#####################
+
+#########
+# TL,DR #
+#########
+
+########
+# Hack #
+########
+Inputting the IP address in the broswer redirects to ignition.htb, but the page throws a 302.
+Add <IP> ignition.htb to the /etc/hosts file.
+
+Adding box to /etc/hosts:
+┌──(ryan㉿kali)-[~/HackTheBox/Ignition]
+└─$ cat /etc/hosts | grep htb
+10.129.135.69 ignition.htb
+
+Now the webpage can be accessed and gobuster scans work.
+┌──(ryan㉿kali)-[~/HackTheBox/Ignition]
+└─$ gobuster dir -u http://ignition.htb -w /opt/SecLists/Discovery/Web-Content/common.txt -o gobuster_common.txt
+===============================================================
+Gobuster v3.1.0
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     http://ignition.htb
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /opt/SecLists/Discovery/Web-Content/common.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.1.0
+[+] Timeout:                 10s
+===============================================================
+2022/02/23 06:36:35 Starting gobuster in directory enumeration mode
+===============================================================
+/0                    (Status: 200) [Size: 25803]
+/Home                 (Status: 301) [Size: 0] [--> http://ignition.htb/home]
+/admin                (Status: 200) [Size: 7092] 
+
+###########
+# Learned #
+###########
