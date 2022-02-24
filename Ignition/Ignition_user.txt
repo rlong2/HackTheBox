@@ -1,6 +1,9 @@
 #####################
 # Sources and Links #
 #####################
+https://www.wappalyzer.com/technologies/ecommerce/magento?utm_source=popup&utm_medium=extension&utm_campaign=wappalyzer
+
+https://docs.magento.com/user-guide/stores/security-admin.html
 
 #########
 # TL,DR #
@@ -37,6 +40,17 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
 /0                    (Status: 200) [Size: 25803]
 /Home                 (Status: 301) [Size: 0] [--> http://ignition.htb/home]
 /admin                (Status: 200) [Size: 7092] 
+
+There is a Magento login page:
+http://ignition.htb/admin
+Magento docs (see links above) says:
+By default, passwords that are used to log in to the Admin must be seven or more characters long and include both letters and numbers. 
+
+There are timeouts, but the box can be bruteforced!
+admin:qwerty123
+
+Now you are logged into the dashboard and can access the flag.
+
 
 ###########
 # Learned #
