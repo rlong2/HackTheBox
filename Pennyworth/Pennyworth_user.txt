@@ -1,0 +1,22 @@
+#####################
+# Sources and Links #
+#####################
+
+#########
+# TL,DR #
+#########
+
+########
+# Hack #
+########
+Nmap shows 8080 is open.
+The webpage shows a Jenkins login page.
+Searching for default credentials indicates user:admin' with a password generated.
+Atfer trying to brute-force the login, there are credentials that let us in:
+root:password
+
+Jenkins 2.289.1
+
+###########
+# Learned #
+###########
