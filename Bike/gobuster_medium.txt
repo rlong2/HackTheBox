@@ -1,0 +1,3 @@
+/images               (Status: 301) [Size: 179] [--> /images/]
+/css                  (Status: 301) [Size: 173] [--> /css/]
+/js                   (Status: 301) [Size: 171] [--> /js/]

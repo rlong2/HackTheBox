@@ -1,0 +1,32 @@
+#####################
+# Sources and Links #
+#####################
+
+#########
+# TL,DR #
+#########
+
+########
+# Hack #
+########
+Port 22 and 80 are open.
+The website has a form to submit an email addresss.
+Gobuster shows a /js directory
+Curl shows /js/main.js
+
+http://10.129.146.126/js/main.js
+$("#typed").typed({
+  strings: [
+    "Hello, there.",
+    "Website Under Construction!",
+    "Content Engineers are on their way.",
+    "Remain calm!",
+    "Uploading web_v2_Beta_final_final.zip",
+    "Everything Is Fine :)"
+< --- SNIP --- >
+});
+
+
+###########
+# Learned #
+###########

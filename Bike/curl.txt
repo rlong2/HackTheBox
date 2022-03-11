@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/home.css">
+    <title> Bike </title>
+</head>
+<header>
+
+</header>
+
+<body>
+    <div id=container>
+  <img
+    src="images/buttons.gif"
+    id="avatar">
+  <div class="type-wrap">
+    <span id="typed" style="white-space:pre;" class="typed"></span>
+  </div>
+</div>
+<div id="contact">
+    <h3>We can let you know once we are up and running.</h3>
+    <div class="fields">
+      <form id="form" method="POST" action="/">
+        <input name="email" placeholder="E-mail"></input>
+        <button type="submit" class="button-54" name="action" value="Submit">Submit</button>
+      </form>
+    </div>
+    <p class="result">
+    </p>
+</div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="js/typed.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
