@@ -21,7 +21,7 @@ Each Boxname_user.txt file has:
 
 ## https://academy.hackthebox.com
 HackTheBox Academy is cybersecurity learning the HTB way!
-My Academy Transcript charts my progress through courses and modules,
+[My Academy Transcript](https://github.com/rlong2/HackTheBox/blob/master/HTB%20Academy%20Student%20Transcript.pdf) charts my progress through courses and modules,
 and is available in this local directory.
 
 ## https://www.overthewire.org
