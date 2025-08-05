@@ -12,5 +12,7 @@ Tags:
 - Reconnaissance
 - Anonymous/Guest Access
 
+status: got flag
+
 ## Box Outline
 Scanning the machine with nmap revealed an ftp server that allowed anonymous login. The flag.txt was in the root directory.
