@@ -5,6 +5,7 @@ Machine Details:
 | IP          | Name    | Difficulty | Machine Type |
 | ----------- | ------- | ---------- | ------------ |
 | 10.129.1.12 | Dancing | Very Easy  | Windows      |
+
 tags:
 - SMB
 - misconfigured credentials
