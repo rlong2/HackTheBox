@@ -4,9 +4,9 @@
 
 ### Description
 
-The guides that I created for rooting retired machines on Hack The Box are mostly txt files. I am in the process of rewriting these walkthroughs as more substantial **[CherryTree](https://github.com/giuspen/cherrytree)** reports, which can be exported as **PDFs**. For convenience, these reports will also be exported as **TXT files** for readability on GitHub. It is preferred to view the files in **CherryTree** or to export the CherryTree files as PDFs for a better user experience *(there are screenshots!)*.
+The guides that I created for rooting retired machines on Hack The Box are mostly txt files. I am in the process of rewriting these walkthroughs as more substantial Markdown reports, which can be imported into [Obsidian](https://obsidian.md/) and exported as **PDFs**.
 
-#### Example Cherryree template
+#### Example Markdown template in Obsidian
 ```
 MACHINE NAME
   - Target Information
