@@ -1,0 +1,5 @@
+# Ignore all .obsidian/ directories
+**/.obsidian/
+
+# Ignore 'Active Machines' directory
+Active\ Machines/
