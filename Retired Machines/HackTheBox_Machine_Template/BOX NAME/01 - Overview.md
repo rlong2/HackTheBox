@@ -2,12 +2,13 @@
 
 Machine Details:
 
-| IP          | Name    | Difficulty | Machine Type      |
-| ----------- | ------- | ---------- | ----------------- |
-| 10.129.1.17 | BOXNAME | Very Easy  | Linux/Windows/etc |
+| IP          | Name    | Difficulty | Machine Type  |
+| ----------- | ------- | ---------- | ------------- |
+| 10.129.1.17 | BOXNAME | Very Easy  | Linux/Windows |
+
 tags:
 - 
-#### status
+### status
 - [x] not started
 - [ ] in progress
 - [ ] got user flag
