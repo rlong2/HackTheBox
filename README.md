@@ -56,6 +56,11 @@ The guides that I created for rooting retired machines on Hack The Box are mostl
     - [Solid basis](https://academy.hackthebox.com/achievement/badge/53ca2371-6b31-11f0-bcfd-bea50ffe6cb4) - Network Foundations module completed
     - [Offensive explorer](https://academy.hackthebox.com/achievement/badge/262ab9cb-72d0-11f0-9547-bea50ffe6cb4) - Pentest in a Nutshell module completed
 
+ - Custom Badges:
+    - [Unwavering User](https://academy.hackthebox.com/achievement/badge/6f8a4787-5cf9-11f0-bcfd-bea50ffe6cb4) - Awarded when you achieve your first weekly streak 
+    - [Constant Champion](https://academy.hackthebox.com/achievement/badge/cb24bfb8-6b54-11f0-bcfd-bea50ffe6cb4) - Awarded when you achieve 4 weekly streaks in a row 
+    - [Cyber Rookie 365](https://academy.hackthebox.com/achievement/badge/7dc5e195-a32f-11ef-864f-bea50ffe6cb4) - Awarded after one year of learning at HTB Academy
+    - [Binary Duo Explorer](https://academy.hackthebox.com/achievement/badge/7b83470f-a335-11ef-864f-bea50ffe6cb4) - Awarded after two years of learning at HTB Academy 
     
 ## [Over The Wire](https://www.overthewire.org)
 The goal of overthewire varies, but is centered around:
