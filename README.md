@@ -17,7 +17,6 @@ The guides that I created for rooting retired machines on Hack The Box are mostl
     - [First things first](https://academy.hackthebox.com/achievement/badge/c7fcb60d-c408-11ed-acfc-bea50ffe6cb4) - Operating System Fundamentals path completed
     - [And so it begins](https://academy.hackthebox.com/achievement/badge/c8a9ab76-c408-11ed-acfc-bea50ffe6cb4) - Information Security Foundations path completed
  - Module Completion Badges:
-    - [Basic Toolset path](https://academy.hackthebox.com/achievement/badge/c6c76311-c408-11ed-acfc-bea50ffe6cb4)
     - [Philomath](https://academy.hackthebox.com/achievement/badge/97ccfb4d-c408-11ed-acfc-bea50ffe6cb4) - Learning Process module completed
     - [Academician](https://academy.hackthebox.com/achievement/badge/9bcd8e85-c408-11ed-acfc-bea50ffe6cb4) - Introduction to Academy module completed
     - [Hacking in the wild](https://academy.hackthebox.com/achievement/badge/f75692d2-749d-11f0-9254-bea50ffe6cb4) - Hacking WordPress module completed
