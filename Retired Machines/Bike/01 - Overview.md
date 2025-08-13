@@ -7,12 +7,16 @@ Machine Details:
 | 10.129.147.200 | Bike | Very Easy  | Linux        |
 
 tags:
-- 
+- http
+- burpsuite
+- Server side template injection
+- SSTI
+- nodejs
 ### status
 - [ ] not started
-- [x] in progress
-- [ ] got user flag
-- [ ] got root flag
+- [ ] in progress
+- [x] got user flag
+- [x] got root flag
 ## Box Outline
 
-An outline of how the box was pwned.
+The machine is running an Express web server with node.js. It is using a Handlebars template that is succeptible to server-side template injection. Using burpsuite to intercept a request submitted in a form, a payload was used to reveal the flag.
