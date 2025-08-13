@@ -31,7 +31,7 @@ Looks like the Bike box is using the `handlebars` template :D
 
 Sending `{{id}}` shows no output.
 
-The hatricks URL from earlier has a payload for Handlebars: https://book.hacktricks.wiki/en/pentesting-web/ssti-server-side-template-injection/index.html#handlebars-nodejs
+The hacktricks URL from earlier has a payload for Handlebars: https://book.hacktricks.wiki/en/pentesting-web/ssti-server-side-template-injection/index.html#handlebars-nodejs
 ```
 {{#with "s" as |string|}}
   {{#with "e"}}

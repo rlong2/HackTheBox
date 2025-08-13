@@ -2,9 +2,9 @@
 
 Machine Details:
 
-| IP            | Name | Difficulty | Machine Type |
-| ------------- | ---- | ---------- | ------------ |
-| 10.129.145.73 | Bike | Very Easy  | Linux        |
+| IP             | Name | Difficulty | Machine Type |
+| -------------- | ---- | ---------- | ------------ |
+| 10.129.147.200 | Bike | Very Easy  | Linux        |
 
 tags:
 - 
