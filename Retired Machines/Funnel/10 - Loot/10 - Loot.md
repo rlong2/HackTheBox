@@ -29,6 +29,22 @@ be changed immediately.
 
 # flag.txt
 ```
+christine=# \c secrets
+psql (17.5 (Debian 17.5-1), server 15.1 (Debian 15.1-1.pgdg110+1))
+You are now connected to database "secrets" as user "christine".
+secrets=# \dt
+         List of relations
+ Schema | Name | Type  |   Owner   
+--------+------+-------+-----------
+ public | flag | table | christine
+(1 row)
+
+secrets=# TABLE flag;
+              value               
+----------------------------------
+ cf277664b1771217d7006acdea006db1
+(1 row)
+
 
 
 ```

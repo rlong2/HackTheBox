@@ -10,9 +10,9 @@ tags:
 - 
 ### status
 - [ ] not started
-- [x] in progress
-- [ ] got user flag
-- [ ] got root flag
+- [ ] in progress
+- [x] got user flag
+- [x] got root flag
 ## Box Outline
 
-An outline of how the box was pwned.
+FTP and SSH are running on the target. FTP had anonymous login enabled, and the attacker found documents that included information on default passwords and user accounts. This information was used to gain SSH access to the target. Postgresql is running locally on the target, but the user did not have the ability to run `psql` and enumerate the database. The attacker used local port forwarding to use their `psql` binary, enumerate the postgresql database, and retrieve the flag contents.

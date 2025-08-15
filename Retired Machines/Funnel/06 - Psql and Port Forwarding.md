@@ -14,10 +14,24 @@ apt install postgresql-client-common
 Please ask your administrator.
 
 ```
+
+#### Static binary upload attempt
+```
+Attacker
+┌──(kali㉿kali)-[~]
+└─$ scp /usr/bin/psql christine@10.129.88.196:
+christine@10.129.88.196's password: 
+psql                                                                                                                       100%   10KB  73.7KB/s   00:00  
+
+# Victim
+christine@funnel:~$ ./psql -U christine -p 5432
+Can't locate PgCommon.pm in @INC (you may need to install the PgCommon module) (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.30.0 /usr/local/share/perl/5.30.0 /usr/lib/x86_64-linux-gnu/perl5/5.30 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.30 /usr/share/perl/5.30 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at ./psql line 22.
+BEGIN failed--compilation aborted at ./psql line 22.
+```
 ## Run psql using port forwarding
 Since the victim machine doesn't have psql, the attacking machine can use local port forwarding to use the attacker's psql binary.
 
-(Uploading a static binary gave some errors, and port forwarding seems to be in the spirit of this box).
+
 
 On attacker, confirm psql is installed
 ```
@@ -61,3 +75,5 @@ christine=#
 
 ### Enumerating databases
 ![[06_EnumeratingDatabases.png]]
+
+See [[Funnel/10 - Loot/10 - Loot|10 - Loot]] for the flag 
