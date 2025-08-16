@@ -57,24 +57,34 @@ https://nmap.org/nsedoc/scripts/broadcast-jenkins-discover.html
 # Gobuster
 ```
 ┌──(kali㉿kali)-[~]
-└─$ gobuster dir -u http://10.129.168.243:8080 -w /usr/share/wordlists/SecLists/Discovery/Web-Content/common.txt -x html  
+└─$ gobuster dir -u http://10.129.39.125:8080 -w /usr/share/wordlists/SecLists/Discovery/Web-Content/common.txt -x html --exclude-length 613 | grep -v 403
 ===============================================================
 Gobuster v3.6
 by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
 ===============================================================
-[+] Url:                     http://10.129.168.243:8080
+[+] Url:                     http://10.129.39.125:8080
 [+] Method:                  GET
 [+] Threads:                 10
 [+] Wordlist:                /usr/share/wordlists/SecLists/Discovery/Web-Content/common.txt
 [+] Negative Status codes:   404
+[+] Exclude Length:          613
 [+] User Agent:              gobuster/3.6
 [+] Extensions:              html
 [+] Timeout:                 10s
 ===============================================================
 Starting gobuster in directory enumeration mode
 ===============================================================
-
-Error: the server returns a status code that matches the provided options for non existing urls. http://10.129.168.243:8080/7ad6cf3d-471c-484a-92e4-90f86ce1fbc6 => 403 (Length: 613). To continue please exclude the status code or the length
+/assets               (Status: 302) [Size: 0] [--> http://10.129.39.125:8080/assets/]
+/error                (Status: 400) [Size: 8247]
+/favicon.ico          (Status: 200) [Size: 17542]
+/git                  (Status: 302) [Size: 0] [--> http://10.129.39.125:8080/git/]
+/login                (Status: 200) [Size: 2028]
+/logout               (Status: 302) [Size: 0] [--> http://10.129.39.125:8080/]
+/robots.txt           (Status: 200) [Size: 71]
+Progress: 9500 / 9500 (100.00%)
+===============================================================
+Finished
+===============================================================
 
 ```
 
