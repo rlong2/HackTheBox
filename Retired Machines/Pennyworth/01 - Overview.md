@@ -7,12 +7,14 @@ Machine Details:
 | 10.129.168.243 | Pennyworth | Very Easy  | Linux        |
 
 tags:
-- 
+- Groovy
+- weak credentials
+- Jenkins
 ### status
 - [ ] not started
-- [x] in progress
-- [ ] got user flag
-- [ ] got root flag
+- [ ] in progress
+- [x] got user flag
+- [x] got root flag
 ## Box Outline
 
-An outline of how the box was pwned.
+The target was running a Jetty HTTP server for a Jenkins service. The login page was easily breached due to weak credentials, and the Jenkins server admin has the ability to run Groovy script. Commands were able to be executed in the browser, and the root flag was obtained. For easier access, the attacker created a reverse shell.
