@@ -154,5 +154,3 @@ Mode                LastWriteTime         Length Name
 
 -a----        8/17/2025  10:29 AM       10155520 winpeas.exe  
 ```
-## Attempting a reverse shell
-- https://book.hacktricks.wiki/en/network-services-pentesting/pentesting-mssql-microsoft-sql-server/index.html

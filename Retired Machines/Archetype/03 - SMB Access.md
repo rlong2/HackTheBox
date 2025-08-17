@@ -1,3 +1,6 @@
+
+## Unauthenticated
+
 Nmap showed that SMB allows guest access
 ```
 ┌──(kali㉿kali)-[~]

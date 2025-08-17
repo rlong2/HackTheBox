@@ -1,3 +1,5 @@
+Important snippet at the bottom of this note.
+
 ```
 PS C:\Users\Public> ./winpeas.exe -o winpeas.txt
 ./winpeas.exe -o winpeas.txt
@@ -2060,7 +2062,7 @@ You are NOT inside a container
   Zone Auth Settings                                                         
   No Zone Auth Settings
 
-
+<SNIP>
 ```
 
 ```
