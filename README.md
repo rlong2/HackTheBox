@@ -16,6 +16,7 @@ The guides that I created for rooting retired machines on Hack The Box are mostl
     - [The hunt is on](https://academy.hackthebox.com/achievement/badge/c7c2e0c9-c408-11ed-acfc-bea50ffe6cb4) - Cracking into Hack the Box path completed
     - [First things first](https://academy.hackthebox.com/achievement/badge/c7fcb60d-c408-11ed-acfc-bea50ffe6cb4) - Operating System Fundamentals path completed
     - [And so it begins](https://academy.hackthebox.com/achievement/badge/c8a9ab76-c408-11ed-acfc-bea50ffe6cb4) - Information Security Foundations path completed
+
  - Module Completion Badges:
     - [Philomath](https://academy.hackthebox.com/achievement/badge/97ccfb4d-c408-11ed-acfc-bea50ffe6cb4) - Learning Process module completed
     - [Academician](https://academy.hackthebox.com/achievement/badge/9bcd8e85-c408-11ed-acfc-bea50ffe6cb4) - Introduction to Academy module completed
@@ -56,12 +57,17 @@ The guides that I created for rooting retired machines on Hack The Box are mostl
     - [Solid basis](https://academy.hackthebox.com/achievement/badge/53ca2371-6b31-11f0-bcfd-bea50ffe6cb4) - Network Foundations module completed
     - [Offensive explorer](https://academy.hackthebox.com/achievement/badge/262ab9cb-72d0-11f0-9547-bea50ffe6cb4) - Pentest in a Nutshell module completed
 
+ - Starting Point Badges
+   - [Tumble Into the Rabbit's Warren](https://labs.hackthebox.com/achievement/badge/2454978/117) - Completed Tier 0 of Starting Point
+   - [Enter Wonderland](https://labs.hackthebox.com/achievement/badge/2454978/118) - Completed Tier 1 of Starting Point
+
  - Custom Badges:
     - [Unwavering User](https://academy.hackthebox.com/achievement/badge/6f8a4787-5cf9-11f0-bcfd-bea50ffe6cb4) - Awarded when you achieve your first weekly streak 
     - [Constant Champion](https://academy.hackthebox.com/achievement/badge/cb24bfb8-6b54-11f0-bcfd-bea50ffe6cb4) - Awarded when you achieve 4 weekly streaks in a row 
     - [Cyber Rookie 365](https://academy.hackthebox.com/achievement/badge/7dc5e195-a32f-11ef-864f-bea50ffe6cb4) - Awarded after one year of learning at HTB Academy
     - [Binary Duo Explorer](https://academy.hackthebox.com/achievement/badge/7b83470f-a335-11ef-864f-bea50ffe6cb4) - Awarded after two years of learning at HTB Academy 
     
+
 ## [Over The Wire](https://www.overthewire.org)
 The goal of overthewire varies, but is centered around:
 - Basic CTF (Bandit) 
