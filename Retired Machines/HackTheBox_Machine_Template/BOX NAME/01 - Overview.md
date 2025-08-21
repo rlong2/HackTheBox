@@ -6,7 +6,7 @@ Machine Details:
 | ----------- | ------- | ---------- | ------------- |
 | 10.129.1.17 | BOXNAME | Very Easy  | Linux/Windows |
 
-tags:
+### tags:
 - 
 ### status
 - [x] not started
@@ -16,3 +16,6 @@ tags:
 ## Box Outline
 
 An outline of how the box was pwned.
+
+## Bullet points
+- 
