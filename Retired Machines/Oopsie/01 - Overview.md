@@ -7,7 +7,10 @@ Machine Details:
 | 10.129.147.64 | Oopsie | Very Easy  | Linux        |
 
 tags:
-- 
+- suid
+- burp
+- reverse shell
+- IDOR
 ### status
 - [ ] not started
 - [ ] in progress
@@ -15,7 +18,7 @@ tags:
 - [x] got root flag
 ## Box Outline
 
-An outline of how the box was pwned.
+The target is running a web service and ssh service. The attacker used insecure direct object reference (IDOR) to obtain cookie information that allowed access to upload files to the web server as an administrator. The target uploaded a reverse webshell and had shell access to the machine as a service account. A user's ssh credentials were discovered in plaintext on the server, and those credentials were used to log in as a user. That user was in a group that allowed calls to an executable which runs as root due to the SUID bit. The executable called the `cat` command, and directory traversal was used to obtain the root flag. The executable did not specify the full path to `cat`, so the attacker used a path hijacking attack and obtained a root shell.
 
 ## Bullet points
 - nmap found ssh and a web server
