@@ -23,3 +23,8 @@ Hashing /usr/share/wordlists/rockyou.txt to /tmp/hashes.txt
 Hash found: qwerty789
 
 ```
+
+- admin
+- qwerty789
+
+These credentials don't appear to work for FTP or SSH :/... but they work for the web login panel!
