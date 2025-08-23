@@ -3,3 +3,7 @@
 
 # Ignore 'Active Machines' directory
 Active\ Machines/
+
+# Ignore this directory in a better attempt to
+# not paste flags, passwords, etc in cleartext
+**/DoNotUpload_Flags/
