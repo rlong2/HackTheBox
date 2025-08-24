@@ -7,15 +7,22 @@ Machine Details:
 | 10.129.69.47 | Included | Very Easy  | Linux        |
 
 ### tags:
-- 
+- LFI
+- TFTP
+- UDP
+- reverse shell
 ### status
 - [ ] not started
-- [x] in progress
-- [ ] got user flag
+- [ ] in progress
+- [x] got user flag
 - [ ] got root flag
 ## Box Outline
 
-An outline of how the box was pwned.
+The target is running an http service on port 80. The attacker was able to read the contents of /etc/passwd due to local file inclusion and discover a `tftp` service account. A reverse shell was uploaded using trivial file transfer protocol (tftp) and the attacker got a reverse shell as the `www-data` service account. Credentials for user `mike` were found in `/var/www/html/.htpasswd`, and the user flag was obtained.
 
 ## Bullet points
+- LFI --> read /etc/passwd
+- A tftp user is there
+- a php webshell was uploaded via tftp --> got a webshell as www-data
+- lateral movement to `mike` user after discovering plaintext creds in .htpasswd.
 - 
