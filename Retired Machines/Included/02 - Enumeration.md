@@ -38,36 +38,18 @@ Nmap done: 1 IP address (1 host up) scanned in 20.36 seconds
 ```
 
 ## nmap - UDP, quick
-TODO: Scan more nmap udp ports
 ```
-
 ┌──(kali㉿kali)-[~]
-└─$ nmap -T4  --top-ports 100 -sU 10.129.69.47
-Starting Nmap 7.95 ( https://nmap.org ) at 2025-08-23 18:07 MDT
-Stats: 0:00:13 elapsed; 0 hosts completed (1 up), 1 undergoing UDP Scan
-UDP Scan Timing: About 36.40% done; ETC: 18:08 (0:00:23 remaining)
-Warning: 10.129.69.47 giving up on port because retransmission cap hit (6).
-Stats: 0:00:57 elapsed; 0 hosts completed (1 up), 1 undergoing UDP Scan
-UDP Scan Timing: About 65.14% done; ETC: 18:09 (0:00:31 remaining)
-Stats: 0:02:19 elapsed; 0 hosts completed (1 up), 1 undergoing UDP Scan
-UDP Scan Timing: About 99.99% done; ETC: 18:10 (0:00:00 remaining)
-Stats: 0:02:37 elapsed; 0 hosts completed (1 up), 1 undergoing UDP Scan
-UDP Scan Timing: About 99.99% done; ETC: 18:10 (0:00:00 remaining)
+└─$ nmap -T5 -Pn -p- --max-retries 0 --min-rate 400 -sU --open 10.129.69.47
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-08-23 21:00 MDT
+Warning: 10.129.69.47 giving up on port because retransmission cap hit (0).
 Nmap scan report for 10.129.69.47
-Host is up (1.4s latency).
-Not shown: 91 closed udp ports (port-unreach)
-PORT      STATE         SERVICE
-68/udp    open|filtered dhcpc
-69/udp    open|filtered tftp
-443/udp   open|filtered https
-593/udp   open|filtered http-rpc-epmap
-1022/udp  open|filtered exp2
-3456/udp  open|filtered IISrpc-or-vat
-4444/udp  open|filtered krb524
-30718/udp open|filtered unknown
-49156/udp open|filtered unknown
+Host is up (0.046s latency).
+All 65535 scanned ports on 10.129.69.47 are in ignored states.
+Not shown: 65464 open|filtered udp ports (no-response), 71 closed udp ports (port-unreach)
 
-Nmap done: 1 IP address (1 host up) scanned in 158.08 seconds
+Nmap done: 1 IP address (1 host up) scanned in 72.82 seconds
+
 
 ```
 
@@ -139,3 +121,36 @@ Finished
 ===============================================================
 ```
 
+# Ffuf
+Fuzzing doesn't work well because every result sends back a 200
+```
+┌──(kali㉿kali)-[/usr/…/wordlists/SecLists/Discovery/Web-Content]
+└─$ ffuf -u http://10.129.69.47/?file=FUZZ -w raft-small-files-lowercase-php.txt
+
+        /'___\  /'___\           /'___\       
+       /\ \__/ /\ \__/  __  __  /\ \__/       
+       \ \ ,__\\ \ ,__\/\ \/\ \ \ \ ,__\      
+        \ \ \_/ \ \ \_/\ \ \_\ \ \ \ \_/      
+         \ \_\   \ \_\  \ \____/  \ \_\       
+          \/_/    \/_/   \/___/    \/_/       
+
+       v2.1.0-dev
+________________________________________________
+
+ :: Method           : GET
+ :: URL              : http://10.129.69.47/?file=FUZZ
+ :: Wordlist         : FUZZ: /usr/share/wordlists/SecLists/Discovery/Web-Content/raft-small-files-lowercase-php.txt
+ :: Follow redirects : false
+ :: Calibration      : false
+ :: Timeout          : 10
+ :: Threads          : 40
+ :: Matcher          : Response status: 200-299,301,302,307,401,403,405,500
+________________________________________________
+
+:: Progress: [1/4202] :: Job [1/1] :: 0 req/sec :: Duration: [0:00:00] :: Errprofile.php             [Status: 200, Size: 0, Words: 1, Lines: 1, Duration: 47ms]
+:: Progress: [40/4202] :: Job [1/1] :: 0 req/sec :: Duration: [0:00:00] :: Ermember.php              [Status: 200, Size: 0, Words: 1, Lines: 1, Duration: 48ms]
+:: Progress: [41/4202] :: Job [1/1] :: 0 req/sec :: Duration: [0:00:00] :: Erinstall.php             [Status: 200, Size: 0, Words: 1, Lines: 1, Duration: 47ms]
+:: Progress: [42/4202] :: Job [1/1] :: 0 req/sec :: Duration: [0:00:00] :: Erregister.php            [Status: 200, Size: 0, Words: 1, Lines: 1, Duration: 48ms]
+
+<SNIP>
+```
