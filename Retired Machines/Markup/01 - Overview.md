@@ -11,11 +11,13 @@ Machine Details:
 ### status
 - [ ] not started
 - [x] in progress
-- [ ] got user flag
+- [x] got user flag
 - [ ] got root flag
 ## Box Outline
 
 An outline of how the box was pwned.
 
 ## Bullet points
-- 
+- simple username and password --> access to login portal
+- XXE vulnerability allows attacker to read files on the box
+- A user's private ssh key was discovered.
