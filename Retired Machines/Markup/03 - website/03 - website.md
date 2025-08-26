@@ -56,6 +56,20 @@ Several forms seem promising
 - http://10.129.224.59/services.php
 ![[OrderInBulk.png]]
 
+## Curl - found potential user
+Inspecting the source code on the page finds a potential username
+```
+  <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Goods & Services</title>
+        <!-- Modified by Daniel : UI-Fix-9092-->
+        <style>
+            <
+            link href
+```
+
 ## Burpsuite - bulk order
 ### bulk order request
 ```
