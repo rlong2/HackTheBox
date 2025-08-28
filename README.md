@@ -16,6 +16,7 @@ The guides that I created for rooting retired machines on Hack The Box are mostl
     - [The hunt is on](https://academy.hackthebox.com/achievement/badge/c7c2e0c9-c408-11ed-acfc-bea50ffe6cb4) - Cracking into Hack the Box path completed
     - [First things first](https://academy.hackthebox.com/achievement/badge/c7fcb60d-c408-11ed-acfc-bea50ffe6cb4) - Operating System Fundamentals path completed
     - [And so it begins](https://academy.hackthebox.com/achievement/badge/c8a9ab76-c408-11ed-acfc-bea50ffe6cb4) - Information Security Foundations path completed
+    - [Feeling blue](https://academy.hackthebox.com/achievement/badge/ae11c99a-83ba-11f0-9254-bea50ffe6cb4) - SOC Analyst Prerequisites path completed
 
  - Module Completion Badges:
     - [Philomath](https://academy.hackthebox.com/achievement/badge/97ccfb4d-c408-11ed-acfc-bea50ffe6cb4) - Learning Process module completed
@@ -41,6 +42,7 @@ The guides that I created for rooting retired machines on Hack The Box are mostl
     - [Developer](https://academy.hackthebox.com/achievement/badge/b50827a2-c408-11ed-acfc-bea50ffe6cb4) - Introduction to Web Applications module completed
     - [Your first battle](https://academy.hackthebox.com/achievement/badge/b77f3b96-c408-11ed-acfc-bea50ffe6cb4) - Getting Started module completed
     - [Lurk in the packets](https://academy.hackthebox.com/achievement/badge/b845f358-c408-11ed-acfc-bea50ffe6cb4) - Intro to Network Traffic Analysis module completed
+    - [A language that is as old as the pyramids](https://academy.hackthebox.com/achievement/badge/ae080354-83ba-11f0-9254-bea50ffe6cb4) - Intro to Assembly Language module completed
     - [Start building your aresenal](https://academy.hackthebox.com/achievement/badge/b9ef18b2-c408-11ed-acfc-bea50ffe6cb4) - Setting Up module completed
     - [Tactical](https://academy.hackthebox.com/achievement/badge/bae66455-c408-11ed-acfc-bea50ffe6cb4) - Penetration Testing Process module completed
     - [Included in every report](https://academy.hackthebox.com/achievement/badge/bb8645e8-c408-11ed-acfc-bea50ffe6cb4) - Cross-Site Scripting (XSS) module completed
