@@ -7,7 +7,10 @@ Machine Details:
 | 10.129.224.59 | Markup | Very Easy  | Windows      |
 
 ### tags:
-- 
+- XXE
+- weak credentials
+- netcat
+- script
 ### status
 - [ ] not started
 - [ ] in progress
