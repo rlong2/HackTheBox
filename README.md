@@ -4,7 +4,7 @@
 
 ### Description
 
-The guides that I created for rooting retired machines on Hack The Box are mostly txt files. I am in the process of rewriting these walkthroughs as more substantial Markdown reports, which can be imported into [Obsidian](https://obsidian.md/) and exported as **PDFs**. As each machine is rewritten, it will be moved into the [Retired Machines](https://github.com/rlong2/HackTheBox/tree/master/Retired%20Machines) directory.
+The guides that I created for rooting retired machines on Hack The Box are mostly txt files. I am in the process of rewriting these walkthroughs as more substantial Markdown reports, which can be imported into [Obsidian](https://obsidian.md/) and exported as **PDFs**. As each machine is rewritten, it will be moved into the [Retired Machines](https://github.com/rlong2/HackTheBox/tree/master/Retired%20Machines) directory. [Retired Challenges](https://github.com/rlong2/HackTheBox/tree/master/Retired%20Challenges) contains completed Markdown reports of solved Challenges from HackTheBox.
 
 ## Hack The Box [Academy](https://academy.hackthebox.com/)
  The list below charts my progress through HTB Academy courses and modules
