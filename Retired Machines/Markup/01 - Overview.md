@@ -12,7 +12,7 @@ Machine Details:
 - [ ] not started
 - [x] in progress
 - [x] got user flag
-- [x] got root flag
+- [ ] got root flag
 ## Box Outline
 
 An outline of how the box was pwned.
