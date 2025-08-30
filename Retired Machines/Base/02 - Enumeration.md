@@ -115,6 +115,81 @@ Finished
 ===============================================================
 
 ```
+
+## gobuster - raft
+```
+┌──(kali㉿kali)-[~]
+└─$ gobuster dir -u http://10.129.95.184 -w /usr/share/wordlists/SecLists/Discovery/Web-Content/raft-medium-words-lowercase.txt 
+===============================================================
+Gobuster v3.6
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     http://10.129.95.184
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /usr/share/wordlists/SecLists/Discovery/Web-Content/raft-medium-words-lowercase.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.6
+[+] Timeout:                 10s
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+/.php                 (Status: 403) [Size: 278]
+/.html                (Status: 403) [Size: 278]
+/login                (Status: 301) [Size: 314] [--> http://10.129.95.184/login/]
+/.htm                 (Status: 403) [Size: 278]
+/assets               (Status: 301) [Size: 315] [--> http://10.129.95.184/assets/]
+/forms                (Status: 301) [Size: 314] [--> http://10.129.95.184/forms/]
+/.                    (Status: 200) [Size: 39344]
+/.htaccess            (Status: 403) [Size: 278]
+/.phtml               (Status: 403) [Size: 278]
+/.htc                 (Status: 403) [Size: 278]
+/.html_var_de         (Status: 403) [Size: 278]
+/server-status        (Status: 403) [Size: 278]
+/.htpasswd            (Status: 403) [Size: 278]
+/.html.               (Status: 403) [Size: 278]
+/.html.html           (Status: 403) [Size: 278]
+/.htpasswds           (Status: 403) [Size: 278]
+/.htm.                (Status: 403) [Size: 278]
+/.htmll               (Status: 403) [Size: 278]
+/.phps                (Status: 403) [Size: 278]
+/.html.old            (Status: 403) [Size: 278]
+/.ht                  (Status: 403) [Size: 278]
+/.html.bak            (Status: 403) [Size: 278]
+/.htm.htm             (Status: 403) [Size: 278]
+/.htgroup             (Status: 403) [Size: 278]
+/.hta                 (Status: 403) [Size: 278]
+/.html1               (Status: 403) [Size: 278]
+/_uploaded            (Status: 301) [Size: 318] [--> http://10.129.95.184/_uploaded/]                                                                     
+/.html.printable      (Status: 403) [Size: 278]
+/.html.lck            (Status: 403) [Size: 278]
+/.htm.lck             (Status: 403) [Size: 278]
+/.htmls               (Status: 403) [Size: 278]
+/.htaccess.bak        (Status: 403) [Size: 278]
+/.htx                 (Status: 403) [Size: 278]
+/.html.php            (Status: 403) [Size: 278]
+/.htm2                (Status: 403) [Size: 278]
+/.htlm                (Status: 403) [Size: 278]
+/.html-               (Status: 403) [Size: 278]
+/.htuser              (Status: 403) [Size: 278]
+/.htacess             (Status: 403) [Size: 278]
+/.html.orig           (Status: 403) [Size: 278]
+/.html.sav            (Status: 403) [Size: 278]
+/.htm.html            (Status: 403) [Size: 278]
+/.htm.d               (Status: 403) [Size: 278]
+/.html-1              (Status: 403) [Size: 278]
+/.htm.old             (Status: 403) [Size: 278]
+/.html_files          (Status: 403) [Size: 278]
+/.html_               (Status: 403) [Size: 278]
+/.htmlpar             (Status: 403) [Size: 278]
+/.htmlprint           (Status: 403) [Size: 278]
+/.hts                 (Status: 403) [Size: 278]
+Progress: 56293 / 56294 (100.00%)
+===============================================================
+Finished
+===============================================================
+
+```
 ## gobuster - vhost fuzzing
 ```
 ┌──(kali㉿kali)-[~]
