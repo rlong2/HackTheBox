@@ -62,6 +62,7 @@ The guides that I created for rooting retired machines on Hack The Box are mostl
  - Starting Point Badges
    - [Tumble Into the Rabbit's Warren](https://labs.hackthebox.com/achievement/badge/2454978/117) - Completed Tier 0 of Starting Point
    - [Enter Wonderland](https://labs.hackthebox.com/achievement/badge/2454978/118) - Completed Tier 1 of Starting Point
+   - [Trial of the Knave of Hearts](https://labs.hackthebox.com/achievement/badge/2454978/119) - Completed Tier 2 of Starting Point
 
  - Custom Badges:
     - [Unwavering User](https://academy.hackthebox.com/achievement/badge/6f8a4787-5cf9-11f0-bcfd-bea50ffe6cb4) - Awarded when you achieve your first weekly streak 
