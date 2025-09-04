@@ -55,7 +55,47 @@ Q3<SNIP>gh
 
 ```
 # Gobuster
-## gobuster - raft, php
+## gobuster - common, php
+```
+┌──(kali㉿kali)-[~]
+└─$ gobuster dir -u http://10.10.10.150 -w /usr/share/wordlists/SecLists/Discovery/Web-Content/common.txt -x php | grep -v 403 
+===============================================================
+Gobuster v3.6
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     http://10.10.10.150
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /usr/share/wordlists/SecLists/Discovery/Web-Content/common.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.6
+[+] Extensions:              php
+[+] Timeout:                 10s
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+/administrator        (Status: 301) [Size: 320] [--> http://10.10.10.150/administrator/]
+/bin                  (Status: 301) [Size: 310] [--> http://10.10.10.150/bin/]
+/cache                (Status: 301) [Size: 312] [--> http://10.10.10.150/cache/]
+/components           (Status: 301) [Size: 317] [--> http://10.10.10.150/components/]
+/configuration.php    (Status: 200) [Size: 0]
+/images               (Status: 301) [Size: 313] [--> http://10.10.10.150/images/]
+/includes             (Status: 301) [Size: 315] [--> http://10.10.10.150/includes/]
+/index.php            (Status: 200) [Size: 14264]
+/index.php            (Status: 200) [Size: 14264]
+/language             (Status: 301) [Size: 315] [--> http://10.10.10.150/language/]
+/layouts              (Status: 301) [Size: 314] [--> http://10.10.10.150/layouts/]
+/libraries            (Status: 301) [Size: 316] [--> http://10.10.10.150/libraries/]
+/media                (Status: 301) [Size: 312] [--> http://10.10.10.150/media/]
+/modules              (Status: 301) [Size: 314] [--> http://10.10.10.150/modules/]
+/plugins              (Status: 301) [Size: 314] [--> http://10.10.10.150/plugins/]
+/templates            (Status: 301) [Size: 316] [--> http://10.10.10.150/templates/]
+/tmp                  (Status: 301) [Size: 310] [--> http://10.10.10.150/tmp/]
+Progress: 9500 / 9500 (100.00%)
+===============================================================
+Finished
+===============================================================
+```
 
 ## gobuster - vhost fuzzing
 ```
