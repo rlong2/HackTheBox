@@ -4,7 +4,7 @@ Machine Details:
 
 | IP          | Name    | Difficulty | Machine Type  |
 | ----------- | ------- | ---------- | ------------- |
-| 10.129.1.17 | BOXNAME | Very Easy  | Linux/Windows |
+| 10.129.1.17 | BOXNAME | Easy       | Linux/Windows |
 
 ### tags:
 - 
