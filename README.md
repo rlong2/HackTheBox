@@ -6,6 +6,15 @@
 
 The guides that I created for rooting retired machines on Hack The Box are mostly txt files. I am in the process of rewriting these walkthroughs as more substantial Markdown reports, which can be imported into [Obsidian](https://obsidian.md/) and exported as **PDFs**. As each machine is rewritten or pwned for the first time, it will be moved into the [Retired Machines](https://github.com/rlong2/HackTheBox/tree/master/Retired%20Machines) directory. [Retired Challenges](https://github.com/rlong2/HackTheBox/tree/master/Retired%20Challenges) contains completed Markdown reports of solved Challenges from HackTheBox.
 
+### Hack The Box Lab Badges
+ - Rank Badges
+   - [Script Kiddie](https://labs.hackthebox.com/achievement/badge/2454978/214) - Has reached the Script Kiddie rank
+
+ - Starting Point Badges
+   - [Tumble Into the Rabbit's Warren](https://labs.hackthebox.com/achievement/badge/2454978/117) - Completed Tier 0 of Starting Point
+   - [Enter Wonderland](https://labs.hackthebox.com/achievement/badge/2454978/118) - Completed Tier 1 of Starting Point
+   - [Trial of the Knave of Hearts](https://labs.hackthebox.com/achievement/badge/2454978/119) - Completed Tier 2 of Starting Point
+
 ## Hack The Box [Academy](https://academy.hackthebox.com/)
  The list below charts my progress through HTB Academy courses and modules
  - Completed and in-progress modules:
@@ -58,11 +67,6 @@ The guides that I created for rooting retired machines on Hack The Box are mostl
     - [Infiltration Learner](https://academy.hackthebox.com/achievement/badge/ff43615c-6e0a-11f0-bcfd-bea50ffe6cb4) - Introduction to Penetration Testing module completed
     - [Solid basis](https://academy.hackthebox.com/achievement/badge/53ca2371-6b31-11f0-bcfd-bea50ffe6cb4) - Network Foundations module completed
     - [Offensive explorer](https://academy.hackthebox.com/achievement/badge/262ab9cb-72d0-11f0-9547-bea50ffe6cb4) - Pentest in a Nutshell module completed
-
- - Starting Point Badges
-   - [Tumble Into the Rabbit's Warren](https://labs.hackthebox.com/achievement/badge/2454978/117) - Completed Tier 0 of Starting Point
-   - [Enter Wonderland](https://labs.hackthebox.com/achievement/badge/2454978/118) - Completed Tier 1 of Starting Point
-   - [Trial of the Knave of Hearts](https://labs.hackthebox.com/achievement/badge/2454978/119) - Completed Tier 2 of Starting Point
 
  - Custom Badges:
     - [Unwavering User](https://academy.hackthebox.com/achievement/badge/6f8a4787-5cf9-11f0-bcfd-bea50ffe6cb4) - Awarded when you achieve your first weekly streak 
