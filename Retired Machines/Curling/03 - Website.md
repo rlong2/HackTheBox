@@ -8,6 +8,7 @@
 - http://10.10.10.150/configuration.php
 - http://10.10.10.150/secret.txt - contains a secret
 	- Doesn't work with floris on login page or ssh
+- http://10.10.10.150/administrator/ - accessible after logging into the main pgae with creds.
 
 ### Potential users
 - Floris
@@ -39,4 +40,5 @@ Using variations of an interesting word found by `cewl`, a password was found.
 Those credentials log floris in as a superuser, but there isn't much to see on the page.
 ![[curlingFlorisSuperAdmin.png]]
 
-Floris can edit the modules
+Floris can edit the modules, and now can access the Joomla page:
+http://10.10.10.150/administrator/
