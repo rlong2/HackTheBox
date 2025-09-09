@@ -10,6 +10,9 @@ The guides that I created for rooting retired machines on Hack The Box are mostl
  - Rank Badges
    - [Script Kiddie](https://labs.hackthebox.com/achievement/badge/2454978/214) - Has reached the Script Kiddie rank
 
+ - Machine Badges
+   - [Is There Anybody Out There?](https://labs.hackthebox.com/achievement/badge/2454978/231) - Owned 5 machines
+
  - Starting Point Badges
    - [Tumble Into the Rabbit's Warren](https://labs.hackthebox.com/achievement/badge/2454978/117) - Completed Tier 0 of Starting Point
    - [Enter Wonderland](https://labs.hackthebox.com/achievement/badge/2454978/118) - Completed Tier 1 of Starting Point
