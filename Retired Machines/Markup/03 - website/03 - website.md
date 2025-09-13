@@ -45,16 +45,19 @@ Content-Type: text/html; charset=UTF-8
 ```
 
 ## Intruder
-![[webIntruder.png]]
+![](webIntruder.png)
+
 Some credentials bring up a dashboard:
 - admin
 - password
 
-![[adminDashboard.png]]
+![](adminDashboard.png)
+
 
 Several forms seem promising
 - http://10.129.224.59/services.php
-![[OrderInBulk.png]]
+![](OrderInBulk.png)
+
 
 ## Curl - found potential user
 Inspecting the source code on the page finds a potential username
@@ -111,7 +114,8 @@ Your order for Home Appliances has been processed
 The 'item' field is repeated back.
 Contact Us
 - http://10.129.224.59/contact.php
-![[Contact Us.png]]
+![](ContactUs.png)
+
 
 Submit button might not work, burp didn't capture anything
 

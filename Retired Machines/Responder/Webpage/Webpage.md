@@ -5,4 +5,5 @@ There is a `page=` parameter
 http://unika.htb/index.php?page=german.html
 
 Interesting error:
-![[pages error.png]]
+![](PagesError.png)
+

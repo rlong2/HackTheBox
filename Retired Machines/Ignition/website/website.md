@@ -1,5 +1,6 @@
 # Poking around
-![[Pasted image 20250811173249.png]]
+![](Ignition/website/landingPage.png)
+
 
 #### Forms
 - http://ignition.htb/contact/
@@ -20,18 +21,22 @@ Error log record number: 292938b2112e61dd93e2e9b47e5277251708d6730b7a15ff26bbcf3
 ```
 
 http://ignition.htb/admin looks like a good place to start.
-![[admin_login.png]]
+![](Ignition/website/admin_login.png)
+
 
 Simple admin injection attempt:
-![[admin_injection_attempt.png]]
+![](Ignition/website/admin_injection_attempt.png)
+
 
 - searching for default passwords
 	- [admin 123123](https://magento.stackexchange.com/questions/231135/what-is-the-default-magento-admin-username-and-password)  - nope
 
 Potential password requirements for the admin panel:
-- ![[potential_password_requirements.png]]
+- ![](Ignition/website/potential_password_requirements.png)
+- 
 - https://meetanshi.com/blog/configure-password-options-in-magento-2/
-- ![[magento_password_defaults.png]]
+- ![](Ignition/website/magento_password_defaults.png)
+- 
 - https://www.mgt-commerce.com/tutorial/password-options-for-customers-in-magento-2/
 - 
 	- minimum password length: 8 characters

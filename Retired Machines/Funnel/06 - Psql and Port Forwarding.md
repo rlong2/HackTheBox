@@ -74,6 +74,7 @@ christine=#
 ```
 
 ### Enumerating databases
-![[06_EnumeratingDatabases.png]]
+![](06_EnumeratingDatabases.png)
+
 
 See [[Funnel/10 - Loot/10 - Loot|10 - Loot]] for the flag 

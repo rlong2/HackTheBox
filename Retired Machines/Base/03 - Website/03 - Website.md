@@ -10,6 +10,9 @@ http://10.129.95.184/login/login.php seems promising
 - Inputting bad credentials gives a `Wrong Username or Password` popup.
 - There is an /upload.php which redirects to /login.php, perhaps there's a way to upload a shell after logging in.
 
+![](UploadFiles.png)
+
+
 http://10.129.62.166/login/ lists more directories :)
 - http://10.129.62.166/login/config.php
 - http://10.129.62.166/login/login.php.swp

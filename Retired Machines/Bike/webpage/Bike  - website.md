@@ -1,9 +1,12 @@
 ### Landing page
 A cool gif with an email form
-![[bike_landingPage.png]]
+![](bike_landingPage.png)
+
+
 
 ### wappalyzer
-![[bike_wappalyzer.png]]
+![](bike_wappalyzer.png)
+
 
 # source
 There is an interesting .js script 

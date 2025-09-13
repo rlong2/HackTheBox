@@ -2,7 +2,8 @@ Pages
 - The landing page redirects to http://10.129.39.125:8080/login?from=%2F
 	- decoding the URL, this translates to `login?from=/`
 
-![[Jenkins login page.png]]
+![](JenkinsLoginPage.png)
+
 
 ### Logging in
 Jenkins generates a password when the server is initially created, so there is no default.
@@ -12,7 +13,8 @@ Burpsuite catches this:
 `j_username=foo&j_password=bar&from=&Submit=Sign+in`
 
 ### credentials
-![[PennyworthBurpCreds.png]]
+![](PennyworthBurpCreds.png)
+
 
 root:password
 
@@ -20,7 +22,8 @@ root:password
 [Jenkins 2.289.1](https://jenkins.io/)
 
 The page shows a groovy script 
-![[PennyworthGroovyScript.png]]
+![](PennyworthGroovyScript.png)
+
 The description reads:
 ```
 # Project Groovy Script
@@ -29,7 +32,8 @@ We've been made aware that the Groovy Script (Script Console) is insecure and mu
 ```
 
 There is also security warning on the dashboard:
-![[PennyworthCVEWarning.png]]
+![](PennyworthCVEWarning.png)
+
 
 #### CVE warning
 https://www.jenkins.io/security/advisory/2021-05-11/#SECURITY-2349

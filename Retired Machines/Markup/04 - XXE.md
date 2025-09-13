@@ -10,7 +10,8 @@ Your order for Home Appliances has been processed
 https://book.hacktricks.wiki/en/pentesting-web/xxe-xee-xml-external-entity.html
 
 ## Injection success
-![[InjectionSuccessEtcHosts.png]]
+![](InjectionSuccessEtcHosts.png)
+
 
 ### Altered Request
 ```

@@ -22,4 +22,5 @@ Using the payload in [[03 - burpsuite]], the flag can be obtained.
 {{/with}}
 ```
 # flag.txt
-![[BikeFlag.png]]
+![](BikeFlag.png)
+

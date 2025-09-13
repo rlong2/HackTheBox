@@ -24,4 +24,5 @@ def output = process.text
 println output
 ```
 
-![[PennyworthCodeExecution.png]]
+![](PennyworthCodeExecution.png)
+

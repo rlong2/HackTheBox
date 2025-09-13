@@ -1,7 +1,8 @@
-![[bikeBurp01.png]]
-\
+![](bikeBurp01.png)
 
-![[bikeWeWillContactYou.png]]
+
+![](bikeWeWillContactYou.png)
+
 
 # Encoding a payload
 Given the payload in the [[04 - XSS Attempts]] note, Burpsuite can be used to URL encode the payload each time a command is changed (whoami, id, etc)
@@ -28,10 +29,12 @@ Given the payload in the [[04 - XSS Attempts]] note, Burpsuite can be used to UR
 {{/with}}
 ```
 
-![[BurpEncoding.png]]
+![](BurpEncoding.png)
+
 
 Still getting an error:
-![[BurpRequireIsNotDefined.png]]
+![](BurpRequireIsNotDefined.png)
+
 
 It doesn't like this line of the payload, specifically the `require` call.
 - {{this.push "return require('child_process').exec('whoami');"}}
@@ -66,7 +69,8 @@ In the payload, change
 ```
 
 After changing that line and putting the encoded payload through the repeater, a different response happens:
-![[BurpReturnProcessPayload.png]]
+![](BurpReturnProcessPayload.png)
+
 
 Checking how `process` can be used
 - https://nodejs.org/api/process.html
@@ -107,4 +111,5 @@ Payload:
 ```
 
 Responder result:
-![[BurpProcessWhoami.png]]
+![](BurpProcessWhoami.png)
+

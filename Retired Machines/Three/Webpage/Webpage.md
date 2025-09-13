@@ -1,3 +1,5 @@
+![](Three/Webpage/band.jpg)
+
 http://10.129.166.187/ shows a band webpage for 'The Toppers'.
 - Potential users on page
 	- John Smith
@@ -8,7 +10,8 @@ http://10.129.166.187/ shows a band webpage for 'The Toppers'.
 	- has a contact page with name, email, and message fields
 	- an email: mail@thetoppers.htb
 	- An option to buy tickets
-		- ![[buyTickets.png]]
+		- ![](buyTickets.png)
+		- 
 	- 
 
 ```
@@ -19,7 +22,8 @@ http://10.129.166.187/ shows a band webpage for 'The Toppers'.
 
 There is an images dir to browse:
 http://thetoppers.htb/images/
-![[toppersImageDir.png]]
+![](toppersImageDir.png)
+
 
 Fuzzing for subdirectories with gobuster revealed:
 - http://s3.thetoppers.htb

@@ -35,10 +35,12 @@ CeWL 6.2.1 (More Fixes) Robin Wood (robin@digi.ninja) (https://digi.ninja/)
 
 ## Burpsuite intruder
 Using variations of an interesting word found by `cewl`, a password was found.
-![[curlingFlorisLogin.png]]
+![](curlingFlorisLogin.png)
+
 
 Those credentials log floris in as a superuser, but there isn't much to see on the page.
-![[curlingFlorisSuperAdmin.png]]
+![](curlingFlorisSuperAdmin.png)
+
 
 Floris can edit the modules, and now can access the Joomla page:
 http://10.10.10.150/administrator/

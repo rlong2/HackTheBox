@@ -1,14 +1,17 @@
 The landing page is a MegaCorp login page.
 Wappalyzer notes that php is being used.
-![[webLandingPage.png]]
+![](webLandingPage.png)
+
 
 See [[06 - md5 brute forcing]] for the password cracking adventure.
 - admin
 - qwerty789
-![[webAdminLogin.png]]
+![](webAdminLogin.png)
+
 
 http://10.129.95.174/dashboard.php
-![[webDashboard.png]]
+![](webDashboard.png)
+
 The search bar is worth inspecting.
 
 # Burpsuite search
