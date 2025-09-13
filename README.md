@@ -9,9 +9,9 @@ The guides that I created for rooting retired machines on Hack The Box are mostl
 ### Hack The Box Lab Badges
  - Rank Badges
    - [Script Kiddie](https://labs.hackthebox.com/achievement/badge/2454978/214) - Has reached the Script Kiddie rank
-   - [Just Another Brick in the Wall](https://labs.hackthebox.com/achievement/badge/2454978/233) - Owned 10 machines
 
  - Machine Badges
+   - [Just Another Brick in the Wall](https://labs.hackthebox.com/achievement/badge/2454978/233) - Owned 10 machines
    - [Is There Anybody Out There?](https://labs.hackthebox.com/achievement/badge/2454978/231) - Owned 5 machines
 
  - Starting Point Badges
