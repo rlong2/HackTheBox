@@ -30,9 +30,10 @@ Saved as: jerry.war
 
 ```
 ## Uploaded payload
-![[JerryUploadedPayload.png]]
+![](UploadedPayload.png)
 
-## Caught a system shell
+
+## Caught a shell
 ```
 ### Uploaded jerry.war to the portal
 ### Started a listener and clicked on the jerry.war file
