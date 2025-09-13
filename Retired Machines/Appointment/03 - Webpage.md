@@ -1,5 +1,6 @@
 Browsing to http://10.129.79.243/ shows a login page.
-![[webpageLoginPrompt.png]]
+![](webpageLoginPrompt.png)
+
 
 ## Brute-force attempts
 - injection attempts courtesy of  https://github.com/haxneeraj/admin-authentication-bypass-sql-injection-cheat-sheet
