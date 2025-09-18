@@ -1,15 +1,16 @@
 # nmap
 ### nmap scan 1: quick, all ports 
 ```
-┌──(kali㉿kali)-[~/Desktop/HackTheBox]
-└─$ nmap -T4 -Pn --open -p- 10.10.10.152
-Starting Nmap 7.95 ( https://nmap.org ) at 2025-09-17 17:38 MDT
+┌──(kali㉿kali)-[~/Desktop/HackTheBox/Retired Machines]
+└─$ nmap -T4 -Pn --open -p- 10.10.10.152                                  
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-09-17 20:17 MDT
 Nmap scan report for 10.10.10.152
-Host is up (0.050s latency).
-Not shown: 63789 closed tcp ports (reset), 1734 filtered tcp ports (no-response)
+Host is up (0.047s latency).
+Not shown: 64677 closed tcp ports (reset), 845 filtered tcp ports (no-response)
 Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
 PORT      STATE SERVICE
 21/tcp    open  ftp
+80/tcp    open  http
 135/tcp   open  msrpc
 139/tcp   open  netbios-ssn
 445/tcp   open  microsoft-ds
@@ -22,18 +23,19 @@ PORT      STATE SERVICE
 49668/tcp open  unknown
 49669/tcp open  unknown
 
-Nmap done: 1 IP address (1 host up) scanned in 22.36 seconds
+Nmap done: 1 IP address (1 host up) scanned in 24.16 seconds
+
              
 ```
 
 ### nmap scan 2: service version
 ```
-┌──(kali㉿kali)-[~/Desktop/HackTheBox]
+┌──(kali㉿kali)-[~/Desktop/HackTheBox/Retired Machines]
 └─$ nmap -T4 -sV -sC -p- 10.10.10.152
-Starting Nmap 7.95 ( https://nmap.org ) at 2025-09-17 17:39 MDT
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-09-17 20:17 MDT
 Nmap scan report for 10.10.10.152
 Host is up (0.048s latency).
-Not shown: 65523 closed tcp ports (reset)
+Not shown: 65522 closed tcp ports (reset)
 PORT      STATE SERVICE      VERSION
 21/tcp    open  ftp          Microsoft ftpd
 | ftp-syst: 
@@ -46,12 +48,17 @@ PORT      STATE SERVICE      VERSION
 | 02-03-19  12:28AM       <DIR>          Program Files (x86)
 | 02-03-19  08:08AM       <DIR>          Users
 |_11-10-23  10:20AM       <DIR>          Windows
+80/tcp    open  http         Indy httpd 18.1.37.13946 (Paessler PRTG bandwidth monitor)
+|_http-trane-info: Problem with XML parsing of /evox/about
+| http-title: Welcome | PRTG Network Monitor (NETMON)
+|_Requested resource was /index.htm
+|_http-server-header: PRTG/18.1.37.13946
 135/tcp   open  msrpc        Microsoft Windows RPC
 139/tcp   open  netbios-ssn  Microsoft Windows netbios-ssn
 445/tcp   open  microsoft-ds Microsoft Windows Server 2008 R2 - 2012 microsoft-ds
 5985/tcp  open  http         Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
-|_http-server-header: Microsoft-HTTPAPI/2.0
 |_http-title: Not Found
+|_http-server-header: Microsoft-HTTPAPI/2.0
 47001/tcp open  http         Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
 |_http-server-header: Microsoft-HTTPAPI/2.0
 |_http-title: Not Found
@@ -64,19 +71,20 @@ PORT      STATE SERVICE      VERSION
 Service Info: OSs: Windows, Windows Server 2008 R2 - 2012; CPE: cpe:/o:microsoft:windows
 
 Host script results:
-| smb-security-mode: 
-|   account_used: guest
-|   authentication_level: user
-|   challenge_response: supported
-|_  message_signing: disabled (dangerous, but default)
-| smb2-time: 
-|   date: 2025-09-17T23:41:04
-|_  start_date: 2025-09-16T13:20:25
 | smb2-security-mode: 
 |   3:1:1: 
 |_    Message signing enabled but not required
+|_clock-skew: mean: -1s, deviation: 0s, median: -1s
+| smb2-time: 
+|   date: 2025-09-18T02:20:03
+|_  start_date: 2025-09-18T00:00:36
+| smb-security-mode: 
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
 
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-Nmap done: 1 IP address (1 host up) scanned in 124.53 seconds
+Nmap done: 1 IP address (1 host up) scanned in 134.92 seconds
+
 
 ```
