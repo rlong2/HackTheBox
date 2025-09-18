@@ -15,3 +15,23 @@ c1<SNIP>392
 ```
 
 # root flag
+```
+PS C:\users\Administrator> cd Desktop
+cd Desktop
+PS C:\users\Administrator\Desktop> ls
+ls
+
+
+    Directory: C:\users\Administrator\Desktop
+
+
+Mode                LastWriteTime         Length Name                          
+----                -------------         ------ ----                          
+-ar---        9/17/2025  10:41 PM             34 root.txt                      
+
+
+PS C:\users\Administrator\Desktop> cat root.txt
+cat root.txt
+a8<SNIP>f5d
+
+```
