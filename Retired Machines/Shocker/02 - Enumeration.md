@@ -16,12 +16,6 @@ Nmap done: 1 IP address (1 host up) scanned in 21.90 seconds
                
 ```
 
-### nmap scan 2: service version
-```
-┌──(kali㉿kali)-[~]
-└─$ nmap -T4 -sV -sC -p 23 10.129.1.17 
-```
-
 # Curl
 ```
 ┌──(kali㉿kali)-[~]
@@ -69,4 +63,34 @@ Finished
 ```
 
 /cgi-bin/ seems relevant
-https://www.liquidweb.com/blog/what-is-cgi-bin/
+https://linuxconfig.org/simple-cgi-and-apache-examples-on-ubuntu-linux
+
+## gobuster - common /cgi-bin dir with extensions
+```
+┌──(kali㉿kali)-[~]
+└─$ gobuster dir -u 10.10.10.56/cgi-bin -w /usr/share/wordlists/SecLists/Discovery/Web-Content/common.txt -x html,php,js,sh,py,htm,pl
+===============================================================
+Gobuster v3.8
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     http://10.10.10.56/cgi-bin
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /usr/share/wordlists/SecLists/Discovery/Web-Content/common.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.8
+[+] Extensions:              js,sh,py,htm,html,php
+[+] Timeout:                 10s
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+/.hta.py              (Status: 403) [Size: 301]
+/.hta                 (Status: 403) [Size: 298]
+<SNIP>
+/user.sh              (Status: 200) [Size: 118]
+Progress: 33250 / 33250 (100.00%)
+===============================================================
+Finished
+===============================================================
+
+```
