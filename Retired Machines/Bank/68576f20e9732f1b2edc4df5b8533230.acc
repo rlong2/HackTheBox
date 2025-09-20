@@ -1,0 +1,13 @@
+--ERR ENCRYPT FAILED
++=================+
+| HTB Bank Report |
++=================+
+
+===UserAccount===
+Full Name: Christos Christopoulos
+Email: chris@bank.htb
+Password: !##HT<SNIP>0rd!## <---- (redacted for walkthrough)
+CreditCards: 5
+Transactions: 39
+Balance: 8842803 .
+===UserAccount===
