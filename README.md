@@ -8,6 +8,7 @@ The guides that I created for rooting retired machines on Hack The Box are mostl
 
 ### Hack The Box Lab Badges
  - Rank Badges
+   - [Hacker](https://labs.hackthebox.com/achievement/badge/2454978/215) - Has reached the Hacker rank
    - [Script Kiddie](https://labs.hackthebox.com/achievement/badge/2454978/214) - Has reached the Script Kiddie rank
 
  - Machine Badges
