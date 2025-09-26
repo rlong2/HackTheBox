@@ -1,0 +1,13 @@
+# Nmap 7.80 scan initiated Wed Dec  4 08:50:01 2019 as: nmap -T4 -p- -o nmap_all_ports.txt 128.198.44.83
+Nmap scan report for sust101-5.uccs.edu (128.198.44.83)
+Host is up (0.019s latency).
+Not shown: 65529 filtered ports
+PORT      STATE SERVICE
+21/tcp    open  ftp
+22/tcp    open  ssh
+80/tcp    open  http
+9090/tcp  open  zeus-admin
+13337/tcp open  unknown
+22222/tcp open  easyengine
+
+# Nmap done at Wed Dec  4 08:51:56 2019 -- 1 IP address (1 host up) scanned in 115.33 seconds
