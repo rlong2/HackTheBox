@@ -1,6 +1,6 @@
 The landing page is a MegaCorp login page.
 Wappalyzer notes that php is being used.
-![](webLandingPage.png)
+![](Vaccine/03%20-%20Website/webLandingPage.png)
 
 
 See [[06 - md5 brute forcing]] for the password cracking adventure.
