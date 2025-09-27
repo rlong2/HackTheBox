@@ -4,7 +4,7 @@
 
 ### Description
 
-The guides that I created for rooting retired machines on Hack The Box are mostly txt files. I am in the process of rewriting these walkthroughs as more substantial Markdown reports, which can be imported into [Obsidian](https://obsidian.md/) and exported as **PDFs**. As each machine is rewritten or pwned for the first time, it will be moved into the [Retired Machines](https://github.com/rlong2/HackTheBox/tree/master/Retired%20Machines) directory. [Retired Challenges](https://github.com/rlong2/HackTheBox/tree/master/Retired%20Challenges) contains completed Markdown reports of solved Challenges from HackTheBox.
+The guides that I created for rooting retired machines on Hack The Box are Markdown reports, which render nicely on GitHub. They can be imported into [Obsidian](https://obsidian.md/) and exported as **PDFs** if desired. As each machine is rooted, it will be placed into the [Retired Machines](https://github.com/rlong2/HackTheBox/tree/master/Retired%20Machines) directory once the machines are officially considered 'retired' from Hack The Box. There are also [Retired Challenges](https://github.com/rlong2/HackTheBox/tree/master/Retired%20Challenges) which are Markdown reports of solved Challenges from HackTheBox that are retired.
 
 ### Hack The Box Lab Badges
  - Rank Badges
@@ -80,14 +80,6 @@ The guides that I created for rooting retired machines on Hack The Box are mostl
     - [Cyber Rookie 365](https://academy.hackthebox.com/achievement/badge/7dc5e195-a32f-11ef-864f-bea50ffe6cb4) - Awarded after one year of learning at HTB Academy
     - [Binary Duo Explorer](https://academy.hackthebox.com/achievement/badge/7b83470f-a335-11ef-864f-bea50ffe6cb4) - Awarded after two years of learning at HTB Academy 
     
-
-## [Over The Wire](https://www.overthewire.org)
-The goal of overthewire varies, but is centered around:
-- Basic CTF (Bandit) 
-- Web security (Natas)
-- Cryptography (Krypton)
-- Basic Linux (Leviathan)
-- Etc...
 
 #### Assorted_Files
 This directory contains configuration files, scripts, and txt files.
