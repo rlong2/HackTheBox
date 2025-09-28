@@ -5,7 +5,7 @@
 
 
 There is one .acc file that is suspicious - its file size differs compared to the rest.
-![](accFile.png)
+![](Bank_Images/accFile.png)
 
 ```
 ┌──(kali㉿kali)-[~/Desktop/HackTheBox/Retired Machines/Bank]
@@ -28,11 +28,11 @@ Balance: 8842803 .
 
 These credentials allow chris to log into the bank website.
 http://bank.htb/support.php - allows tickets to be created and files to be uploaded.
-![](ChrisUploadWebshell.png)
+![](Bank_Images/ChrisUploadWebshell.png)
 
 Appears to time out when uploading a shell. 
 Uploading a test.txt gives:
-![](CanOnlyUploadImages.png)
+![](Bank_Images/CanOnlyUploadImages.png)
 
 Changing file extension of webshell:
 ```

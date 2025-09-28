@@ -1,6 +1,6 @@
 Wappalyzer shows php 8.1.0 , Apache
 - http://10.10.10.242/ - landing page for a medical provider
-![](Knife/Knife_Images/WebLandingPage.png)
+![](Knife_Images/WebLandingPage.png)
 
 There doesn't seem to be much here.
 
