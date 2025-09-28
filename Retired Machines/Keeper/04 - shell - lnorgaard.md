@@ -149,7 +149,7 @@ The salt-value exception isn't great to see. Fortunately a github issue comment 
 https://github.com/hashcat/hashcat/issues/2173
 https://hashcat.net/wiki/doku.php?id=example_hashes
 
-![](HashcatExampleHash.png)
+![](Keeper_Images/HashcatExampleHash.png)
 
 After removing `passcodes:` from the beginning of the hash, hashcat runs properly.
 
@@ -264,7 +264,7 @@ Possible password: ●Mdgr●d med fl●de
 
 Keep in mind that the password may be danish, or danish related.
 
-![](PotentialPartialPassword.png)
+![](Keeper_Images/PotentialPartialPassword.png)
 
 - Password variations
 	- Rødgrød Med Fløde
@@ -277,10 +277,10 @@ Installing keypass and attempting the password
 [sudo] password for kali:
 ```
 
-![](PasswordAttempt.png)
+![](Keeper_Images/PasswordAttempt.png)
 
 Results!
-![](KeepassPasswords.png)
+![](Keeper_Images/KeepassPasswords.png)
 
 Got a root password and private key!
 ```
@@ -300,6 +300,6 @@ putty is already the newest version (0.83-3).
 ```
 
 
-![](LoadingKeyIntoPutty.png)
+![](Keeper_Images/LoadingKeyIntoPutty.png)
 
-![](RootShell.png)
+![](Keeper_Images/RootShell.png)

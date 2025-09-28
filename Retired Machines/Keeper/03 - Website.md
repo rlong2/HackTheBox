@@ -9,7 +9,7 @@ Appended URLs to `/etc/hosts`
 ```
 
 - http://tickets.keeper.htb/rt/ - login page for support tickets. Uses [Request Tracker](https://requesttracker.com/).
-![](LoginPageForTickets.png)
+![](Keeper_Images/LoginPageForTickets.png)
 Wappalyzer notes CKEditor, nginx 1.18.0.
 
 Request Tracker version: RT 4.4.4+dfsg-2ubuntu1 (Debian)
@@ -19,14 +19,14 @@ Logging in with incorrect credentials redirects to http://tickets.keeper.htb/rt/
 ## Logging in
 The page uses [Request Tracker default credentials](https://rt-wiki.bestpractical.com/wiki/RecoverRootPassword), and the attacker can log in with root:password
 
-![](WebLoggedInAsRoot.png)
+![](Keeper_Images/WebLoggedInAsRoot.png)
 
 http://tickets.keeper.htb/rt/Admin/Users/
 - users
 	- [lnorgaard](http://tickets.keeper.htb/rt/Admin/Users/Modify.html?id=27)
 	- [root](http://tickets.keeper.htb/rt/Admin/Users/Modify.html?id=14)
 
-![](lnorgaardUserPassword.png)
+![](Keeper_Images/lnorgaardUserPassword.png)
 
 - New user. Initial password set to `W<SNIP>3!`
 - lnorgaard@keeper.htb
