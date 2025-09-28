@@ -1,5 +1,5 @@
 - http://10.10.11.227/ - landing page showing a link to open support tickets
-![](Keeper/Keeper_Images/LandingPage.png)
+![](Keeper_Images/LandingPage.png)
 
 Appended URLs to `/etc/hosts`
 ```
