@@ -17,9 +17,9 @@ The guides that I created for rooting retired machines on Hack The Box are Markd
    - [Is There Anybody Out There?](https://labs.hackthebox.com/achievement/badge/2454978/231) - Owned 5 machines
 
  - Starting Point Badges
-   - [Tumble Into the Rabbit's Warren](https://labs.hackthebox.com/achievement/badge/2454978/117) - Completed Tier 0 of Starting Point
-   - [Enter Wonderland](https://labs.hackthebox.com/achievement/badge/2454978/118) - Completed Tier 1 of Starting Point
    - [Trial of the Knave of Hearts](https://labs.hackthebox.com/achievement/badge/2454978/119) - Completed Tier 2 of Starting Point
+   - [Enter Wonderland](https://labs.hackthebox.com/achievement/badge/2454978/118) - Completed Tier 1 of Starting Point
+   - [Tumble Into the Rabbit's Warren](https://labs.hackthebox.com/achievement/badge/2454978/117) - Completed Tier 0 of Starting Point
 
 ## Hack The Box [Academy](https://academy.hackthebox.com/)
  The list below charts my progress through HTB Academy courses and modules
@@ -75,10 +75,11 @@ The guides that I created for rooting retired machines on Hack The Box are Markd
     - [Offensive explorer](https://academy.hackthebox.com/achievement/badge/262ab9cb-72d0-11f0-9547-bea50ffe6cb4) - Pentest in a Nutshell module completed
 
  - Custom Badges:
-    - [Unwavering User](https://academy.hackthebox.com/achievement/badge/6f8a4787-5cf9-11f0-bcfd-bea50ffe6cb4) - Awarded when you achieve your first weekly streak 
+    - [Loyal Leader](https://academy.hackthebox.com/achievement/badge/33333af3-9880-11f0-9254-bea50ffe6cb4) - Awarded when you achieve 12 weekly streaks in a row
     - [Constant Champion](https://academy.hackthebox.com/achievement/badge/cb24bfb8-6b54-11f0-bcfd-bea50ffe6cb4) - Awarded when you achieve 4 weekly streaks in a row 
-    - [Cyber Rookie 365](https://academy.hackthebox.com/achievement/badge/7dc5e195-a32f-11ef-864f-bea50ffe6cb4) - Awarded after one year of learning at HTB Academy
+    - [Unwavering User](https://academy.hackthebox.com/achievement/badge/6f8a4787-5cf9-11f0-bcfd-bea50ffe6cb4) - Awarded when you achieve your first weekly streak 
     - [Binary Duo Explorer](https://academy.hackthebox.com/achievement/badge/7b83470f-a335-11ef-864f-bea50ffe6cb4) - Awarded after two years of learning at HTB Academy 
+    - [Cyber Rookie 365](https://academy.hackthebox.com/achievement/badge/7dc5e195-a32f-11ef-864f-bea50ffe6cb4) - Awarded after one year of learning at HTB Academy
     
 
 #### Assorted_Files
