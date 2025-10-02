@@ -1,0 +1,58 @@
+# nmap
+### nmap scan 1: quick, all ports 
+```
+└─$ nmap -T4 -Pn --open -p- 10.10.11.247
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-09-28 16:40 MDT
+Nmap scan report for 10.10.11.247
+Host is up (0.066s latency).
+Not shown: 65336 closed tcp ports (reset), 196 filtered tcp ports (no-response)
+Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
+PORT   STATE SERVICE
+21/tcp open  ftp
+22/tcp open  ssh
+53/tcp open  domain
+
+Nmap done: 1 IP address (1 host up) scanned in 22.21 seconds
+          
+```
+
+### nmap scan 2: service version
+```
+└─$ nmap -T4 -sV -sC -p- 10.10.11.247
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-09-28 16:41 MDT
+Nmap scan report for 10.10.11.247
+Host is up (0.061s latency).
+Not shown: 65532 closed tcp ports (reset)
+PORT   STATE SERVICE    VERSION
+21/tcp open  ftp        vsftpd 3.0.3
+| ftp-syst: 
+|   STAT: 
+| FTP server status:
+|      Connected to ::ffff:10.10.14.9
+|      Logged in as ftp
+|      TYPE: ASCII
+|      No session bandwidth limit
+|      Session timeout in seconds is 300
+|      Control connection is plain text
+|      Data connections will be plain text
+|      At session startup, client count was 1
+|      vsFTPd 3.0.3 - secure, fast, stable
+|_End of status
+| ftp-anon: Anonymous FTP login allowed (FTP code 230)
+| -rw-r--r--    1 ftp      ftp          4434 Jul 31  2023 MigrateOpenWrt.txt
+| -rw-r--r--    1 ftp      ftp       2501210 Jul 31  2023 ProjectGreatMigration.pdf
+| -rw-r--r--    1 ftp      ftp         60857 Jul 31  2023 ProjectOpenWRT.pdf
+| -rw-r--r--    1 ftp      ftp         40960 Sep 11  2023 backup-OpenWrt-2023-07-26.tar
+|_-rw-r--r--    1 ftp      ftp         52946 Jul 31  2023 employees_wellness.pdf
+22/tcp open  ssh        OpenSSH 8.2p1 Ubuntu 4ubuntu0.9 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   3072 48:ad:d5:b8:3a:9f:bc:be:f7:e8:20:1e:f6:bf:de:ae (RSA)
+|   256 b7:89:6c:0b:20:ed:49:b2:c1:86:7c:29:92:74:1c:1f (ECDSA)
+|_  256 18:cd:9d:08:a6:21:a8:b8:b6:f7:9f:8d:40:51:54:fb (ED25519)
+53/tcp open  tcpwrapped
+Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 35.30 seconds
+
+```
