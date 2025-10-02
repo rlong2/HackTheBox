@@ -8,6 +8,10 @@ Machine Details:
 
 ### tags:
 - anonymous FTP
+- OpenWRT
+- WPA
+- Cracking
+- reaver
 ### status
 - [ ] not started
 - [ ] in progress
