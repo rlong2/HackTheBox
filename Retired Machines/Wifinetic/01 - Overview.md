@@ -21,7 +21,7 @@ Machine Details:
 
 The target is running FTP, SSH, and DNS services. Anonymous FTP is allowed, and contains files for [OpenWRT](https://openwrt.org/start) configuration along with files from `/etc/`. There are credentials for user `netadmin` in the OpenWRT config files which are also used for SSH access.
 
-There are multiple interfaces on the target. The `reaver` tool is on the target, and allows the WPS pin on `wlan1` to be cracked.
+There are multiple interfaces on the target. The `reaver` tool is on the target, and allows the WPS pin on `wlan1` to be cracked. This allows the WPA PSK to be pulled for the access point. The `root` user has this same password configured for SSH, so the attacker can SSH in as `root` and retrieve the flag. 
 
 ## Bullet points
 - The target is running 21, 22, and 53
