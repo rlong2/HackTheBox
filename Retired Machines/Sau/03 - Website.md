@@ -1,10 +1,10 @@
 http://10.10.11.224:55555/web - landing page - create a basket to collect and inspect HTTP requests.
-
+ 
 `Powered by [request-baskets](https://github.com/darklynx/request-baskets) | Version: 1.2.1`
 
 ![](Attachments/WebLandingPage.png)
 
-http://10.10.11.224:55555/web/baskets - provide the master toekn and gain access to all the baskets
+http://10.10.11.224:55555/web/baskets - provide the master token and gain access to all the baskets
 ![](Attachments/Baskets.png)
 
 ## Creating a random basket
